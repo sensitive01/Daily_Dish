@@ -16,7 +16,7 @@ const Footer = () => {
   const getAddsocial = async () => {
     try {
       let res = await axios.get(
-        "https://dailydishbangalore.com/api/admin/getsocial"
+        "https://daily-dish.onrender.com/api/admin/getsocial"
       );
       if (res.status === 200) {
         setAddsocial(res.data.getsocial);
@@ -33,8 +33,8 @@ const Footer = () => {
     <div>
       {" "}
       {/* <div className="footer-container mt-3"> */}
-        <Container fluid>
-          {/* <Row>
+      <Container fluid>
+        {/* <Row>
             <div className="col-md-4">
               <div style={{ textAlign: "left" }}>
               <div className="col-md-5">
@@ -105,7 +105,7 @@ const Footer = () => {
                         <div className="row" key={i}>
                           <a href={items.CLink}>
                             <img
-                              src={`https://dailydishbangalore.com/Socialmedia/${items?.CIcon}`}
+                              src={`https://daily-dish.onrender.com/Socialmedia/${items?.CIcon}`}
                               alt="social-icon"
                               style={{ width: "55px", height: "55px" }}
                             />
@@ -144,31 +144,28 @@ const Footer = () => {
             </div>
           </Row> */}
 
-          {/* <Row>
+        {/* <Row>
             <div className="end-title mt-3 " style={{ textAlign: "center" }}>
               <p>© 2024 Daily Dish. All Right Reserved.</p>
             </div>
           </Row> */}
-         
 
         <div className="row justify-content-center text-center mt-3 mb-2">
-            {/* <div className="col-md-4 mb-2">
+          {/* <div className="col-md-4 mb-2">
               <h6>Address</h6>
             </div> */}
 
-            <div className="col-md-4 mb-2">
-              <p>© 2024 CHEF STUDIO INNOVATIONS all rights reserved.
-              </p>
-            </div>
+          <div className="col-md-4 mb-2">
+            <p>© 2024 CHEF STUDIO INNOVATIONS all rights reserved.</p>
+          </div>
 
-            {/* <div className="col-md-4 mb-2">
+          {/* <div className="col-md-4 mb-2">
               <h6>Follow us.
               </h6>
             </div> */}
-          </div>
-          </Container>
-
-      </div>
+        </div>
+      </Container>
+    </div>
     // </div>
   );
 };

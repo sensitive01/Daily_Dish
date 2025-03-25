@@ -19,7 +19,7 @@ const LocationAddRequest = () => {
   const getEnquiry = async () => {
     try {
       let res = await axios.get(
-        "https://dailydishbangalore.com/api/User/getEnquiryenquiry"
+        "https://daily-dish.onrender.com/api/User/getEnquiryenquiry"
       );
       if (res.status === 200) {
         setEnquiry(res.data.getdata.reverse());
@@ -35,7 +35,7 @@ const LocationAddRequest = () => {
   let DeleteEnquiry = async () => {
     try {
       let res = await axios.delete(
-        `https://dailydishbangalore.com/api/User/DeleteEnquiryList/${contactListId}`
+        `https://daily-dish.onrender.com/api/User/DeleteEnquiryList/${contactListId}`
       );
       if (res.status === 200) {
         alert(` Successfully Deleted..!`);
@@ -53,15 +53,14 @@ const LocationAddRequest = () => {
     getEnquiry();
   }, []);
 
-   //Pagination
-   const [pageNumber, setPageNumber] = useState(0);
-   const usersPerPage = 6;
-   const pagesVisited = pageNumber * usersPerPage;
-   const pageCount = Math.ceil(Enquiry.length / usersPerPage);
-   const changePage = ({ selected }) => {
-     setPageNumber(selected);
-   };
-
+  //Pagination
+  const [pageNumber, setPageNumber] = useState(0);
+  const usersPerPage = 6;
+  const pagesVisited = pageNumber * usersPerPage;
+  const pageCount = Math.ceil(Enquiry.length / usersPerPage);
+  const changePage = ({ selected }) => {
+    setPageNumber(selected);
+  };
 
   // Search filter
   const [nochangedata, setNoChangeData] = useState([]);
@@ -96,32 +95,31 @@ const LocationAddRequest = () => {
       alert("Please select a 'to' date");
       return;
     }
-  
+
     // Parse the input date strings into Date objects
     const start = new Date(startDate);
     const end = new Date(endDate);
-  
+
     // Set the end time to the end of the day to include all records on the end date
     end.setHours(23, 59, 59, 999);
-  
+
     // Filter the Enquiry array based on the date range
-    const newArry = Enquiry.filter(order => {
+    const newArry = Enquiry.filter((order) => {
       const placedDate = new Date(order.createdAt);
       return placedDate >= start && placedDate <= end;
     });
-  
+
     setEnquiry(newArry);
-  
+
     if (newArry.length === 0) {
       alert("No records found within the selected date range");
     }
   }
-  
 
   function clearbutton() {
     setendDate("");
     setstartDate("");
-    setEnquiry(nochangedata)
+    setEnquiry(nochangedata);
     // getAdduser();
   }
   // Export Excel
@@ -194,7 +192,11 @@ const LocationAddRequest = () => {
             </div>
           </div>
           <div>
-            <Button variant="" className="modal-add-btn" onClick={filterByDateRange}>
+            <Button
+              variant=""
+              className="modal-add-btn"
+              onClick={filterByDateRange}
+            >
               Submit
             </Button>
           </div>
@@ -231,65 +233,70 @@ const LocationAddRequest = () => {
               </thead>
 
               <tbody>
-                {Enquiry?.slice(pagesVisited, pagesVisited + usersPerPage)?.map((items, i) => {
-                  return (
-                    <tr>
-                      <td style={{ paddingTop: "20px" }}>
-                        {i + 1 + usersPerPage * pageNumber}
-                      </td>
-                      <td style={{ paddingTop: "20px" }}>
-                        {moment(items?.createdAt).format("MM/DD/YYYY h:mm A")}
-                      </td>
-                      <td style={{ paddingTop: "20px" }}>{items?.Name}</td>
-                      <td style={{ paddingTop: "20px" }}>{items?.Number}</td>
-                      <td style={{ paddingTop: "20px" }}>
-                        {items?.ApartmentName}
-                      </td>
-                      <td style={{ paddingTop: "20px" }}> {items?.Message}</td>
+                {Enquiry?.slice(pagesVisited, pagesVisited + usersPerPage)?.map(
+                  (items, i) => {
+                    return (
+                      <tr>
+                        <td style={{ paddingTop: "20px" }}>
+                          {i + 1 + usersPerPage * pageNumber}
+                        </td>
+                        <td style={{ paddingTop: "20px" }}>
+                          {moment(items?.createdAt).format("MM/DD/YYYY h:mm A")}
+                        </td>
+                        <td style={{ paddingTop: "20px" }}>{items?.Name}</td>
+                        <td style={{ paddingTop: "20px" }}>{items?.Number}</td>
+                        <td style={{ paddingTop: "20px" }}>
+                          {items?.ApartmentName}
+                        </td>
+                        <td style={{ paddingTop: "20px" }}>
+                          {" "}
+                          {items?.Message}
+                        </td>
 
-                      <td style={{ paddingTop: "20px" }}>
-                        {" "}
-                        <div
-                          style={{
-                            display: "flex",
-                            gap: "20px",
-                            justifyContent: "center",
-                          }}
-                        >
-                          <div>
-                            <AiFillDelete
-                              className="text-danger"
-                              style={{ cursor: "pointer", fontSize: "20px" }}
-                              onClick={() => {
-                                handleShow4();
-                                setcontactListId(items?._id);
-                              }}
-                            />{" "}
+                        <td style={{ paddingTop: "20px" }}>
+                          {" "}
+                          <div
+                            style={{
+                              display: "flex",
+                              gap: "20px",
+                              justifyContent: "center",
+                            }}
+                          >
+                            <div>
+                              <AiFillDelete
+                                className="text-danger"
+                                style={{ cursor: "pointer", fontSize: "20px" }}
+                                onClick={() => {
+                                  handleShow4();
+                                  setcontactListId(items?._id);
+                                }}
+                              />{" "}
+                            </div>
                           </div>
-                        </div>
-                      </td>
-                    </tr>
-                  );
-                })}
+                        </td>
+                      </tr>
+                    );
+                  }
+                )}
               </tbody>
             </Table>
 
             <div style={{ display: "flex" }} className="reactPagination">
-            <p style={{ width: "100%", marginTop: "20px" }}>
-              Total Count: {Enquiry?.length}
-            </p>
-            <ReactPaginate
-              previousLabel={"Back"}
-              nextLabel={"Next"}
-              pageCount={pageCount}
-              onPageChange={changePage}
-              containerClassName={"paginationBttns"}
-              previousLinkClassName={"previousBttn"}
-              nextLinkClassName={"nextBttn"}
-              disabledClassName={"paginationDisabled"}
-              activeClassName={"paginationActive"}
-            />
-          </div>
+              <p style={{ width: "100%", marginTop: "20px" }}>
+                Total Count: {Enquiry?.length}
+              </p>
+              <ReactPaginate
+                previousLabel={"Back"}
+                nextLabel={"Next"}
+                pageCount={pageCount}
+                onPageChange={changePage}
+                containerClassName={"paginationBttns"}
+                previousLinkClassName={"previousBttn"}
+                nextLinkClassName={"nextBttn"}
+                disabledClassName={"paginationDisabled"}
+                activeClassName={"paginationActive"}
+              />
+            </div>
           </div>
 
           {/* Delet modal  */}

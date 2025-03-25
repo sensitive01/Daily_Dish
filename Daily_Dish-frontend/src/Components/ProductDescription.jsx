@@ -61,7 +61,7 @@ const ProductDescription = ({ setHeaderUpdate, cartRemoveStatus }) => {
   const getAddproducts = async () => {
     try {
       let res = await axios.get(
-        "https://dailydishbangalore.com/api/admin/admin/product"
+        "https://daily-dish.onrender.com/api/admin/admin/product"
       );
       if (res.status === 200) {
         setAddproducts(res.data.products);
@@ -109,7 +109,7 @@ const ProductDescription = ({ setHeaderUpdate, cartRemoveStatus }) => {
         const config = {
           url: "/addcart/Addtocart",
           method: "post",
-          baseURL: "https://dailydishbangalore.com/api",
+          baseURL: "https://daily-dish.onrender.com/api",
           data: {
             productId: item._id,
             customerId: user._id,
@@ -146,7 +146,7 @@ const ProductDescription = ({ setHeaderUpdate, cartRemoveStatus }) => {
       const config = {
         url: "/addcart/deletecart",
         method: "put",
-        baseURL: "https://dailydishbangalore.com/api",
+        baseURL: "https://daily-dish.onrender.com/api",
         headers: { "content-type": "application/json" },
         data: {
           productId: item?.productId?._id, // Update this to match the actual productId
@@ -170,7 +170,7 @@ const ProductDescription = ({ setHeaderUpdate, cartRemoveStatus }) => {
       const config = {
         url: "/priceIncAnddec",
         method: "put",
-        baseURL: "https://dailydishbangalore.com/api/addcart",
+        baseURL: "https://daily-dish.onrender.com/api/addcart",
         headers: { "conten-type": "application/json" },
         data: {
           cartId: items?._id,
@@ -194,7 +194,7 @@ const ProductDescription = ({ setHeaderUpdate, cartRemoveStatus }) => {
         const config = {
           url: "/priceIncAnddec",
           method: "put",
-          baseURL: "https://dailydishbangalore.com/api/addcart",
+          baseURL: "https://daily-dish.onrender.com/api/addcart",
           headers: { "conten-type": "application/json" },
           data: {
             cartId: items?._id,
@@ -218,7 +218,7 @@ const ProductDescription = ({ setHeaderUpdate, cartRemoveStatus }) => {
 
   const getCatrDeatils = () => {
     axios
-      .get("https://dailydishbangalore.com/api/addcart/getcart/" + user?._id)
+      .get("https://daily-dish.onrender.com/api/addcart/getcart/" + user?._id)
       .then(function (response) {
         setCarts(response.data.success);
         setCartstatus(response.data.success);
@@ -460,21 +460,21 @@ const ProductDescription = ({ setHeaderUpdate, cartRemoveStatus }) => {
         </div>
         <div className="row">
           <div className="col-md-8 mb-2 mt-3">
-          <div style={{ textAlign: "left" }}>
-                <h5>
-                  <b>About Product</b>
-                </h5>
-                <div>
-                  <span>
-                    "Loream" appears to be a typo. Did you mean "Lorem"? If so,
-                    "Lorem ipsum" is a placeholder text commonly used in design
-                    and development to fill space and simulate real content.
-                    It's derived from a scrambled section of Cicero's writings
-                    and helps to demonstrate how the layout will look when the
-                    real text is available.
-                  </span>
-                </div>
-              </div> 
+            <div style={{ textAlign: "left" }}>
+              <h5>
+                <b>About Product</b>
+              </h5>
+              <div>
+                <span>
+                  "Loream" appears to be a typo. Did you mean "Lorem"? If so,
+                  "Lorem ipsum" is a placeholder text commonly used in design
+                  and development to fill space and simulate real content. It's
+                  derived from a scrambled section of Cicero's writings and
+                  helps to demonstrate how the layout will look when the real
+                  text is available.
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </Container>

@@ -6,7 +6,7 @@ import { BsSearch } from "react-icons/bs";
 import "../Admin/Admin.css";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import axios from 'axios'
+import axios from "axios";
 import * as XLSX from "xlsx";
 import moment from "moment";
 
@@ -23,17 +23,15 @@ const SalesReport = () => {
   const handleClose3 = () => setShow3(false);
   const handleShow3 = () => setShow3(true);
 
-
-
   const [Addproducts, setAddproducts] = useState([]);
   const getAddproducts = async () => {
     try {
       let res = await axios.get(
-        "https://dailydishbangalore.com/api/admin/getFoodItems"
+        "https://daily-dish.onrender.com/api/admin/getFoodItems"
       );
       if (res.status === 200) {
         setAddproducts(res.data.data);
-        setNoChangeData(res.data.data)
+        setNoChangeData(res.data.data);
         console.log("product", res.data.data);
       }
     } catch (error) {
@@ -63,14 +61,13 @@ const SalesReport = () => {
     }
   };
 
-
   const [startDate, setstartDate] = useState("");
   const [endDate, setendDate] = useState("");
   // function filterByDateRange() {
   //   // Parse the input date strings into Date objects
   //   const start = new Date(startDate);
   //   const end = new Date(endDate);
-  
+
   //   const newarry = ApartmentOrder.filter(order => {
   //     // Convert the `Placedon` date to a Date object
   //     const placedDate = new Date(order.Placedon);
@@ -87,14 +84,15 @@ const SalesReport = () => {
     // getAdduser();
   }
 
-
   const [ApartmentOrder, setApartmentOrder] = useState([]);
   const getApartmentOrder = async () => {
     try {
-      let res = await axios.get("https://dailydishbangalore.com/api/admin/getallorders");
+      let res = await axios.get(
+        "https://daily-dish.onrender.com/api/admin/getallorders"
+      );
       if (res.status === 200) {
         setApartmentOrder(res.data.order);
-        console.log("booking",res.data.order)
+        console.log("booking", res.data.order);
       }
     } catch (error) {
       console.log(error);
@@ -103,91 +101,98 @@ const SalesReport = () => {
   const calculateQuantity = (productId) => {
     const start = new Date(startDate);
     const end = new Date(endDate);
-  
+
     if (startDate) {
       // Set the end time to the end of the day
       end.setHours(23, 59, 59, 999);
-  
+
       return ApartmentOrder.reduce((totalQuantity, order) => {
         // Check if the order falls within the date range
-        if (new Date(order.createdAt) >= start && new Date(order.createdAt) <= end) {
+        if (
+          new Date(order.createdAt) >= start &&
+          new Date(order.createdAt) <= end
+        ) {
           // Calculate the product quantity for this order
-          const productQuantity = order?.allProduct
-            ?.filter((product) => product?.foodItemId?._id === productId)
-            .reduce((acc, product) => acc + product.quantity, 0) || 0;
-  
+          const productQuantity =
+            order?.allProduct
+              ?.filter((product) => product?.foodItemId?._id === productId)
+              .reduce((acc, product) => acc + product.quantity, 0) || 0;
+
           return totalQuantity + productQuantity;
         }
-  
+
         return totalQuantity;
       }, 0);
     }
-  
+
     return ApartmentOrder.reduce((totalQuantity, order) => {
       // Calculate the product quantity for all orders
-      const productQuantity = order?.allProduct
-        ?.filter((product) => product?.foodItemId?._id === productId)
-        .reduce((acc, product) => acc + product.quantity, 0) || 0;
-  
+      const productQuantity =
+        order?.allProduct
+          ?.filter((product) => product?.foodItemId?._id === productId)
+          .reduce((acc, product) => acc + product.quantity, 0) || 0;
+
       return totalQuantity + productQuantity;
     }, 0);
   };
-  
 
   const calculateTotalOrder = (productId) => {
     const start = new Date(startDate);
     const end = new Date(endDate);
-  
+
     if (startDate) {
       // Set the end time to the end of the day
       end.setHours(23, 59, 59, 999);
-  
+
       // Filter orders based on date range and product presence
-      const ordersWithProduct = ApartmentOrder.filter(order => {
+      const ordersWithProduct = ApartmentOrder.filter((order) => {
         const createdAt = new Date(order.createdAt);
         // Check if order date is within the range
         const isWithinDateRange = createdAt >= start && createdAt <= end;
-  
+
         // Check if the product exists in the order
-        const hasProduct = order.allProduct?.some(product => product?.foodItemId?._id === productId);
-  
+        const hasProduct = order.allProduct?.some(
+          (product) => product?.foodItemId?._id === productId
+        );
+
         return isWithinDateRange && hasProduct;
       });
-  
+
       // Return the count of such orders
       return ordersWithProduct.length;
     }
-  
+
     // Filter orders that have the product in their allProduct array
-    const ordersWithProduct = ApartmentOrder.filter(order =>
-      order.allProduct?.some(product => product?.foodItemId?._id === productId)
+    const ordersWithProduct = ApartmentOrder.filter((order) =>
+      order.allProduct?.some(
+        (product) => product?.foodItemId?._id === productId
+      )
     );
-  
+
     // Return the count of such orders
     return ordersWithProduct.length;
   };
-  
 
   const order = Addproducts.map((item) => ({
     Food: item?.foodname,
     Price: item?.foodprice,
-    Quantity:calculateQuantity(item?._id),
-    Orders:calculateTotalOrder(item?._id),
-    Amount : calculateQuantity(item?._id)*item?.foodprice
+    Quantity: calculateQuantity(item?._id),
+    Orders: calculateTotalOrder(item?._id),
+    Amount: calculateQuantity(item?._id) * item?.foodprice,
   }));
 
-   // Export Excel
-   const handleExportExcel = () => {
+  // Export Excel
+  const handleExportExcel = () => {
     // Remove 'createdAt' and 'updatedAt' fields from records
     // const filteredRecords = Addproducts.map(({ createdAt, updatedAt,__v,Foodgallery, ...rest }) => rest);
-  
+
     // Convert filtered JSON data to a worksheet
     const worksheet = XLSX.utils.json_to_sheet(order);
-  
+
     // Create a new workbook and append the worksheet
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, "Table Data");
-  
+
     // Generate Excel file and trigger download
     XLSX.writeFile(workbook, "SalesReport.xlsx");
   };
@@ -196,15 +201,13 @@ const SalesReport = () => {
     getApartmentOrder();
   }, [Addproducts]);
 
-
-
   // const calculateTotalAmount = (productId) => {
   //   return ApartmentOrder.reduce((totalQuantity, order) => {
   //     // Check if the order has an `allProduct` array
   //     const productQuantity = order?.allProduct
   //       ?.filter((product) => product?.foodItemId?._id === productId)
   //       .reduce((acc, product) => acc + product.totalPrice, 0) || 0;
-  
+
   //     return totalQuantity + productQuantity;
   //   }, 0);
   // };
@@ -212,62 +215,61 @@ const SalesReport = () => {
   return (
     <div>
       <div>
-       
-     <div className="d-flex">
-     <div className="col-lg-4 d-flex justify-content-center">
-          <div class="input-group ">
-            <span class="input-group-text" id="basic-addon1">
-              <BsSearch />
-            </span>
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Search..."
-              aria-describedby="basic-addon1"
-              onChange={handleFilterH}
-              value={searchH}
-            />
+        <div className="d-flex">
+          <div className="col-lg-4 d-flex justify-content-center">
+            <div class="input-group ">
+              <span class="input-group-text" id="basic-addon1">
+                <BsSearch />
+              </span>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Search..."
+                aria-describedby="basic-addon1"
+                onChange={handleFilterH}
+                value={searchH}
+              />
+            </div>
           </div>
-        </div>
-     <div className="col-md-3 d-flex justify-content-center align-items-center ms-2">
-          <div className="input-group">
-            <label htmlFor="" className="m-auto">
-              From: &nbsp;
-            </label>
-            <input
-              type="date"
-              className="form-control"
-              aria-describedby="date-filter"
-              value={startDate}
-              onChange={(e) => setstartDate(e.target.value)}
-            />
+          <div className="col-md-3 d-flex justify-content-center align-items-center ms-2">
+            <div className="input-group">
+              <label htmlFor="" className="m-auto">
+                From: &nbsp;
+              </label>
+              <input
+                type="date"
+                className="form-control"
+                aria-describedby="date-filter"
+                value={startDate}
+                onChange={(e) => setstartDate(e.target.value)}
+              />
+            </div>
           </div>
-        </div>
-        <div className="col-md-3 d-flex justify-content-center align-items-center ms-2">
-          <div className="input-group">
-            <label htmlFor="" className="m-auto">
-              To: &nbsp;
-            </label>
-            <input
-              type="date"
-              className="form-control"
-              aria-describedby="date-filter"
-              value={endDate}
-              onChange={(e) => setendDate(e.target.value)}
-            />
+          <div className="col-md-3 d-flex justify-content-center align-items-center ms-2">
+            <div className="input-group">
+              <label htmlFor="" className="m-auto">
+                To: &nbsp;
+              </label>
+              <input
+                type="date"
+                className="form-control"
+                aria-describedby="date-filter"
+                value={endDate}
+                onChange={(e) => setendDate(e.target.value)}
+              />
+            </div>
           </div>
-        </div>
-        {/* <div className="ms-2">
+          {/* <div className="ms-2">
           <Button variant="" className="modal-add-btn" onClick={filterByDateRange}>
             Submit
           </Button>
         </div> */}
-        <div className="ms-2">
-          <Button variant="danger" onClick={clearbutton}>
-            Clear
-          </Button>
+          <div className="ms-2">
+            <Button variant="danger" onClick={clearbutton}>
+              Clear
+            </Button>
+          </div>
         </div>
-     </div>
         <div className="customerhead p-2">
           <div className="d-flex justify-content-between align-items-center">
             <h2 className="header-c ">Sales Report</h2>
@@ -290,24 +292,29 @@ const SalesReport = () => {
                   <th>Quantity</th>
                   <th>Total Order</th>
                   <th>Total Amount</th>
-          
                 </tr>
               </thead>
 
               <tbody>
+                {Addproducts.map((item, index) => {
+                  return (
+                    <tr>
+                      <td>{index + 1}</td>
 
-{
-  Addproducts.map((item,index)=>{
-    return(
-<tr>
-                  <td>{index+1}</td>
-
-                  <td style={{ paddingTop: "20px" }}>{item?.foodname}</td>
-                  <td style={{ paddingTop: "20px" }}>{item?.foodprice}</td>
-                  <td style={{ paddingTop: "20px" }}>{calculateQuantity(item?._id)}</td>
-                  <td style={{ paddingTop: "20px" }}>{calculateTotalOrder(item?._id)}</td>
-                  <td style={{ paddingTop: "20px" }}>{(calculateQuantity(item?._id)*item?.foodprice).toFixed(2)}</td>
-                  {/* <td>
+                      <td style={{ paddingTop: "20px" }}>{item?.foodname}</td>
+                      <td style={{ paddingTop: "20px" }}>{item?.foodprice}</td>
+                      <td style={{ paddingTop: "20px" }}>
+                        {calculateQuantity(item?._id)}
+                      </td>
+                      <td style={{ paddingTop: "20px" }}>
+                        {calculateTotalOrder(item?._id)}
+                      </td>
+                      <td style={{ paddingTop: "20px" }}>
+                        {(
+                          calculateQuantity(item?._id) * item?.foodprice
+                        ).toFixed(2)}
+                      </td>
+                      {/* <td>
                     {" "}
                     <div
                       style={{
@@ -328,12 +335,9 @@ const SalesReport = () => {
                       </div>
                     </div>
                   </td> */}
-                </tr> 
-    )
-  })
-}
-
-             
+                    </tr>
+                  );
+                })}
               </tbody>
             </Table>
           </div>
@@ -380,9 +384,8 @@ const SalesReport = () => {
 
 export default SalesReport;
 
-
-
-{/* <Button
+{
+  /* <Button
       variant=""
       className="add-to-cart-btn"
       style={{
@@ -395,20 +398,21 @@ export default SalesReport;
       onClick={() => addCart1(item)}
     >
       Add to Cart
-    </Button> */}
+    </Button> */
+}
 
 //     <div className="incrementbtnn">
-                      
+
 //     <div className="incrementbtn">
-//    <FaMinus 
-//    onClick={() => decreaseQuantity(item?._id)} 
+//    <FaMinus
+//    onClick={() => decreaseQuantity(item?._id)}
 //    />
 //  </div>
- 
+
 //  {data?.Quantity}
 //  <div className="incrementbtn">
-//    <FaPlus 
-//    onClick={() => increaseQuantity(item?._id)} 
+//    <FaPlus
+//    onClick={() => increaseQuantity(item?._id)}
 //    />
 //  </div>
 //  </div>

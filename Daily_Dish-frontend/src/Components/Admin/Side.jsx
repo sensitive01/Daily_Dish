@@ -28,7 +28,7 @@ const Side = () => {
   const getAddApartment = async () => {
     try {
       let res = await axios.get(
-        "https://dailydishbangalore.com/api/admin/getapartment"
+        "https://daily-dish.onrender.com/api/admin/getapartment"
       );
       if (res.status === 200) {
         setAddApartment(res.data.corporatedata.reverse());
@@ -46,7 +46,7 @@ const Side = () => {
   const getApartmentOrder = async () => {
     try {
       let res = await axios.get(
-        "https://dailydishbangalore.com/api/admin/getallorders"
+        "https://daily-dish.onrender.com/api/admin/getallorders"
       );
       if (res.status === 200) {
         setApartmentOrder(res.data.order.reverse());
@@ -64,7 +64,7 @@ const Side = () => {
   const getAddCorporate = async () => {
     try {
       let res = await axios.get(
-        "https://dailydishbangalore.com/api/admin/getcorporate"
+        "https://daily-dish.onrender.com/api/admin/getcorporate"
       );
       if (res.status === 200) {
         setAddCorporate(res.data.corporatedata.reverse());
@@ -83,7 +83,7 @@ const Side = () => {
   const getEnquiry = async () => {
     try {
       let res = await axios.get(
-        "https://dailydishbangalore.com/api/User/getEnquiryenquiry"
+        "https://daily-dish.onrender.com/api/User/getEnquiryenquiry"
       );
       if (res.status === 200) {
         setEnquiry(res.data.getdata.reverse());
@@ -102,7 +102,7 @@ const Side = () => {
   const getAdduser = async () => {
     try {
       let res = await axios.get(
-        "https://dailydishbangalore.com/api/User/registeruser"
+        "https://daily-dish.onrender.com/api/User/registeruser"
       );
       if (res.status === 200) {
         setAdduser(res.data.success.reverse());
@@ -229,9 +229,7 @@ const Side = () => {
               <Link to="/all-products" onClick={handleNavCollapse}>
                 <li className="a-ele ">
                   <span>
-                    <MdProductionQuantityLimits
-                      style={{ fontSize: "20px" }}
-                    />
+                    <MdProductionQuantityLimits style={{ fontSize: "20px" }} />
                   </span>
                   <span className="ms-2">Products </span>
                 </li>
@@ -239,9 +237,7 @@ const Side = () => {
               <Link to="/coupon-list" onClick={handleNavCollapse}>
                 <li className="a-ele ">
                   <span>
-                    <MdDiscount   
-                      style={{ fontSize: "20px" }}
-                    />
+                    <MdDiscount style={{ fontSize: "20px" }} />
                   </span>
                   <span className="ms-2">Coupon Mangement </span>
                 </li>
@@ -289,9 +285,7 @@ const Side = () => {
               <Link to="/abandoned-cart" onClick={handleNavCollapse}>
                 <li className="a-ele ">
                   <span>
-                    <MdProductionQuantityLimits
-                      style={{ fontSize: "20px" }}
-                    />
+                    <MdProductionQuantityLimits style={{ fontSize: "20px" }} />
                   </span>
                   <span className="ms-2">Abandoned Cart </span>
                 </li>
@@ -300,9 +294,7 @@ const Side = () => {
               <Link to="/admin/walletseting" onClick={handleNavCollapse}>
                 <li className="a-ele ">
                   <span>
-                    <GiWallet 
-                      style={{ fontSize: "20px" }}
-                    />
+                    <GiWallet style={{ fontSize: "20px" }} />
                   </span>
                   <span className="ms-2">Wallet Setting </span>
                 </li>
@@ -311,11 +303,9 @@ const Side = () => {
               <Link to="/admin/walletmangement" onClick={handleNavCollapse}>
                 <li className="a-ele ">
                   <span>
-                    <HiMiniWallet  
-                      style={{ fontSize: "20px" }}
-                    />
+                    <HiMiniWallet style={{ fontSize: "20px" }} />
                   </span>
-                  <span className="ms-2">User Wallets  </span>
+                  <span className="ms-2">User Wallets </span>
                 </li>
               </Link>
               {/* <Link to="">

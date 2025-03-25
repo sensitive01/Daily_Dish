@@ -41,7 +41,7 @@ const BookingList = () => {
   const getApartmentOrder = async () => {
     try {
       let res = await axios.get(
-        "https://dailydishbangalore.com/api/admin/getallorders"
+        "https://daily-dish.onrender.com/api/admin/getallorders"
       );
       if (res.status === 200) {
         setApartmentOrder(res.data.order.reverse());
@@ -67,7 +67,7 @@ const BookingList = () => {
   const getAddproducts = async () => {
     try {
       let res = await axios.get(
-        "https://dailydishbangalore.com/api/admin/getFoodItems"
+        "https://daily-dish.onrender.com/api/admin/getFoodItems"
       );
       if (res.status === 200) {
         setAddproducts(res.data.data);
@@ -82,7 +82,7 @@ const BookingList = () => {
   let deleteBooking = async (data) => {
     try {
       let res = await axios.delete(
-        `https://dailydishbangalore.com/api/admin/deletefoodorder/${data}`
+        `https://daily-dish.onrender.com/api/admin/deletefoodorder/${data}`
       );
       if (res) {
         alert(`Bookings Data Deleted Successfully`);
@@ -194,12 +194,18 @@ const BookingList = () => {
         item?.allProduct
           ?.map((items) => `${items?.foodItemId?.foodcategory}`)
           .join(", ") || "N/A",
-          "Product Name": item?.allProduct?.map((items) => `${items?.foodItemId?.foodname} -  (${items?.quantity}.Qyt)`).join(", ") || "N/A",
+      "Product Name":
+        item?.allProduct
+          ?.map(
+            (items) =>
+              `${items?.foodItemId?.foodname} -  (${items?.quantity}.Qyt)`
+          )
+          .join(", ") || "N/A",
       Unit:
         item?.allProduct
           ?.map((items) => `${items?.foodItemId?.unit}`)
           .join(", ") || "N/A",
-     
+
       Apartment: item?.apartment,
       Address: item?.delivarylocation,
       "Delivery Charge": item?.delivarytype,
@@ -222,7 +228,7 @@ const BookingList = () => {
       const config = {
         url: "/admin/updateOrderStatus/" + item._id,
         method: "put",
-        baseURL: "https://dailydishbangalore.com/api",
+        baseURL: "https://daily-dish.onrender.com/api",
         headers: { "Content-Type": "application/json" },
         data: {
           newStatus: statusdata,
@@ -394,7 +400,11 @@ const BookingList = () => {
                         })}
                       </td>
                       <td>{items?.Cutlery > 0 ? "Yes" : "No"}</td>
-                      <td style={{ paddingTop: "20px" }}>{items?.discountWallet>0 ? items?.discountWallet :"No"}</td>
+                      <td style={{ paddingTop: "20px" }}>
+                        {items?.discountWallet > 0
+                          ? items?.discountWallet
+                          : "No"}
+                      </td>
                       <td style={{ paddingTop: "20px" }}>
                         {items?.coupon > 0 ? items?.coupon : "No"}
                       </td>
@@ -513,7 +523,7 @@ const BookingList = () => {
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
-        style={{zIndex:9999999}}
+        style={{ zIndex: 9999999 }}
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter"></Modal.Title>
@@ -532,7 +542,7 @@ const BookingList = () => {
                       <div className="row  border mt-1 mx-1">
                         <div className="col-md-4">
                           <img
-                            src={`https://dailydishbangalore.com/Products/${Item?.foodItemId?.Foodgallery[0]?.image2}`}
+                            src={`https://daily-dish.onrender.com/Products/${Item?.foodItemId?.Foodgallery[0]?.image2}`}
                             alt=""
                             style={{ width: "90px", height: "80px" }}
                           />
@@ -565,10 +575,10 @@ const BookingList = () => {
                   <div>
                     <div>Sub Total</div>
                     <div>Tax (5)%</div>
-                    {data?.Cutlery ? <div>Cutlery</div>:null}
-                     {data?.delivarytype ? <div>Delivery charges</div>:null}
-                     {data?.coupon ?<div>Coupon Discount</div>:null}
-                     {data?.discountWallet ?<div>Apply Wallet</div>:null}
+                    {data?.Cutlery ? <div>Cutlery</div> : null}
+                    {data?.delivarytype ? <div>Delivery charges</div> : null}
+                    {data?.coupon ? <div>Coupon Discount</div> : null}
+                    {data?.discountWallet ? <div>Apply Wallet</div> : null}
                     <div>
                       <b>Bill total</b>
                     </div>
@@ -579,15 +589,16 @@ const BookingList = () => {
                     <div>
                       <div>₹ {data?.subTotal}</div>
                       <div>₹ {data?.tax?.toFixed(2)}</div>
-                      {data?.Cutlery ?<div>₹ {data?.Cutlery}</div>:null}
-                     {data?.delivarytype ?<div>₹ {data?.delivarytype}</div>:null}
-                     {data?.coupon ?<div>₹ {data?.coupon}</div>:null}
-                     {data?.discountWallet ?<div>₹ {data?.discountWallet}</div>:null}
+                      {data?.Cutlery ? <div>₹ {data?.Cutlery}</div> : null}
+                      {data?.delivarytype ? (
+                        <div>₹ {data?.delivarytype}</div>
+                      ) : null}
+                      {data?.coupon ? <div>₹ {data?.coupon}</div> : null}
+                      {data?.discountWallet ? (
+                        <div>₹ {data?.discountWallet}</div>
+                      ) : null}
                       <div>
-                        <b>
-                          ₹{" "}
-                          { data?.allTotal?.toFixed(2)}
-                        </b>
+                        <b>₹ {data?.allTotal?.toFixed(2)}</b>
                       </div>
                     </div>
                   </div>

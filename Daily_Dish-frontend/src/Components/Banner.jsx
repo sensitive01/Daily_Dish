@@ -32,7 +32,6 @@ import { FaSquareWhatsapp } from "react-icons/fa6";
 // import { FaEye, FaEyeSlash, FaUser } from "react-icons/fa";
 
 const Banner = ({ selectArea, setSelectArea, Carts }) => {
-
   let addresstype = localStorage.getItem("addresstype");
   let corporateaddress = JSON.parse(localStorage.getItem("coporateaddress"));
 
@@ -81,7 +80,7 @@ const Banner = ({ selectArea, setSelectArea, Carts }) => {
       const config = {
         url: "/User/Sendotp",
         method: "post",
-        baseURL: "https://dailydishbangalore.com/api",
+        baseURL: "https://daily-dish.onrender.com/api",
 
         headers: { "content-type": "application/json" },
         data: {
@@ -97,21 +96,18 @@ const Banner = ({ selectArea, setSelectArea, Carts }) => {
         alert("Error sending OTP");
       }
       if (res.status === 200) {
-        handleClose3()
-        handleShow7()
+        handleClose3();
+        handleShow7();
       }
     } catch (error) {
       // console.log("error", error.message);
     }
   };
 
-
-
   const [show8, setShow8] = useState(false);
 
   const handleClose8 = () => setShow8(false);
   const handleShow8 = () => setShow8(true);
-
 
   const handleShowCart = () => setShowCart(true);
 
@@ -121,7 +117,6 @@ const Banner = ({ selectArea, setSelectArea, Carts }) => {
   const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
     message
   )}`;
-
 
   const logOut = () => {
     swal({
@@ -133,11 +128,9 @@ const Banner = ({ selectArea, setSelectArea, Carts }) => {
     setTimeout(() => {
       window.location.assign("/");
     }, 5000);
-    localStorage.clear()
+    localStorage.clear();
     // localStorage.removeItem("user");
-
   };
-
 
   //OTP save modal
   const [show1, setShow1] = useState(false);
@@ -149,7 +142,7 @@ const Banner = ({ selectArea, setSelectArea, Carts }) => {
   const getAddBanner = async () => {
     try {
       let res = await axios.get(
-        "https://dailydishbangalore.com/api/admin/getbanner"
+        "https://daily-dish.onrender.com/api/admin/getbanner"
       );
       if (res.status === 200) {
         setAddBanner(res.data.getbanner);
@@ -163,7 +156,7 @@ const Banner = ({ selectArea, setSelectArea, Carts }) => {
   const getapartmentd = async () => {
     try {
       let res = await axios.get(
-        "https://dailydishbangalore.com/api/admin/getapartment"
+        "https://daily-dish.onrender.com/api/admin/getapartment"
       );
       if (res.status === 200) {
         setapartmentdata(res.data.corporatedata);
@@ -180,7 +173,7 @@ const Banner = ({ selectArea, setSelectArea, Carts }) => {
   const getcorporate = async () => {
     try {
       let res = await axios.get(
-        "https://dailydishbangalore.com/api/admin/getcorporate"
+        "https://daily-dish.onrender.com/api/admin/getcorporate"
       );
       if (res.status === 200) {
         setcorporatedata(res.data.corporatedata);
@@ -200,7 +193,7 @@ const Banner = ({ selectArea, setSelectArea, Carts }) => {
     const getAddWebstory = async () => {
       try {
         let res = await axios.get(
-          "https://dailydishbangalore.com/api/admin/getstories"
+          "https://daily-dish.onrender.com/api/admin/getstories"
         );
         if (res.status === 200) {
           setStoryLength(res.data.getbanner.length);
@@ -211,13 +204,12 @@ const Banner = ({ selectArea, setSelectArea, Carts }) => {
     };
     getAddWebstory();
   }, []);
-  const address=JSON.parse(localStorage.getItem("address")) 
+  const address = JSON.parse(localStorage.getItem("address"));
 
-  const Handeledata = (ab,def) => {
-   
+  const Handeledata = (ab, def) => {
     try {
       if (ab) {
-        if(!user) return handleShow3();
+        if (!user) return handleShow3();
         let data = JSON.parse(ab);
         const addressData = {
           Address: data?.Address,
@@ -227,15 +219,15 @@ const Banner = ({ selectArea, setSelectArea, Carts }) => {
           pincode: data?.pincode,
           approximatetime: data?.approximatetime,
           prefixcode: data?.prefixcode,
-          name:ab?.Name ? ab?.Name:"",
-          flatno:ab?.fletNumber? ab?.fletNumber:"",
-          mobilenumber:ab?.Number ? ab?.Number:"",
-          towerName:ab?.towerName ? ab?.towerName:"",
+          name: ab?.Name ? ab?.Name : "",
+          flatno: ab?.fletNumber ? ab?.fletNumber : "",
+          mobilenumber: ab?.Number ? ab?.Number : "",
+          towerName: ab?.towerName ? ab?.towerName : "",
         };
-        if(!def){
-           saveSelectedAddress(data);
+        if (!def) {
+          saveSelectedAddress(data);
         }
-       
+
         if (addresstype === "apartment") {
           localStorage.setItem("address", JSON.stringify(addressData));
           // setAddress1(data);
@@ -252,8 +244,6 @@ const Banner = ({ selectArea, setSelectArea, Carts }) => {
       // console.log(error);
     }
   };
-
-
 
   //Request Location
   const [Name, setName] = useState("");
@@ -274,7 +264,7 @@ const Banner = ({ selectArea, setSelectArea, Carts }) => {
       if (!Name) {
         return alert("Please Add Your Name");
       }
- 
+
       if (!Number) {
         return alert("Please Add Your Contact Number");
       }
@@ -291,7 +281,7 @@ const Banner = ({ selectArea, setSelectArea, Carts }) => {
       const config = {
         url: "User/EnquiryEnquiry",
         method: "post",
-        baseURL: "https://dailydishbangalore.com/api/",
+        baseURL: "https://daily-dish.onrender.com/api/",
         header: { "content-type": "application/json" },
         data: {
           Name: Name,
@@ -317,7 +307,6 @@ const Banner = ({ selectArea, setSelectArea, Carts }) => {
     }
   };
 
- 
   const currentTime = new Date();
   const currentMinutes = currentTime.getHours() * 60 + currentTime.getMinutes(); // Convert time to minutes since midnight
 
@@ -361,7 +350,6 @@ const Banner = ({ selectArea, setSelectArea, Carts }) => {
     timeShow = "Ordering resumes at 08:00 AM.";
   }
 
-
   const verifyOTP = async () => {
     try {
       if (!OTP) {
@@ -370,7 +358,7 @@ const Banner = ({ selectArea, setSelectArea, Carts }) => {
       const config = {
         url: "User/mobileotpverification",
         method: "post",
-        baseURL: "https://dailydishbangalore.com/api/",
+        baseURL: "https://daily-dish.onrender.com/api/",
         header: { "content-type": "application/json" },
         data: {
           Mobile: Mobile,
@@ -383,7 +371,7 @@ const Banner = ({ selectArea, setSelectArea, Carts }) => {
         localStorage.setItem("user", JSON.stringify(res.data.details));
         sessionStorage.setItem("user", JSON.stringify(res.data.details));
         alert("OTP verified successfully");
-        window.location.reload()
+        window.location.reload();
       }
     } catch (error) {
       // console.log(error);
@@ -396,52 +384,57 @@ const Banner = ({ selectArea, setSelectArea, Carts }) => {
   const getSelectedAddress = async () => {
     try {
       let res = await axios.get(
-        `https://dailydishbangalore.com/api/user/getSelectedAddressByUserIDAddType/${user?._id}/${addresstype}`
+        `https://daily-dish.onrender.com/api/user/getSelectedAddressByUserIDAddType/${user?._id}/${addresstype}`
       );
       if (res.status === 200) {
         setSelectedAddress(res.data.getdata);
-      
+
         // console.log("Selected Address",res.data.getdata);
-        
       }
     } catch (error) {
       // console.log(error);
     }
   };
 
- 
   useEffect(() => {
-    if(user){
-       getSelectedAddress();
+    if (user) {
+      getSelectedAddress();
     }
   }, []);
 
-  useMemo(()=>{
-    if(addresstype=="apartment"){
-   let am= apartmentdata.find((ele)=>ele?._id?.toString()==selectedAddress?.addressid)
-      Handeledata(JSON.stringify({...am,...selectedAddress}),"def")  
-      
-    }else{
-      Handeledata(JSON.stringify({...corporatedata.find((ele)=>ele?._id?.toString()==selectedAddress?.addressid),...selectedAddress}),"def")  
+  useMemo(() => {
+    if (addresstype == "apartment") {
+      let am = apartmentdata.find(
+        (ele) => ele?._id?.toString() == selectedAddress?.addressid
+      );
+      Handeledata(JSON.stringify({ ...am, ...selectedAddress }), "def");
+    } else {
+      Handeledata(
+        JSON.stringify({
+          ...corporatedata.find(
+            (ele) => ele?._id?.toString() == selectedAddress?.addressid
+          ),
+          ...selectedAddress,
+        }),
+        "def"
+      );
     }
-  },[selectedAddress])
-
+  }, [selectedAddress]);
 
   const saveSelectedAddress = async (data) => {
     try {
-      if(!user) return 
+      if (!user) return;
       let res = await axios.post(
-        `https://dailydishbangalore.com/api/user/addressadd`,
+        `https://daily-dish.onrender.com/api/user/addressadd`,
         {
           Name: user?.Fname,
           Number: user?.Mobile,
           userId: user?._id,
           ApartmentName: data?.Apartmentname,
-          addresstype:addresstype,
-          addressid:data?._id
+          addresstype: addresstype,
+          addressid: data?._id,
         }
       );
-    
     } catch (error) {
       // console.log(error);
     }
@@ -815,7 +808,7 @@ const Banner = ({ selectArea, setSelectArea, Carts }) => {
                             <div className="textcolor">Privacy Policy </div>
                           </div>
                         </Nav.Link>
-                     
+
                         <Nav.Link
                           href=""
                           onClick={() => navigate("/termsconditions")}
@@ -1149,24 +1142,22 @@ const Banner = ({ selectArea, setSelectArea, Carts }) => {
 
       <Modal show={show3} backdrop="static" onHide={handleClose3}>
         <Modal.Header closeButton>
-          <Modal.Title className="d-flex align-items-center gap-1"><FaLock color="orangered"/>  <span>Welcome to Dailydish</span> </Modal.Title>
+          <Modal.Title className="d-flex align-items-center gap-1">
+            <FaLock color="orangered" /> <span>Welcome to Dailydish</span>{" "}
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          
           <Form>
-          <div className="login-whatsappwithicon">
-           
-              <FaSquareWhatsapp  size={42} color="green"/>
-         
-          <Form.Control
-              type="number"
-              placeholder="Enter Your WhatsApp Number"
-             
-              value={Mobile}
-              onChange={(e) => setMobile(e.target.value)}
-            />
-          </div>
-           
+            <div className="login-whatsappwithicon">
+              <FaSquareWhatsapp size={42} color="green" />
+
+              <Form.Control
+                type="number"
+                placeholder="Enter Your WhatsApp Number"
+                value={Mobile}
+                onChange={(e) => setMobile(e.target.value)}
+              />
+            </div>
 
             <Button
               variant=""
@@ -1181,7 +1172,7 @@ const Banner = ({ selectArea, setSelectArea, Carts }) => {
                 if (!validateIndianMobileNumber(Mobile)) {
                   return alert("Invalid mobile number");
                 }
-                userLogin()
+                userLogin();
               }}
               // onClick={() => navigate("/checkout")}
             >

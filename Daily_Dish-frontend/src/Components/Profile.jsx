@@ -14,7 +14,7 @@ const Profile = () => {
   const [show5, setShow5] = useState();
   const handleClose5 = () => setShow5(false);
   const handleShow5 = () => setShow5(true);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   // Integration Profile Update
   const user = JSON.parse(localStorage.getItem("user"));
@@ -31,72 +31,69 @@ const Profile = () => {
 
     // Test the email against the regex
     return regex.test(email);
-}
-
-function validateIndianMobileNumber(mobileNumber) {
-  // Regex to validate Indian mobile number
-  const regex = /^[6-9]\d{9}$/;
-
-  // Test the mobile number against the regex
-  return regex.test(mobileNumber);
-}
-
-const editRegUser = async () => {
-  if (Mobile && !validateIndianMobileNumber(Mobile)) {
-    return alert("Invalid Mobile Number");
   }
 
-  if (Email && !validateEmail(Email)) {
-    return alert("Invalid Email Id");
+  function validateIndianMobileNumber(mobileNumber) {
+    // Regex to validate Indian mobile number
+    const regex = /^[6-9]\d{9}$/;
+
+    // Test the mobile number against the regex
+    return regex.test(mobileNumber);
   }
 
-  try {
-
-    const config = {
-      url: "/User/updateuser", // Relative URL if using proxy
-      method: "put",
-      baseURL: "https://dailydishbangalore.com/api", // Remove this if proxy is used
-      headers: { 
-        "content-type": "application/json",
-        Authorization: `Bearer ${user?.token || ''}` // Example token
-      },
-      data: {
-        Fname,
-        Email,
-        Address,
-        Mobile,
-        userId: user?._id,
-      },
-    };
-
-    let res = await axios(config);
-
-    if (res.status === 200) {
-      alert("Profile Details Successfully Updated");
-      localStorage.setItem("user", JSON.stringify(res.data.userdata));
-      setFname("");
-      setEmail("");
-      setAddress("");
-      setMobile("");
-      handleClose5();
-    } else if (res.status === 500) {
-      alert("Something went wrong");
+  const editRegUser = async () => {
+    if (Mobile && !validateIndianMobileNumber(Mobile)) {
+      return alert("Invalid Mobile Number");
     }
-  } catch (error) {
-    console.error(error);
-    alert(error.message);
-  }
-};
 
+    if (Email && !validateEmail(Email)) {
+      return alert("Invalid Email Id");
+    }
+
+    try {
+      const config = {
+        url: "/User/updateuser", // Relative URL if using proxy
+        method: "put",
+        baseURL: "https://daily-dish.onrender.com/api", // Remove this if proxy is used
+        headers: {
+          "content-type": "application/json",
+          Authorization: `Bearer ${user?.token || ""}`, // Example token
+        },
+        data: {
+          Fname,
+          Email,
+          Address,
+          Mobile,
+          userId: user?._id,
+        },
+      };
+
+      let res = await axios(config);
+
+      if (res.status === 200) {
+        alert("Profile Details Successfully Updated");
+        localStorage.setItem("user", JSON.stringify(res.data.userdata));
+        setFname("");
+        setEmail("");
+        setAddress("");
+        setMobile("");
+        handleClose5();
+      } else if (res.status === 500) {
+        alert("Something went wrong");
+      }
+    } catch (error) {
+      console.error(error);
+      alert(error.message);
+    }
+  };
 
   //Profile image Update
   const editprofileRegUser = async (img) => {
-    
     try {
       const config = {
         url: "/User/profileimg",
         method: "put",
-        baseURL: "https://dailydishbangalore.com/api",
+        baseURL: "https://daily-dish.onrender.com/api",
         headers: { "content-type": "multipart/form-data" },
         data: {
           profileImage: img,
@@ -118,7 +115,7 @@ const editRegUser = async () => {
 
   return (
     <div>
-   <MdArrowBackIosNew
+      <MdArrowBackIosNew
         onClick={() => navigate("/home")}
         style={{
           color: "black",
@@ -127,141 +124,143 @@ const editRegUser = async () => {
           marginTop: "5px",
         }}
       />
-        <div className="profilecontainer">
-          <div className="myaccount-component">
-            <div className="profile-container mt-2">
-              <div style={{ position: "relative" }}>
-                {user?.profileImage ? (
-                  <img
-                    src={`https://dailydishbangalore.com/Customer/${user?.profileImage}`}
-                    alt="User Profile"
-                    className="user-picture"
-                  />
-                ) : (
-                  <img
-                    src="Assets/user.jpg"
-                    alt="Default User"
-                    className="user-picture"
-                  />
-                )}
+      <div className="profilecontainer">
+        <div className="myaccount-component">
+          <div className="profile-container mt-2">
+            <div style={{ position: "relative" }}>
+              {user?.profileImage ? (
+                <img
+                  src={`https://daily-dish.onrender.com/Customer/${user?.profileImage}`}
+                  alt="User Profile"
+                  className="user-picture"
+                />
+              ) : (
+                <img
+                  src="Assets/user.jpg"
+                  alt="Default User"
+                  className="user-picture"
+                />
+              )}
 
-                {/* Edit icon */}
-                <div className="edit-icon">
-                  <label htmlFor="file-input">
-                    <RiImageEditFill style={{ cursor: "pointer" }} />
-                  </label>
+              {/* Edit icon */}
+              <div className="edit-icon">
+                <label htmlFor="file-input">
+                  <RiImageEditFill style={{ cursor: "pointer" }} />
+                </label>
 
-                  <input
-                    id="file-input"
-                    type="file"
-                    accept="image/*"
-                    onChange={(e) => editprofileRegUser(e.target.files[0])}
-                    style={{ display: "none" }}
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="profile-container-2 mt-2">
-              <div className="profile-content-display">
-                <div className="profile-user-deatils">
-                  <p className="profile-user-subtitle">Name: {user?.Fname}</p>
-                  <p className="profile-user-subtitle">
-                    Email ID: {user?.Email}
-                  </p>
-                  <p className="profile-user-subtitle">
-                    Phone Number: {user?.Mobile}{" "}
-                  </p>
-                  <p className="profile-user-subtitle">
-                    Address: {user?.Address}
-                  </p>
-                </div>
-              </div>
-              <br />
-              <div>
-                <div className="edit-change-button">
-                  <Button
-                    variant=""
-                    className="header-search"
-                    onClick={handleShow5}
-                    style={{ background: "black", color: "white",textAlign:"center"}}
-                  >
-                    Edit Profile
-                  </Button>
-                </div>
+                <input
+                  id="file-input"
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => editprofileRegUser(e.target.files[0])}
+                  style={{ display: "none" }}
+                />
               </div>
             </div>
           </div>
 
-          {/* Edit profile modal */}
-          <Modal
-            show={show5}
-            onHide={handleClose5}
-            style={{ zIndex: "9999999" }}
-          >
-            <Modal.Header closeButton></Modal.Header>
-            <Modal.Body>
-              <h4 style={{ textAlign: "center", color: "balck" }}>
-                Edit Your Profile
-              </h4>
-              <Row>
-                <div className="col-lg-6 mt-3 mb-3" name="edit-profile-details">
-                  <label htmlFor="">First Name</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder={user?.Fname}
-                    value={Fname}
-                    onChange={(e) => setFname(e.target.value)}
-                  />
-                </div>
-
-                <div className="col-lg-6 mt-3 mb-3" name="edit-profile-details">
-                  <label htmlFor="">Email ID</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder={user?.Email}
-                    value={Email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                </div>
-                <div className="col-lg-6 mb-3" name="edit-profile-details">
-                  <label htmlFor="">Mobile Number</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder={user?.Mobile}
-                    value={Mobile}
-                    onChange={(e) => setMobile(e.target.value)}
-                  />
-                </div>
-                <div className="col-lg-6 mb-3" name="edit-profile-details">
-                  <label htmlFor="">Address</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder={user?.Address}
-                    value={Address}
-                    onChange={(e) => setAddress(e.target.value)}
-                  />
-                </div>
-              </Row>
-
-              <div className="mb-4">
+          <div className="profile-container-2 mt-2">
+            <div className="profile-content-display">
+              <div className="profile-user-deatils">
+                <p className="profile-user-subtitle">Name: {user?.Fname}</p>
+                <p className="profile-user-subtitle">Email ID: {user?.Email}</p>
+                <p className="profile-user-subtitle">
+                  Phone Number: {user?.Mobile}{" "}
+                </p>
+                <p className="profile-user-subtitle">
+                  Address: {user?.Address}
+                </p>
+              </div>
+            </div>
+            <br />
+            <div>
+              <div className="edit-change-button">
                 <Button
-                  variant=" "
+                  variant=""
                   className="header-search"
-                  style={{ background: "black", color: "white", width: "100%",textAlign:"center" }}
-                  onClick={editRegUser}
+                  onClick={handleShow5}
+                  style={{
+                    background: "black",
+                    color: "white",
+                    textAlign: "center",
+                  }}
                 >
-                  Update
+                  Edit Profile
                 </Button>
               </div>
-            </Modal.Body>
-          </Modal>
+            </div>
+          </div>
         </div>
-     
+
+        {/* Edit profile modal */}
+        <Modal show={show5} onHide={handleClose5} style={{ zIndex: "9999999" }}>
+          <Modal.Header closeButton></Modal.Header>
+          <Modal.Body>
+            <h4 style={{ textAlign: "center", color: "balck" }}>
+              Edit Your Profile
+            </h4>
+            <Row>
+              <div className="col-lg-6 mt-3 mb-3" name="edit-profile-details">
+                <label htmlFor="">First Name</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder={user?.Fname}
+                  value={Fname}
+                  onChange={(e) => setFname(e.target.value)}
+                />
+              </div>
+
+              <div className="col-lg-6 mt-3 mb-3" name="edit-profile-details">
+                <label htmlFor="">Email ID</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder={user?.Email}
+                  value={Email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
+              <div className="col-lg-6 mb-3" name="edit-profile-details">
+                <label htmlFor="">Mobile Number</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder={user?.Mobile}
+                  value={Mobile}
+                  onChange={(e) => setMobile(e.target.value)}
+                />
+              </div>
+              <div className="col-lg-6 mb-3" name="edit-profile-details">
+                <label htmlFor="">Address</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder={user?.Address}
+                  value={Address}
+                  onChange={(e) => setAddress(e.target.value)}
+                />
+              </div>
+            </Row>
+
+            <div className="mb-4">
+              <Button
+                variant=" "
+                className="header-search"
+                style={{
+                  background: "black",
+                  color: "white",
+                  width: "100%",
+                  textAlign: "center",
+                }}
+                onClick={editRegUser}
+              >
+                Update
+              </Button>
+            </div>
+          </Modal.Body>
+        </Modal>
+      </div>
     </div>
   );
 };

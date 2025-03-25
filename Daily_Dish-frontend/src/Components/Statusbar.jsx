@@ -17,7 +17,9 @@ const Statusbar = () => {
   useEffect(() => {
     const getAddWebstory = async () => {
       try {
-        let res = await axios.get("https://dailydishbangalore.com/api/admin/getstories");
+        let res = await axios.get(
+          "https://daily-dish.onrender.com/api/admin/getstories"
+        );
         if (res.status === 200) {
           const stories = res.data.getbanner.reverse(); // Adjust order if needed
           setAddWebstory(stories);
@@ -76,7 +78,7 @@ const Statusbar = () => {
         return updatedProgress;
       });
     } else {
-      navigate("/home"); 
+      navigate("/home");
     }
   };
 
@@ -112,19 +114,19 @@ const Statusbar = () => {
           {AddWebstory?.map((story, index) => (
             <Carousel.Item key={index}>
               <div className="status-container">
-              <div className="prev" onClick={handlePrevSlide}>
-    {/* Add custom icon or text for 'Prev' */}
-    &#8592;
-  </div>
-  <img
-    src={`https://dailydishbangalore.com/Webstories/${story?.StoriesImage}`}
-    alt="StoryImage"
-    className="status-image"
-  />
-  <div className="nextstatus" onClick={handleNextSlide}>
-    {/* Add custom icon or text for 'Next' */}
-    &#8594;
-  </div>
+                <div className="prev" onClick={handlePrevSlide}>
+                  {/* Add custom icon or text for 'Prev' */}
+                  &#8592;
+                </div>
+                <img
+                  src={`https://daily-dish.onrender.com/Webstories/${story?.StoriesImage}`}
+                  alt="StoryImage"
+                  className="status-image"
+                />
+                <div className="nextstatus" onClick={handleNextSlide}>
+                  {/* Add custom icon or text for 'Next' */}
+                  &#8594;
+                </div>
                 <div className="status-content">
                   <div className="icon-and-text">
                     <GiHotMeal className="status-icon" />

@@ -7,7 +7,7 @@ import "../Admin/Admin.css";
 import axios from "axios";
 import moment from "moment";
 import * as XLSX from "xlsx";
-import ReactPaginate from "react-paginate"; 
+import ReactPaginate from "react-paginate";
 
 const ApartmentList = () => {
   // Add modal for Banner
@@ -65,7 +65,7 @@ const ApartmentList = () => {
       const config = {
         url: "/admin/addapartment",
         method: "post",
-        baseURL: "https://dailydishbangalore.com/api",
+        baseURL: "https://daily-dish.onrender.com/api",
         header: { "content-type": "application/json" },
         data: {
           Apartmentname: Apartmentname,
@@ -100,7 +100,9 @@ const ApartmentList = () => {
   const [AddApartment, setAddApartment] = useState([]);
   const getAddApartment = async () => {
     try {
-      let res = await axios.get("https://dailydishbangalore.com/api/admin/getapartment");
+      let res = await axios.get(
+        "https://daily-dish.onrender.com/api/admin/getapartment"
+      );
       if (res.status === 200) {
         setAddApartment(res.data.corporatedata.reverse());
         setNoChangeData(res.data.corporatedata);
@@ -110,7 +112,7 @@ const ApartmentList = () => {
     }
   };
 
-  console.log('fdfd',AddApartment)
+  console.log("fdfd", AddApartment);
 
   //delete method
   const [Data, setData] = useState("");
@@ -119,7 +121,7 @@ const ApartmentList = () => {
       const config = {
         url: "admin/deleteapartment/" + Data,
         method: "delete",
-        baseURL: "https://dailydishbangalore.com/api/",
+        baseURL: "https://daily-dish.onrender.com/api/",
         header: { "content-type": "application/json" },
       };
       await axios(config).then((res) => {
@@ -155,7 +157,7 @@ const ApartmentList = () => {
       const config = {
         url: "admin/updateapartment",
         method: "put",
-        baseURL: "https://dailydishbangalore.com/api/",
+        baseURL: "https://daily-dish.onrender.com/api/",
         headers: { "Content-Type": "application/json" },
         data: {
           Apartmentname,
@@ -185,16 +187,14 @@ const ApartmentList = () => {
     getAddApartment();
   }, []);
 
-//Pagination
-const [pageNumber, setPageNumber] = useState(0);
-const usersPerPage = 6;
-const pagesVisited = pageNumber * usersPerPage;
-const pageCount = Math.ceil(AddApartment.length / usersPerPage);
-const changePage = ({ selected }) => {
-  setPageNumber(selected);
-};
-
-
+  //Pagination
+  const [pageNumber, setPageNumber] = useState(0);
+  const usersPerPage = 6;
+  const pagesVisited = pageNumber * usersPerPage;
+  const pageCount = Math.ceil(AddApartment.length / usersPerPage);
+  const changePage = ({ selected }) => {
+    setPageNumber(selected);
+  };
 
   // Search filter
   const [nochangedata, setNoChangeData] = useState([]);
@@ -295,7 +295,10 @@ const changePage = ({ selected }) => {
               </thead>
 
               <tbody>
-                {AddApartment?.slice(pagesVisited, pagesVisited + usersPerPage)?.map((items, i) => {
+                {AddApartment?.slice(
+                  pagesVisited,
+                  pagesVisited + usersPerPage
+                )?.map((items, i) => {
                   return (
                     <tr key={1}>
                       <td style={{ paddingTop: "20px" }}>
@@ -364,21 +367,21 @@ const changePage = ({ selected }) => {
               </tbody>
             </Table>
             <div style={{ display: "flex" }} className="reactPagination">
-            <p style={{ width: "100%", marginTop: "20px" }}>
-              Total Count: {AddApartment?.length}
-            </p>
-            <ReactPaginate
-              previousLabel={"Back"}
-              nextLabel={"Next"}
-              pageCount={pageCount}
-              onPageChange={changePage}
-              containerClassName={"paginationBttns"}
-              previousLinkClassName={"previousBttn"}
-              nextLinkClassName={"nextBttn"}
-              disabledClassName={"paginationDisabled"}
-              activeClassName={"paginationActive"}
-            />
-          </div>
+              <p style={{ width: "100%", marginTop: "20px" }}>
+                Total Count: {AddApartment?.length}
+              </p>
+              <ReactPaginate
+                previousLabel={"Back"}
+                nextLabel={"Next"}
+                pageCount={pageCount}
+                onPageChange={changePage}
+                containerClassName={"paginationBttns"}
+                previousLinkClassName={"previousBttn"}
+                nextLinkClassName={"nextBttn"}
+                disabledClassName={"paginationDisabled"}
+                activeClassName={"paginationActive"}
+              />
+            </div>
           </div>
 
           {/* Add Package modal for Category */}

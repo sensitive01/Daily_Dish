@@ -2,15 +2,15 @@ import React, { useState } from "react";
 import axios from "axios";
 import { IoIosEye } from "react-icons/io";
 import { IoIosEyeOff } from "react-icons/io";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 
 function AdminLogin() {
   const [REmail, setREmail] = useState("");
   const [RPassword, setRPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const login = async () => {
     try {
@@ -21,24 +21,27 @@ function AdminLogin() {
       if (!RPassword) {
         return toast.warning("Enter Correct Password");
       }
-  
+
       const config = {
         url: "/admin/adminLogin",
         method: "post",
-        baseURL: "https://dailydishbangalore.com/api",
+        baseURL: "https://daily-dish.onrender.com/api",
         headers: { "content-type": "application/json" },
         data: { REmail: REmail, RPassword: RPassword },
       };
-  
+
       let res = await axios(config);
-  
+
       // Check if login was successful
       if (res.status === 200) {
         if (res.data.success) {
           toast.success("Successfully logged in");
-          window.localStorage.setItem("admin", JSON.stringify(res.data.success));
+          window.localStorage.setItem(
+            "admin",
+            JSON.stringify(res.data.success)
+          );
           // window.location.assign("/dashboard");
-          navigate("/dashboard")
+          navigate("/dashboard");
         } else {
           toast.warning("Incorrect email or password");
         }
@@ -53,7 +56,6 @@ function AdminLogin() {
       console.log(error);
     }
   };
-  
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -61,14 +63,13 @@ function AdminLogin() {
 
   return (
     <>
-    <ToastContainer
-     position="top-center" // Set position to top-center
-     autoClose={2000}      // Automatically close after 3 seconds
-     hideProgressBar={true} // Show the progress bar
-     closeOnClick          // Close on click
-
-     draggable             // Allow dragging the toast
-    />
+      <ToastContainer
+        position="top-center" // Set position to top-center
+        autoClose={2000} // Automatically close after 3 seconds
+        hideProgressBar={true} // Show the progress bar
+        closeOnClick // Close on click
+        draggable // Allow dragging the toast
+      />
       <div className="admin-login-bg">
         <div className="add">
           <div className="container">
@@ -96,7 +97,6 @@ function AdminLogin() {
                         // value={REmail}
                         required
                         onChange={(e) => setREmail(e.target.value)}
-                        
                       />
                     </div>
                     <div className="sd_00 mb-2">

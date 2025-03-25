@@ -26,22 +26,27 @@ const WebStory = () => {
   const [StoriesText, setStoriesText] = useState("");
 
   const AddWebstorydata = async () => {
-
     if (!StoriesImage) {
       return alert("Please add an image.");
     }
 
     // Check if StoriesImage is a valid image file
-    const allowedImageTypes = ["image/jpeg", "image/png", "image/jpg", "image/gif"];
+    const allowedImageTypes = [
+      "image/jpeg",
+      "image/png",
+      "image/jpg",
+      "image/gif",
+    ];
     if (!allowedImageTypes.includes(StoriesImage.type)) {
-      return alert("Invalid file type. Please upload an image (JPEG, PNG, JPG, or GIF).");
+      return alert(
+        "Invalid file type. Please upload an image (JPEG, PNG, JPG, or GIF)."
+      );
     }
 
     // Validate StoriesText
     if (!StoriesText) {
       return alert("Please add a title.");
     }
-
 
     formdata.append("StoriesImage", StoriesImage);
     formdata.append("StoriesText", StoriesText);
@@ -56,7 +61,7 @@ const WebStory = () => {
       const config = {
         url: "/admin/Addstories",
         method: "post",
-        baseURL: "https://dailydishbangalore.com/api",
+        baseURL: "https://daily-dish.onrender.com/api",
         header: { "content-type": "multipart/form-data" },
         data: formdata,
       };
@@ -75,7 +80,9 @@ const WebStory = () => {
   const [AddWebstory, setAddWebstory] = useState([]);
   const getAddWebstory = async () => {
     try {
-      let res = await axios.get("https://dailydishbangalore.com/api/admin/getstories");
+      let res = await axios.get(
+        "https://daily-dish.onrender.com/api/admin/getstories"
+      );
       if (res.status === 200) {
         setAddWebstory(res.data.getbanner.reverse());
       }
@@ -91,7 +98,7 @@ const WebStory = () => {
       const config = {
         url: "admin/Deletestories/" + Data,
         method: "delete",
-        baseURL: "https://dailydishbangalore.com/api/",
+        baseURL: "https://daily-dish.onrender.com/api/",
         header: { "content-type": "application/json" },
       };
       await axios(config).then((res) => {
@@ -127,7 +134,7 @@ const WebStory = () => {
       const config = {
         url: "admin/editstories",
         method: "put",
-        baseURL: "https://dailydishbangalore.com/api/",
+        baseURL: "https://daily-dish.onrender.com/api/",
         header: { "content-type": "multipart/form-data" },
         data: formdata,
       };
@@ -156,11 +163,11 @@ const WebStory = () => {
           {/* {AddWebstory?.length > 4 ? (
             <></>
           ) : ( */}
-            <>
-              <Button variant="success" onClick={handleShow3}>
-                + ADD
-              </Button>
-            </>
+          <>
+            <Button variant="success" onClick={handleShow3}>
+              + ADD
+            </Button>
+          </>
           {/* )} */}
         </div>
 
@@ -187,7 +194,7 @@ const WebStory = () => {
                     <td style={{ paddingTop: "20px" }}> {i + 1}</td>
                     <td style={{ paddingTop: "20px" }}>
                       <Image
-                        src={`https://dailydishbangalore.com/Webstories/${item?.StoriesImage}`}
+                        src={`https://daily-dish.onrender.com/Webstories/${item?.StoriesImage}`}
                         alt="pic"
                         style={{ width: "65px", height: "65px" }}
                       />

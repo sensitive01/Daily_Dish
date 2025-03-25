@@ -24,7 +24,7 @@ const AdminCoupon = () => {
   const getfooditems = async () => {
     try {
       let res = await axios.get(
-        "https://dailydishbangalore.com/api/admin/getFoodItemsUnBlocks"
+        "https://daily-dish.onrender.com/api/admin/getFoodItemsUnBlocks"
       );
       if (res.status === 200) {
         setfooditemdata(res.data.data);
@@ -43,7 +43,7 @@ const AdminCoupon = () => {
   const getCoupon = async () => {
     try {
       axios
-        .get("https://dailydishbangalore.com/api/admin/coupons")
+        .get("https://daily-dish.onrender.com/api/admin/coupons")
         .then((response) => {
           setCoupons(response.data);
         })
@@ -118,19 +118,18 @@ const AdminCoupon = () => {
         console.error("Error:", error);
       });
   };
-const [showApply,setshowapply]=useState(false);
+  const [showApply, setshowapply] = useState(false);
 
   const [users, setUsers] = useState([]);
   const [selectedCoupon, setSelectedCoupon] = useState(null);
   const usersDataForCSV = users.map((user) => ({
     Name: user.Name,
     MobileNumber: user.MobileNumber,
-    Date_Time:user?.AppliedDate ? moment(user?.AppliedDate).format('lll'):""
+    Date_Time: user?.AppliedDate ? moment(user?.AppliedDate).format("lll") : "",
   }));
 
+  console.log("user==>", users);
 
-  console.log("user==>",users);
-  
   return (
     <div className="container mt-4">
       <h1 className="header-c"> Coupon Management</h1>
@@ -166,18 +165,26 @@ const [showApply,setshowapply]=useState(false);
               <td>
                 {coupon?.productId?.Foodgallery && (
                   <img
-                    src={`https://dailydishbangalore.com/Products/${coupon?.productId?.Foodgallery[0]?.image2}`}
+                    src={`https://daily-dish.onrender.com/Products/${coupon?.productId?.Foodgallery[0]?.image2}`}
                     alt={coupon?.productId?.foodname}
                     style={{ width: 50, marginRight: 10 }}
                   />
                 )}
                 {coupon?.productId?.foodname} ₹.{coupon?.productId?.foodprice}
               </td>
-              <td><abbr title="View" style={{cursor:"pointer"}} onClick={()=>{
-                setUsers(coupon?.applyUser);
-                setSelectedCoupon(coupon?.couponName)
-                setshowapply(true)
-              }}><FaRegEye  size={25} color="green"/> </abbr> </td>
+              <td>
+                <abbr
+                  title="View"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => {
+                    setUsers(coupon?.applyUser);
+                    setSelectedCoupon(coupon?.couponName);
+                    setshowapply(true);
+                  }}
+                >
+                  <FaRegEye size={25} color="green" />{" "}
+                </abbr>{" "}
+              </td>
               <td>
                 <Button
                   variant="warning"
@@ -272,7 +279,7 @@ const [showApply,setshowapply]=useState(false);
                 {fooditemdata?.map((product) => (
                   <option key={product._id} value={product._id}>
                     <img
-                      src={`https://dailydishbangalore.com/Products/${product?.Foodgallery[0]?.image2}`}
+                      src={`https://daily-dish.onrender.com/Products/${product?.Foodgallery[0]?.image2}`}
                       alt={product?.foodname}
                       style={{ width: 30, marginRight: 10 }}
                     />
@@ -333,8 +340,7 @@ const [showApply,setshowapply]=useState(false);
         </Modal.Footer>
       </Modal>
 
-
-      <Modal show={showApply} onHide={()=>setshowapply(false)}>
+      <Modal show={showApply} onHide={() => setshowapply(false)}>
         <Modal.Header closeButton>
           <Modal.Title>Users list who applied Coupon</Modal.Title>
         </Modal.Header>
@@ -354,7 +360,11 @@ const [showApply,setshowapply]=useState(false);
                     <tr key={user._id}>
                       <td>{user.Name}</td>
                       <td>{user.MobileNumber}</td>
-                      <td>{user?.AppliedDate ? moment(user?.AppliedDate).format('lll') : ""}</td>
+                      <td>
+                        {user?.AppliedDate
+                          ? moment(user?.AppliedDate).format("lll")
+                          : ""}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -373,7 +383,7 @@ const [showApply,setshowapply]=useState(false);
           )}
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={()=>setshowapply(false)}>
+          <Button variant="secondary" onClick={() => setshowapply(false)}>
             Close
           </Button>
         </Modal.Footer>

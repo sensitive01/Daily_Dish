@@ -13,7 +13,9 @@ const AbandonedCart = () => {
   // Fetch abandoned carts
   const fetchCarts = async () => {
     try {
-      const response = await axios.get("https://dailydishbangalore.com/api/cart/getAllcartaddon");
+      const response = await axios.get(
+        "https://daily-dish.onrender.com/api/cart/getAllcartaddon"
+      );
       setCarts(response.data.success);
     } catch (error) {
       console.error("Error fetching carts:", error);
@@ -51,7 +53,7 @@ const AbandonedCart = () => {
             <th>Items Count</th>
             <th>Last Updated</th>
             <th>Abandoned</th>
-             <th>Status</th>
+            <th>Status</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -65,15 +67,21 @@ const AbandonedCart = () => {
                 <td>{cart.items?.length || 0}</td>
                 <td>{moment(cart.lastUpdated).format("lll")}</td>
                 <td>
-                  <span className={`badge ${cart.abandoned ? "bg-danger" : "bg-success"}`}>
+                  <span
+                    className={`badge ${
+                      cart.abandoned ? "bg-danger" : "bg-success"
+                    }`}
+                  >
                     {cart.abandoned ? "Yes" : "No"}
                   </span>
                 </td>
+                <td>{cart.status}</td>
                 <td>
-                {cart.status}
-                                </td>
-                <td>
-                  <Button variant="info" size="sm" onClick={() => handleViewCart(cart)}>
+                  <Button
+                    variant="info"
+                    size="sm"
+                    onClick={() => handleViewCart(cart)}
+                  >
                     View Details
                   </Button>
                 </td>
@@ -81,7 +89,9 @@ const AbandonedCart = () => {
             ))
           ) : (
             <tr>
-              <td colSpan="7" className="text-center text-muted">No abandoned carts found.</td>
+              <td colSpan="7" className="text-center text-muted">
+                No abandoned carts found.
+              </td>
             </tr>
           )}
         </tbody>
@@ -90,17 +100,25 @@ const AbandonedCart = () => {
       {/* Pagination */}
       {carts.length > cartsPerPage && (
         <Pagination className="justify-content-center">
-          <Pagination.Prev onClick={() => paginate(currentPage - 1)} disabled={currentPage === 1} />
-          {Array.from({ length: Math.ceil(carts.length / cartsPerPage) }).map((_, index) => (
-            <Pagination.Item
-              key={index + 1}
-              active={index + 1 === currentPage}
-              onClick={() => paginate(index + 1)}
-            >
-              {index + 1}
-            </Pagination.Item>
-          ))}
-          <Pagination.Next onClick={() => paginate(currentPage + 1)} disabled={currentPage === Math.ceil(carts.length / cartsPerPage)} />
+          <Pagination.Prev
+            onClick={() => paginate(currentPage - 1)}
+            disabled={currentPage === 1}
+          />
+          {Array.from({ length: Math.ceil(carts.length / cartsPerPage) }).map(
+            (_, index) => (
+              <Pagination.Item
+                key={index + 1}
+                active={index + 1 === currentPage}
+                onClick={() => paginate(index + 1)}
+              >
+                {index + 1}
+              </Pagination.Item>
+            )
+          )}
+          <Pagination.Next
+            onClick={() => paginate(currentPage + 1)}
+            disabled={currentPage === Math.ceil(carts.length / cartsPerPage)}
+          />
         </Pagination>
       )}
 
@@ -112,12 +130,24 @@ const AbandonedCart = () => {
         <Modal.Body>
           {selectedCart ? (
             <>
-              <p><strong>Cart ID:</strong> {selectedCart.cartId || "N/A"}</p>
-              <p><strong>User Name:</strong> {selectedCart.username || "Unknown"}</p>
-              <p><strong>Mobile:</strong> {selectedCart.mobile || "N/A"}</p>
-              <p><strong>Last Updated:</strong> {moment(selectedCart.lastUpdated).format("lll")}</p>
-              <p><strong>Abandoned:</strong> {selectedCart.abandoned ? "Yes" : "No"}</p>
-              
+              <p>
+                <strong>Cart ID:</strong> {selectedCart.cartId || "N/A"}
+              </p>
+              <p>
+                <strong>User Name:</strong> {selectedCart.username || "Unknown"}
+              </p>
+              <p>
+                <strong>Mobile:</strong> {selectedCart.mobile || "N/A"}
+              </p>
+              <p>
+                <strong>Last Updated:</strong>{" "}
+                {moment(selectedCart.lastUpdated).format("lll")}
+              </p>
+              <p>
+                <strong>Abandoned:</strong>{" "}
+                {selectedCart.abandoned ? "Yes" : "No"}
+              </p>
+
               <h5 className="mt-3">🛒 Cart Items:</h5>
               {selectedCart.items?.length > 0 ? (
                 <Table striped bordered responsive>
@@ -127,7 +157,7 @@ const AbandonedCart = () => {
                       <th>Price</th>
                       <th>Unit</th>
                       <th>Quantity</th>
-                   
+
                       <th>Image</th>
                     </tr>
                   </thead>
@@ -139,10 +169,13 @@ const AbandonedCart = () => {
                         <td>{item.unit}</td>
                         <td>{item.Quantity}</td>
                         <td>
-                          <img 
-                            src={`https://dailydishbangalore.com/Products/${item.image}` || "https://via.placeholder.com/50"} 
-                            alt={item.foodname} 
-                            style={{ width: 50, borderRadius: "5px" }} 
+                          <img
+                            src={
+                              `https://daily-dish.onrender.com/Products/${item.image}` ||
+                              "https://via.placeholder.com/50"
+                            }
+                            alt={item.foodname}
+                            style={{ width: 50, borderRadius: "5px" }}
                           />
                         </td>
                       </tr>

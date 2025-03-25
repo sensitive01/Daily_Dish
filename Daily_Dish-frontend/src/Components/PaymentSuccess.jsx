@@ -18,15 +18,13 @@ const PaymentSuccess = () => {
   const [paymentDetails, setPaymentDetails] = useState(null); // Store the full payment data
 
   const handleHomeClick = () => {
-    navigate("/orders?userID="+userId);
+    navigate("/orders?userID=" + userId);
   };
-
-
 
   const checkPaymentStatus = async () => {
     try {
       // Construct API endpoint
-      const url = `https://dailydishbangalore.com/api/User/checkPayment/${transactionId}/${userId}`;
+      const url = `https://daily-dish.onrender.com/api/User/checkPayment/${transactionId}/${userId}`;
 
       // Make the GET request
       const response = await axios.get(url);
@@ -35,18 +33,17 @@ const PaymentSuccess = () => {
         const paymentData = response.data.success;
         setPaymentDetails(paymentData);
         if (paymentData.status === "COMPLETED") {
-          localStorage.removeItem("cart")
+          localStorage.removeItem("cart");
           setPaymentStatus("COMPLETED");
-          setTimeout(()=>{
-            navigate("/orders?userID="+userId)
-          },1000);
+          setTimeout(() => {
+            navigate("/orders?userID=" + userId);
+          }, 1000);
         } else {
           setPaymentStatus("FAILED");
-          setTimeout(()=>{
-            navigate("/checkout")
-          },1000);
+          setTimeout(() => {
+            navigate("/checkout");
+          }, 1000);
         }
-     
       } else {
         // Handle unexpected response
         swal({
@@ -107,7 +104,10 @@ const PaymentSuccess = () => {
           <p className="payment-failed-message">
             We could not process your payment. Please try again.
           </p>
-          <button onClick={()=>navigate("/checkout")} className="payment-success-button">
+          <button
+            onClick={() => navigate("/checkout")}
+            className="payment-success-button"
+          >
             Retry Payment
           </button>
         </>

@@ -7,25 +7,31 @@ export const WalletProvider = ({ children }) => {
   const [wallet, setWallet] = useState(null);
   const [transactions, setTransactions] = useState([]);
   const [loading, setLoading] = useState(true);
-const [walletSeting,setWalletSeting]=useState({});
+  const [walletSeting, setWalletSeting] = useState({});
 
   useEffect(() => {
     fetchWalletData();
-    AdminWallet()
+    AdminWallet();
   }, []);
 
   const fetchWalletData = async () => {
     try {
-      const userId = JSON.parse(localStorage.getItem("user")) // Assuming user is logged in
+      const userId = JSON.parse(localStorage.getItem("user")); // Assuming user is logged in
       if (!userId) return;
 
-      const walletRes = await axios.get(`https://dailydishbangalore.com/api/wallet/user/${userId?._id}`);
+      const walletRes = await axios.get(
+        `https://daily-dish.onrender.com/api/wallet/user/${userId?._id}`
+      );
       setWallet(walletRes.data.data?.wallet);
 
-      const transactionsRes = await axios.get(`https://dailydishbangalore.com/api/wallet/transactions/${userId?._id}`);
+      const transactionsRes = await axios.get(
+        `https://daily-dish.onrender.com/api/wallet/transactions/${userId?._id}`
+      );
       setTransactions(transactionsRes.data.data);
 
-      const walseting=await axios.get( "https://dailydishbangalore.com/api/wallet/getsettings");
+      const walseting = await axios.get(
+        "https://daily-dish.onrender.com/api/wallet/getsettings"
+      );
       setWalletSeting(walseting.data.success);
       setLoading(false);
     } catch (error) {
@@ -34,23 +40,30 @@ const [walletSeting,setWalletSeting]=useState({});
     }
   };
 
-  const [AllWallet,setAllWallet]=useState([]);
-const AdminWallet=async()=>{
-  try {
-    const response = await axios.get(
-      "https://dailydishbangalore.com/api/wallet/all"
-    );
-    setAllWallet(response.data.success);
-  } catch (error) {
-    console.error("Error fetching wallets:", error);
-  }
-}
-
-
-  
+  const [AllWallet, setAllWallet] = useState([]);
+  const AdminWallet = async () => {
+    try {
+      const response = await axios.get(
+        "https://daily-dish.onrender.com/api/wallet/all"
+      );
+      setAllWallet(response.data.success);
+    } catch (error) {
+      console.error("Error fetching wallets:", error);
+    }
+  };
 
   return (
-    <WalletContext.Provider value={{ wallet, transactions, fetchWalletData, loading ,walletSeting,AllWallet,AdminWallet}}>
+    <WalletContext.Provider
+      value={{
+        wallet,
+        transactions,
+        fetchWalletData,
+        loading,
+        walletSeting,
+        AllWallet,
+        AdminWallet,
+      }}
+    >
       {children}
     </WalletContext.Provider>
   );

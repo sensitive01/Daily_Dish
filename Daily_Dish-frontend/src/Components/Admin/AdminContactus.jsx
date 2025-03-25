@@ -51,7 +51,7 @@ const AdminContactus = () => {
       const config = {
         url: "admin/contactus",
         method: "post",
-        baseURL: "https://dailydishbangalore.com/api/",
+        baseURL: "https://daily-dish.onrender.com/api/",
         header: { "content-type": "application/Json" },
         data: {
           CAddress: CAddress,
@@ -77,7 +77,9 @@ const AdminContactus = () => {
   const [Addcontactus, setAddcontactus] = useState([]);
   const getAddcontactus = async () => {
     try {
-      let res = await axios.get("https://dailydishbangalore.com/api/admin/getcontactus");
+      let res = await axios.get(
+        "https://daily-dish.onrender.com/api/admin/getcontactus"
+      );
       if (res.status === 200) {
         setAddcontactus(res.data.getcontactus);
       }
@@ -93,7 +95,7 @@ const AdminContactus = () => {
       const config = {
         url: "admin/Deletecontactus/" + Data,
         method: "delete",
-        baseURL: "https://dailydishbangalore.com/api/",
+        baseURL: "https://daily-dish.onrender.com/api/",
         header: { "content-type": "application/json" },
       };
       await axios(config).then((res) => {
@@ -130,7 +132,7 @@ const AdminContactus = () => {
       const config = {
         url: "admin/editcontactus",
         method: "put",
-        baseURL: "https://dailydishbangalore.com/api/",
+        baseURL: "https://daily-dish.onrender.com/api/",
         header: { "content-type": "multipart/form-data" },
         data: formdata,
       };
@@ -152,7 +154,6 @@ const AdminContactus = () => {
   }, []);
   console.log(Addcontactus);
 
-  
   // social media
   const [CText, setCText] = useState("");
   const [CBanner, setCBanner] = useState("");
@@ -172,7 +173,7 @@ const AdminContactus = () => {
       const config = {
         url: "admin/social",
         method: "post",
-        baseURL: "https://dailydishbangalore.com/api/",
+        baseURL: "https://daily-dish.onrender.com/api/",
         header: { "content-type": "multipart/form-data" },
         data: formdata,
       };
@@ -193,7 +194,9 @@ const AdminContactus = () => {
   const [Addsocial, setAddsocial] = useState([]);
   const getAddsocial = async () => {
     try {
-      let res = await axios.get("https://dailydishbangalore.com/api/admin/getsocial");
+      let res = await axios.get(
+        "https://daily-dish.onrender.com/api/admin/getsocial"
+      );
       if (res.status === 200) {
         setAddsocial(res.data.getsocial);
       }
@@ -209,7 +212,7 @@ const AdminContactus = () => {
       const config = {
         url: "admin/Deletesocial/" + Datas,
         method: "delete",
-        baseURL: "https://dailydishbangalore.com/api/",
+        baseURL: "https://daily-dish.onrender.com/api/",
         header: { "content-type": "application/json" },
       };
       await axios(config).then((res) => {
@@ -243,7 +246,7 @@ const AdminContactus = () => {
       const config = {
         url: "admin/editsocial",
         method: "put",
-        baseURL: "https://dailydishbangalore.com/api/",
+        baseURL: "https://daily-dish.onrender.com/api/",
         header: { "content-type": "multipart/form-data" },
         data: formdata,
       };
@@ -264,8 +267,6 @@ const AdminContactus = () => {
     getAddsocial();
   }, []);
   console.log(Addsocial);
-
-  
 
   return (
     <div>
@@ -301,10 +302,10 @@ const AdminContactus = () => {
                     ""
                   ) : (
                     <> */}
-                     <Button variant="success" onClick={handleShow3}>
-                  + ADD 
-                </Button>
-                    {/* </>
+                  <Button variant="success" onClick={handleShow3}>
+                    + ADD
+                  </Button>
+                  {/* </>
                   )} */}
                 </div>
               </div>
@@ -329,12 +330,10 @@ const AdminContactus = () => {
                   {Addsocial?.map((item, i) => {
                     return (
                       <tr key={i}>
-                        <td style={{ paddingTop: "20px" }}>
-                          {i + 1}
-                        </td>
+                        <td style={{ paddingTop: "20px" }}>{i + 1}</td>
                         <td>
                           <Image
-                            src={`https://dailydishbangalore.com/Contactus/${item?.CBanner}`}
+                            src={`https://daily-dish.onrender.com/Contactus/${item?.CBanner}`}
                             alt="pic"
                             style={{ width: "65px", height: "65px" }}
                           />
@@ -377,140 +376,152 @@ const AdminContactus = () => {
               </Table>
             </div>
 
-              {/* Add soacial media Package modal */}
-        <Modal show={show3} onHide={handleClose3} style={{ zIndex: "99999" }}>
-          <Modal.Header closeButton>
-            <Modal.Title>Add Social Media</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <div className="row">
-              <div className="do-sear mt-2">
-                <label>Add Social Media Image</label>
-                <input
-                  type="file"
-                  name=""
-                  className="vi_0"
-                  onChange={(e) => setCBanner(e.target.files[0])}
-                />
-              </div>
-
-              <div className="do-sear mt-2">
-                <label>Add Link</label>
-                <input
-                  type="text"
-                  className="vi_0"
-                  placeholder="Enter Social Media Link"
-                  maxLength={30}
-                  onChange={(e) => setCText(e.target.value)}
-                />
-              </div>
-            </div>
-          </Modal.Body>
-          <Modal.Footer>
-            <div className="d-flex">
-              <Button
-                className="mx-2 modal-close-btn"
-                variant=""
-                onClick={handleClose3}
-              >
-                Close
-              </Button>
-              <Button
-                className="mx-2 modal-add-btn"
-                variant=""
-                onClick={AddSocialmedia}
-              >
-                Add
-              </Button>
-            </div>
-          </Modal.Footer>
-        </Modal>
-
-        {/* Edit social media Package modal */}
-        <Modal
-          show={show4}
-          onHide={handleClose4}
-          backdrop="static"
-          keyboard={false}
-          style={{ zIndex: "99999" }}
-        >
-          <Modal.Header closeButton>
-            <Modal.Title style={{ color: "black" }}>
-              Edit Social Media
-            </Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <div className="row">
-              <div className="do-sear mt-2">
-                <label>Edit Social Media Image</label>
-                <input
-                  type="file"
-                  name=""
-                  className="vi_0"
-                  onChange={(e) => setCBanner(e.target.files[0])}
-                />
-              </div>
-
-              <div className="do-sear mt-2">
-                <label>Edit Link</label>
-                <input
-                  type="text"
-                  className="vi_0"
-                  value={CText}
-                  maxLength={30}
-                  onChange={(e) => setCText(e.target.value)}
-                />
-              </div>
-            </div>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button
-              variant=""
-              className="modal-close-btn"
-              onClick={handleClose4}
+            {/* Add soacial media Package modal */}
+            <Modal
+              show={show3}
+              onHide={handleClose3}
+              style={{ zIndex: "99999" }}
             >
-              Close
-            </Button>
-            <Button variant="" className="modal-add-btn" onClick={editsocial}>
-              Update
-            </Button>
-          </Modal.Footer>
-        </Modal>
+              <Modal.Header closeButton>
+                <Modal.Title>Add Social Media</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <div className="row">
+                  <div className="do-sear mt-2">
+                    <label>Add Social Media Image</label>
+                    <input
+                      type="file"
+                      name=""
+                      className="vi_0"
+                      onChange={(e) => setCBanner(e.target.files[0])}
+                    />
+                  </div>
 
-        {/* social media Delet modal  */}
-        <Modal
-          show={show5}
-          onHide={handleClose5}
-          backdrop="static"
-          keyboard={false}
-          style={{ zIndex: "99999" }}
-        >
-          <Modal.Header closeButton>
-            <Modal.Title>Warning</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <div className="row">
-              <div className="col-md-12">
-                <p className="fs-4" style={{ color: "red" }}>
-                  Are you sure?
-                  <br /> you want to delete this data?
-                </p>
-              </div>
-            </div>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button
-              variant=""
-              className="modal-close-btn"
-              onClick={handleClose5}
+                  <div className="do-sear mt-2">
+                    <label>Add Link</label>
+                    <input
+                      type="text"
+                      className="vi_0"
+                      placeholder="Enter Social Media Link"
+                      maxLength={30}
+                      onChange={(e) => setCText(e.target.value)}
+                    />
+                  </div>
+                </div>
+              </Modal.Body>
+              <Modal.Footer>
+                <div className="d-flex">
+                  <Button
+                    className="mx-2 modal-close-btn"
+                    variant=""
+                    onClick={handleClose3}
+                  >
+                    Close
+                  </Button>
+                  <Button
+                    className="mx-2 modal-add-btn"
+                    variant=""
+                    onClick={AddSocialmedia}
+                  >
+                    Add
+                  </Button>
+                </div>
+              </Modal.Footer>
+            </Modal>
+
+            {/* Edit social media Package modal */}
+            <Modal
+              show={show4}
+              onHide={handleClose4}
+              backdrop="static"
+              keyboard={false}
+              style={{ zIndex: "99999" }}
             >
-              Close
-            </Button>
-            <Button variant="" className="modal-add-btn" onClick={Deletesocial}>
-              Delete
-            </Button>
-          </Modal.Footer>
-        </Modal>
+              <Modal.Header closeButton>
+                <Modal.Title style={{ color: "black" }}>
+                  Edit Social Media
+                </Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <div className="row">
+                  <div className="do-sear mt-2">
+                    <label>Edit Social Media Image</label>
+                    <input
+                      type="file"
+                      name=""
+                      className="vi_0"
+                      onChange={(e) => setCBanner(e.target.files[0])}
+                    />
+                  </div>
+
+                  <div className="do-sear mt-2">
+                    <label>Edit Link</label>
+                    <input
+                      type="text"
+                      className="vi_0"
+                      value={CText}
+                      maxLength={30}
+                      onChange={(e) => setCText(e.target.value)}
+                    />
+                  </div>
+                </div>
+              </Modal.Body>
+              <Modal.Footer>
+                <Button
+                  variant=""
+                  className="modal-close-btn"
+                  onClick={handleClose4}
+                >
+                  Close
+                </Button>
+                <Button
+                  variant=""
+                  className="modal-add-btn"
+                  onClick={editsocial}
+                >
+                  Update
+                </Button>
+              </Modal.Footer>
+            </Modal>
+
+            {/* social media Delet modal  */}
+            <Modal
+              show={show5}
+              onHide={handleClose5}
+              backdrop="static"
+              keyboard={false}
+              style={{ zIndex: "99999" }}
+            >
+              <Modal.Header closeButton>
+                <Modal.Title>Warning</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <div className="row">
+                  <div className="col-md-12">
+                    <p className="fs-4" style={{ color: "red" }}>
+                      Are you sure?
+                      <br /> you want to delete this data?
+                    </p>
+                  </div>
+                </div>
+              </Modal.Body>
+              <Modal.Footer>
+                <Button
+                  variant=""
+                  className="modal-close-btn"
+                  onClick={handleClose5}
+                >
+                  Close
+                </Button>
+                <Button
+                  variant=""
+                  className="modal-add-btn"
+                  onClick={Deletesocial}
+                >
+                  Delete
+                </Button>
+              </Modal.Footer>
+            </Modal>
           </>
         ) : (
           <></>
@@ -761,8 +772,6 @@ const AdminContactus = () => {
             </Button>
           </Modal.Footer>
         </Modal>
-
-      
       </div>
     </div>
   );

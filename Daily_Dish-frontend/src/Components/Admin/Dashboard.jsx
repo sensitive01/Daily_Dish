@@ -8,13 +8,13 @@ import axios from "axios";
 import moment from "moment";
 import { Navigate, useNavigate } from "react-router-dom";
 
-
 const Dashboard = () => {
-
   const [ApartmentOrder, setApartmentOrder] = useState([]);
   const getApartmentOrder = async () => {
     try {
-      let res = await axios.get("https://dailydishbangalore.com/api/admin/getallorders");
+      let res = await axios.get(
+        "https://daily-dish.onrender.com/api/admin/getallorders"
+      );
       if (res.status === 200) {
         setApartmentOrder(res.data.order.reverse());
       }
@@ -42,7 +42,7 @@ const Dashboard = () => {
   const getAdduser = async () => {
     try {
       let res = await axios.get(
-        "https://dailydishbangalore.com/api/User/registeruser"
+        "https://daily-dish.onrender.com/api/User/registeruser"
       );
       if (res.status === 200) {
         setAdduser(res.data.success.reverse());
@@ -56,39 +56,74 @@ const Dashboard = () => {
     getAdduser();
   }, []);
 
-
   return (
     <div>
       <h2 className="header-c ">Dashboard</h2>
 
-      <div className="cards-container" >
+      <div className="cards-container">
         <Card
-onClick={() => navigate('/user-list')}
-          style={{ width: "15rem", cursor:"pointer", height: "120px", padding: "20px", boxShadow: "1px 0px 10px 1px black", borderRadius: "10px" }}>
+          onClick={() => navigate("/user-list")}
+          style={{
+            width: "15rem",
+            cursor: "pointer",
+            height: "120px",
+            padding: "20px",
+            boxShadow: "1px 0px 10px 1px black",
+            borderRadius: "10px",
+          }}
+        >
           <Card.Body>
             <Card.Title>Registered Users</Card.Title>
-            <Card.Subtitle className="mb-2 text-muted">{Adduser?.length}
+            <Card.Subtitle className="mb-2 text-muted">
+              {Adduser?.length}
             </Card.Subtitle>
           </Card.Body>
         </Card>
 
-        <Card 
-        onClick={() => navigate('/apartment-booking-list')}
-        style={{ width: "15rem",cursor:"pointer", height: "120px", padding: "20px", boxShadow: "1px 0px 10px 1px black", borderRadius: "10px" }}>
+        <Card
+          onClick={() => navigate("/apartment-booking-list")}
+          style={{
+            width: "15rem",
+            cursor: "pointer",
+            height: "120px",
+            padding: "20px",
+            boxShadow: "1px 0px 10px 1px black",
+            borderRadius: "10px",
+          }}
+        >
           <Card.Body>
-            <Card.Title>Apartment Orders</Card.Title> 
+            <Card.Title>Apartment Orders</Card.Title>
             {/* filter(( e) => PackageName == AddBookinglist ) */}
             <Card.Subtitle className="mb-2 text-muted">
-            {ApartmentOrder?.filter(item=>item?.orderdelivarytype==="apartment")?.length}
+              {
+                ApartmentOrder?.filter(
+                  (item) => item?.orderdelivarytype === "apartment"
+                )?.length
+              }
             </Card.Subtitle>
           </Card.Body>
         </Card>
 
-        <Card         onClick={() => navigate('/corporate-booking-list')}
- style={{ width: "15rem", cursor:"pointer", height: "120px", padding: "20px", boxShadow: "1px 0px 10px 1px black", borderRadius: "10px" }}>
+        <Card
+          onClick={() => navigate("/corporate-booking-list")}
+          style={{
+            width: "15rem",
+            cursor: "pointer",
+            height: "120px",
+            padding: "20px",
+            boxShadow: "1px 0px 10px 1px black",
+            borderRadius: "10px",
+          }}
+        >
           <Card.Body>
             <Card.Title>Corporate Orders</Card.Title>
-            <Card.Subtitle className="mb-2 text-muted">{ApartmentOrder?.filter(item=>item?.orderdelivarytype==="corporate")?.length}</Card.Subtitle>
+            <Card.Subtitle className="mb-2 text-muted">
+              {
+                ApartmentOrder?.filter(
+                  (item) => item?.orderdelivarytype === "corporate"
+                )?.length
+              }
+            </Card.Subtitle>
           </Card.Body>
         </Card>
       </div>
@@ -171,7 +206,6 @@ onClick={() => navigate('/user-list')}
           </Table>
         </div> */}
 
-
         {/* Delet modal  */}
         <Modal
           show={show4}
@@ -180,9 +214,7 @@ onClick={() => navigate('/user-list')}
           keyboard={false}
           style={{ zIndex: "99999" }}
         >
-          <Modal.Header
-            closeButton
-          >
+          <Modal.Header closeButton>
             <Modal.Title>Warning</Modal.Title>
           </Modal.Header>
           <Modal.Body>
@@ -206,18 +238,15 @@ onClick={() => navigate('/user-list')}
             <Button
               variant=""
               className="modal-add-btn"
-            // onClick={Deleteuserlist}
+              // onClick={Deleteuserlist}
             >
               Delete
             </Button>
           </Modal.Footer>
         </Modal>
-
       </div>
 
-      <div>
-
-      </div>
+      <div></div>
     </div>
   );
 };

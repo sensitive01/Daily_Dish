@@ -7,7 +7,7 @@ import "../Admin/Admin.css";
 import axios from "axios";
 import moment from "moment";
 import * as XLSX from "xlsx";
-import ReactPaginate from "react-paginate"; 
+import ReactPaginate from "react-paginate";
 
 const CorporateList = () => {
   // Add modal for Banner
@@ -61,7 +61,7 @@ const CorporateList = () => {
       const config = {
         url: "/admin/addcorporate",
         method: "post",
-        baseURL: "https://dailydishbangalore.com/api",
+        baseURL: "https://daily-dish.onrender.com/api",
         header: { "content-type": "application/json" },
         data: {
           Apartmentname: Corparatename,
@@ -94,7 +94,9 @@ const CorporateList = () => {
   const [AddCorporate, setAddCorporate] = useState([]);
   const getAddCorporate = async () => {
     try {
-      let res = await axios.get("https://dailydishbangalore.com/api/admin/getcorporate");
+      let res = await axios.get(
+        "https://daily-dish.onrender.com/api/admin/getcorporate"
+      );
       if (res.status === 200) {
         setAddCorporate(res.data.corporatedata.reverse());
         setNoChangeData(res.data.corporatedata);
@@ -111,7 +113,7 @@ const CorporateList = () => {
       const config = {
         url: "admin/deletecorporate/" + Data,
         method: "delete",
-        baseURL: "https://dailydishbangalore.com/api/",
+        baseURL: "https://daily-dish.onrender.com/api/",
         header: { "content-type": "application/json" },
       };
       await axios(config).then((res) => {
@@ -146,7 +148,7 @@ const CorporateList = () => {
       const config = {
         url: "admin/updatecorporatelist",
         method: "put",
-        baseURL: "https://dailydishbangalore.com/api/",
+        baseURL: "https://daily-dish.onrender.com/api/",
         headers: { "Content-Type": "application/json" },
         data: {
           Apartmentname: Corparatename,
@@ -175,15 +177,14 @@ const CorporateList = () => {
     getAddCorporate();
   }, []);
 
-//Pagination
-const [pageNumber, setPageNumber] = useState(0);
-const usersPerPage = 6;
-const pagesVisited = pageNumber * usersPerPage;
-const pageCount = Math.ceil(AddCorporate.length / usersPerPage);
-const changePage = ({ selected }) => {
-  setPageNumber(selected);
-};
-
+  //Pagination
+  const [pageNumber, setPageNumber] = useState(0);
+  const usersPerPage = 6;
+  const pagesVisited = pageNumber * usersPerPage;
+  const pageCount = Math.ceil(AddCorporate.length / usersPerPage);
+  const changePage = ({ selected }) => {
+    setPageNumber(selected);
+  };
 
   // Search filter
   const [nochangedata, setNoChangeData] = useState([]);
@@ -281,10 +282,16 @@ const changePage = ({ selected }) => {
             </thead>
 
             <tbody>
-              {AddCorporate?.slice(pagesVisited, pagesVisited + usersPerPage)?.map((items, i) => {
+              {AddCorporate?.slice(
+                pagesVisited,
+                pagesVisited + usersPerPage
+              )?.map((items, i) => {
                 return (
                   <tr>
-                    <td style={{ paddingTop: "20px" }}> {i + 1 + usersPerPage * pageNumber}</td>
+                    <td style={{ paddingTop: "20px" }}>
+                      {" "}
+                      {i + 1 + usersPerPage * pageNumber}
+                    </td>
                     <td style={{ paddingTop: "20px" }}>
                       {moment(items?.updatedAt).format("MM/DD/YYYY, h:mm A")}
                     </td>

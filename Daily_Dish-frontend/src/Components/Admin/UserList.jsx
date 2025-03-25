@@ -40,7 +40,7 @@ const UserList = () => {
   const [showModal, setShowModal] = useState(false);
 
   const handleManageWallet = (wallet, type) => {
-    wallet= AllWallet.find(
+    wallet = AllWallet.find(
       (ele) => ele?.userId?._id.toString() == wallet?.toString()
     );
     setSelectedWallet(wallet);
@@ -55,8 +55,8 @@ const UserList = () => {
     try {
       await axios.post(
         actionType === "add"
-          ? "https://dailydishbangalore.com/api/wallet/add-free-cash"
-          : "https://dailydishbangalore.com/api/wallet/deduct-cash",
+          ? "https://daily-dish.onrender.com/api/wallet/add-free-cash"
+          : "https://daily-dish.onrender.com/api/wallet/deduct-cash",
         {
           userId: selectedWallet?.userId?._id,
           amount: amount,
@@ -75,7 +75,7 @@ const UserList = () => {
   const getAdduser = async () => {
     try {
       let res = await axios.get(
-        "https://dailydishbangalore.com/api/User/registeruser"
+        "https://daily-dish.onrender.com/api/User/registeruser"
       );
       if (res.status === 200) {
         setAdduser(res.data.success.reverse());
@@ -97,7 +97,7 @@ const UserList = () => {
       const config = {
         url: `/User/blockuser/${userId?._id}`,
         method: "put",
-        baseURL: "https://dailydishbangalore.com/api",
+        baseURL: "https://daily-dish.onrender.com/api",
         headers: { "Content-Type": "application/json" },
       };
 
@@ -225,7 +225,7 @@ const UserList = () => {
   const getApartmentOrder = async () => {
     try {
       let res = await axios.get(
-        "https://dailydishbangalore.com/api/admin/getallorders"
+        "https://daily-dish.onrender.com/api/admin/getallorders"
       );
       if (res.status === 200) {
         setApartmentOrder(res.data.order.reverse());
@@ -373,7 +373,7 @@ const UserList = () => {
                       <td style={{ paddingTop: "20px" }}>{item?._id}</td>
                       <td style={{ paddingTop: "20px" }}>
                         <img
-                          src={`https://dailydishbangalore.com/Customer/${item?.profileImage}`}
+                          src={`https://daily-dish.onrender.com/Customer/${item?.profileImage}`}
                           alt="pic"
                           style={{
                             width: "50px",
@@ -390,14 +390,15 @@ const UserList = () => {
                         {findNumberofOrders(item?._id)}
                       </td>
                       <td style={{ paddingTop: "20px" }}>
-                        {findWalletBalence(item?._id)?.balance?.toFixed(2)||"0.00"}
-                         <Button
-                                          variant="success"
-                                          size="sm"
-                                          onClick={() => handleManageWallet(item?._id, "add")}
-                                        >
-                                          Add Bonus
-                                        </Button>{" "}
+                        {findWalletBalence(item?._id)?.balance?.toFixed(2) ||
+                          "0.00"}
+                        <Button
+                          variant="success"
+                          size="sm"
+                          onClick={() => handleManageWallet(item?._id, "add")}
+                        >
+                          Add Bonus
+                        </Button>{" "}
                       </td>
                       <td style={{ paddingTop: "20px" }}>
                         {findLastOrder(item?._id)?.[0]?.allTotal || "0 order"}
@@ -789,64 +790,63 @@ const UserList = () => {
           </Modal.Body>
         </Modal>
 
-          {/* Wallet Management Modal */}
-      <Modal show={showModal} onHide={() => setShowModal(false)} centered>
-        <Modal.Header closeButton>
-          <Modal.Title>
-            {actionType === "add" ? "Add Bonus" : "Deduct Amount"}
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <p>
-            <strong>User:</strong> {selectedWallet?.username}
-          </p>
-          <p>
-            <strong>Current Balance:</strong> ₹
-            {selectedWallet?.balance.toFixed(2)}
-          </p>
-          <Form>
-            <Form.Group>
-              <Form.Label>Amount</Form.Label>
-              <Form.Control
-                type="number"
-                min="1"
-                value={amount}
-                onChange={(e) => setAmount(e.target.value)}
-              />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>Description</Form.Label>
-              <Form.Control
-                type="text"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-              />
-            </Form.Group>
-            {actionType === "add" && (
+        {/* Wallet Management Modal */}
+        <Modal show={showModal} onHide={() => setShowModal(false)} centered>
+          <Modal.Header closeButton>
+            <Modal.Title>
+              {actionType === "add" ? "Add Bonus" : "Deduct Amount"}
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <p>
+              <strong>User:</strong> {selectedWallet?.username}
+            </p>
+            <p>
+              <strong>Current Balance:</strong> ₹
+              {selectedWallet?.balance.toFixed(2)}
+            </p>
+            <Form>
               <Form.Group>
-                <Form.Label>Expiry Date</Form.Label>
+                <Form.Label>Amount</Form.Label>
                 <Form.Control
-                  type="date"
-                  value={expiryDate}
-                  onChange={(e) => setExpiryDate(e.target.value)}
+                  type="number"
+                  min="1"
+                  value={amount}
+                  onChange={(e) => setAmount(e.target.value)}
                 />
               </Form.Group>
-            )}
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowModal(false)}>
-            Cancel
-          </Button>
-          <Button
-            variant={actionType === "add" ? "success" : "danger"}
-            onClick={handleSubmit}
-          >
-            {actionType === "add" ? "Add Bonus" : "Deduct Amount"}
-          </Button>
-        </Modal.Footer>
-      </Modal>
-
+              <Form.Group>
+                <Form.Label>Description</Form.Label>
+                <Form.Control
+                  type="text"
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                />
+              </Form.Group>
+              {actionType === "add" && (
+                <Form.Group>
+                  <Form.Label>Expiry Date</Form.Label>
+                  <Form.Control
+                    type="date"
+                    value={expiryDate}
+                    onChange={(e) => setExpiryDate(e.target.value)}
+                  />
+                </Form.Group>
+              )}
+            </Form>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={() => setShowModal(false)}>
+              Cancel
+            </Button>
+            <Button
+              variant={actionType === "add" ? "success" : "danger"}
+              onClick={handleSubmit}
+            >
+              {actionType === "add" ? "Add Bonus" : "Deduct Amount"}
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </div>
     </div>
   );

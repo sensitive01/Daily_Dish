@@ -45,7 +45,7 @@ const OrderHistory = () => {
   const getorders = async (id) => {
     try {
       let res = await axios.get(
-        "https://dailydishbangalore.com/api/admin/getallordersbyUserId/" + id
+        "https://daily-dish.onrender.com/api/admin/getallordersbyUserId/" + id
       );
       if (res.status === 200) {
         setorders(res.data.order);
@@ -82,7 +82,7 @@ const OrderHistory = () => {
       const config = {
         url: "/admin/addfoodorder",
         method: "post",
-        baseURL: "https://dailydishbangalore.com/api/",
+        baseURL: "https://daily-dish.onrender.com/api/",
         header: { "content-type": "application/json" },
         data: {
           customerId: user?._id,
@@ -117,8 +117,8 @@ const OrderHistory = () => {
     }
   };
 
- // Example order time
-  const [deliveryTime,setdeliveryTime] =useState(""); // Example delivery time
+  // Example order time
+  const [deliveryTime, setdeliveryTime] = useState(""); // Example delivery time
 
   const addMinutesToCreatedAt = (createdAt, minutesToAdd) => {
     const createdDate = new Date(createdAt); // Parse the createdAt field
@@ -126,24 +126,25 @@ const OrderHistory = () => {
 
     // Format the updatedDate as "MM-DD-YYYY HH:mm"
     const formattedDate = `${
-        updatedDate.getMonth() + 1
-    }-${updatedDate.getDate()}-${updatedDate.getFullYear()} ${
-        updatedDate.getHours().toString().padStart(2, '0')
-    }:${
-        updatedDate.getMinutes().toString().padStart(2, '0')
-    }`;
+      updatedDate.getMonth() + 1
+    }-${updatedDate.getDate()}-${updatedDate.getFullYear()} ${updatedDate
+      .getHours()
+      .toString()
+      .padStart(2, "0")}:${updatedDate
+      .getMinutes()
+      .toString()
+      .padStart(2, "0")}`;
 
     return formattedDate;
-};
+  };
 
-// Example usage:
+  // Example usage:
 
- // Output: "12-29-2024 19:50"
+  // Output: "12-29-2024 19:50"
 
   const [remainingTime, setRemainingTime] = useState("");
 
   useEffect(() => {
-
     const interval = setInterval(() => {
       const currentTime = new Date();
       const deliveryDate = new Date(deliveryTime);
@@ -158,12 +159,13 @@ const OrderHistory = () => {
         // Convert remaining time to minutes and seconds
         const minutes = Math.floor(timeDiff / 60000); // 60000 ms in a minute
         const seconds = Math.floor((timeDiff % 60000) / 1000); // Remaining seconds
-        if(minutes||seconds){
-           setRemainingTime(
-          `Delivery in ${minutes} minutes and ${seconds < 10 ? "0" + seconds : seconds} seconeds left`
-        );
+        if (minutes || seconds) {
+          setRemainingTime(
+            `Delivery in ${minutes} minutes and ${
+              seconds < 10 ? "0" + seconds : seconds
+            } seconeds left`
+          );
         }
-       
       }
     }, 1000); // Update every second
 
@@ -172,12 +174,13 @@ const OrderHistory = () => {
   }, [deliveryTime]);
 
   const handleShow = (item) => {
-    if(item?.orderstatus=="Instant"){
-      setdeliveryTime(addMinutesToCreatedAt(item?.createdAt,item?.approximatetime))
+    if (item?.orderstatus == "Instant") {
+      setdeliveryTime(
+        addMinutesToCreatedAt(item?.createdAt, item?.approximatetime)
+      );
     }
     setShow(true);
     setData1(item);
-    
   };
 
   return (
@@ -371,7 +374,7 @@ const OrderHistory = () => {
                       &nbsp; Status: {Data1?.status}
                     </p>
                   </div>
-                  {Data1?.orderstatus == "Instant"&&remainingTime ? (
+                  {Data1?.orderstatus == "Instant" && remainingTime ? (
                     <div
                       className="cartproducts"
                       style={{
@@ -384,8 +387,7 @@ const OrderHistory = () => {
                       }}
                     >
                       <h6 className="d-flex justify-content-center">
-                      {remainingTime}
-                       
+                        {remainingTime}
                       </h6>
                     </div>
                   ) : (
@@ -526,7 +528,7 @@ const OrderHistory = () => {
                                     >
                                       <div>
                                         <img
-                                          src={`https://dailydishbangalore.com/Products/${Item?.foodItemId?.Foodgallery[0]?.image2}`}
+                                          src={`https://daily-dish.onrender.com/Products/${Item?.foodItemId?.Foodgallery[0]?.image2}`}
                                           rounded
                                           className="orderspage-img"
                                           alt=""
@@ -608,7 +610,7 @@ const OrderHistory = () => {
                                       >
                                         <div>
                                           <img
-                                            src={`https://dailydishbangalore.com/Products/${Item?.foodItemId?.Foodgallery[0]?.image2}`}
+                                            src={`https://daily-dish.onrender.com/Products/${Item?.foodItemId?.Foodgallery[0]?.image2}`}
                                             rounded
                                             className="orderspage-img"
                                             alt=""

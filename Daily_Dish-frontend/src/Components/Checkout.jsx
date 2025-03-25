@@ -1,12 +1,7 @@
 import React, { useContext, useEffect, useMemo, useState } from "react";
 import { FaPlus, FaMinus } from "react-icons/fa6";
 
-import {
-  Button,
-  Container,
-  Form,
-  Modal,
-} from "react-bootstrap";
+import { Button, Container, Form, Modal } from "react-bootstrap";
 import { RxCross2 } from "react-icons/rx";
 import { MdRemoveShoppingCart } from "react-icons/md";
 import "../Styles/Checkout.css";
@@ -23,7 +18,8 @@ import { WalletContext } from "../WalletContext";
 
 const Checkout = () => {
   const navigate = useNavigate();
-  const { wallet, transactions, loading, walletSeting } = useContext(WalletContext);
+  const { wallet, transactions, loading, walletSeting } =
+    useContext(WalletContext);
 
   // console.log("wallet==>", walletSeting);
 
@@ -52,7 +48,9 @@ const Checkout = () => {
   const [apartmentdata, setapartmentdata] = useState([]);
   const getapartmentd = async () => {
     try {
-      let res = await axios.get("https://dailydishbangalore.com/api/admin/getapartment");
+      let res = await axios.get(
+        "https://daily-dish.onrender.com/api/admin/getapartment"
+      );
       if (res.status === 200) {
         setapartmentdata(res.data.corporatedata);
       }
@@ -64,16 +62,16 @@ const Checkout = () => {
   const [corporatedata, setcorporatedata] = useState([]);
   const getCorporatedata = async () => {
     try {
-      let res = await axios.get("https://dailydishbangalore.com/api/admin/getcorporate");
+      let res = await axios.get(
+        "https://daily-dish.onrender.com/api/admin/getcorporate"
+      );
       if (res.status === 200) {
         setcorporatedata(res.data.corporatedata);
-
       }
     } catch (error) {
       console.log(error);
     }
   };
-
 
   // Fetch data from local storage on component mount and whenever cart changes
   useEffect(() => {
@@ -87,9 +85,12 @@ const Checkout = () => {
   const updateCartData = (updatedCart) => {
     localStorage.setItem("cart", JSON.stringify(updatedCart));
     setCartData(updatedCart); // Update state to re-render the component
-    setDiscountWallet(((calculateTaxPrice +
-      subtotal +
-      Cutlery) <= walletSeting.minCartValueForWallet) ? discountWallet : 0)
+    setDiscountWallet(
+      calculateTaxPrice + subtotal + Cutlery <=
+        walletSeting.minCartValueForWallet
+        ? discountWallet
+        : 0
+    );
   };
 
   const increaseQuantity = (itemdata) => {
@@ -178,7 +179,7 @@ const Checkout = () => {
       const config = {
         url: "/admin/applyCoupon",
         method: "post",
-        baseURL: "https://dailydishbangalore.com/api/",
+        baseURL: "https://daily-dish.onrender.com/api/",
         header: { "content-type": "application/json" },
         data: {
           mobileNumber: user?.Mobile,
@@ -211,31 +212,35 @@ const Checkout = () => {
       // console.log(error);
     }
   };
-const [adcartId,setAdCartId]=useState({})
-useEffect(() => {
-  const addonedCarts = async () => {
-    try {
-      console.log("calling");
-      let res = await axios.post("https://dailydishbangalore.com/api/cart/addCart", {
-        userId: user?._id,
-        items: Carts,
-        lastUpdated: Date.now(),
-        username: address?.name,
-        mobile: user?.Mobile
-      });
+  const [adcartId, setAdCartId] = useState({});
+  useEffect(() => {
+    const addonedCarts = async () => {
+      try {
+        console.log("calling");
+        let res = await axios.post(
+          "https://daily-dish.onrender.com/api/cart/addCart",
+          {
+            userId: user?._id,
+            items: Carts,
+            lastUpdated: Date.now(),
+            username: address?.name,
+            mobile: user?.Mobile,
+          }
+        );
 
-      if (res.status === 200) {
-        setAdCartId(res.data);
+        if (res.status === 200) {
+          setAdCartId(res.data);
+        }
+      } catch (error) {
+        console.log(error);
       }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+    };
 
-  if (Carts && Carts.length > 0) {  // Ensure Carts is not empty before calling API
-    addonedCarts();
-  }
-}, [JSON.stringify(Carts)]); // Convert Carts to a string to avoid unnecessary re-renders
+    if (Carts && Carts.length > 0) {
+      // Ensure Carts is not empty before calling API
+      addonedCarts();
+    }
+  }, [JSON.stringify(Carts)]); // Convert Carts to a string to avoid unnecessary re-renders
 
   const placeorder = async () => {
     try {
@@ -254,11 +259,13 @@ useEffect(() => {
       if (!addresstype) {
         return alert("Please select the address type!");
       }
-      const totalP = (calculateTaxPrice +
+      const totalP =
+        calculateTaxPrice +
         subtotal +
         Cutlery +
-        delivarychargetype - discountWallet -
-        coupon)
+        delivarychargetype -
+        discountWallet -
+        coupon;
       if (totalP < -1) {
         swal({
           title: "Warning",
@@ -272,7 +279,7 @@ useEffect(() => {
       const config = {
         url: "/admin/addfoodorder",
         method: "post",
-        baseURL: "https://dailydishbangalore.com/api/",
+        baseURL: "https://daily-dish.onrender.com/api/",
         header: { "content-type": "application/json" },
         data: {
           customerId: user?._id,
@@ -284,20 +291,27 @@ useEffect(() => {
           paymentmethod: paymentmethod,
           delivarytype: Number(delivarychargetype || 0),
           payid: payid,
-          addressline: `${address?.name} ${addresstype == "apartment" ? `${address?.flatno},` : ""
-            } ${addresstype == "apartment" ? `${address?.towerName},` : ""}  ${address?.mobilenumber
-            } `,
+          addressline: `${address?.name} ${
+            addresstype == "apartment" ? `${address?.flatno},` : ""
+          } ${addresstype == "apartment" ? `${address?.towerName},` : ""}  ${
+            address?.mobilenumber
+          } `,
           subTotal: subtotal,
           foodtotal: Number(data?.total),
           allTotal: (
             calculateTaxPrice +
             subtotal +
             Cutlery +
-            delivarychargetype - discountWallet -
+            delivarychargetype -
+            discountWallet -
             coupon
           )?.toFixed(2),
           tax: calculateTaxPrice,
-          slot: slotdata ? slotdata : `Instant Delivery Time ${(moment(moment()).add(address?.approximatetime, 'minutes')).format('hh:mm A')}`,
+          slot: slotdata
+            ? slotdata
+            : `Instant Delivery Time ${moment(moment())
+                .add(address?.approximatetime, "minutes")
+                .format("hh:mm A")}`,
           status: slotdata ? "Cooking" : "Packing",
           Cutlery: Number(Cutlery),
           approximatetime: address?.approximatetime,
@@ -310,14 +324,14 @@ useEffect(() => {
           coupon: coupon,
           couponId: couponId,
           discountWallet: discountWallet,
-          cartId:adcartId?.cartId,
-          cart_id:adcartId?.data
+          cartId: adcartId?.cartId,
+          cart_id: adcartId?.data,
         },
       };
       const config1 = {
         url: "/user/addpaymentphonepay",
         method: "post",
-        baseURL: "https://dailydishbangalore.com/api/",
+        baseURL: "https://daily-dish.onrender.com/api/",
         header: { "content-type": "application/json" },
         data: {
           userId: user?._id,
@@ -325,8 +339,8 @@ useEffect(() => {
           Mobile: user?.Mobile,
           amount: totalP,
           config: JSON.stringify(config),
-          cartId:adcartId?.cartId,
-          cart_id:adcartId?.data
+          cartId: adcartId?.cartId,
+          cart_id: adcartId?.data,
         },
       };
       const res = await axios(totalP == 0 ? config : config1);
@@ -338,13 +352,11 @@ useEffect(() => {
             icon: "success",
             buttons: "ok",
           });
-          localStorage.removeItem("cart")
+          localStorage.removeItem("cart");
           setTimeout(() => {
-            navigate("/orders")
-          }, 100)
-
-        } else
-          return window.location.assign(res.data?.url?.url);
+            navigate("/orders");
+          }, 100);
+        } else return window.location.assign(res.data?.url?.url);
 
         // window.location.reload(true);
       }
@@ -365,7 +377,7 @@ useEffect(() => {
     setApartmentname(id);
     try {
       let res = await axios.get(
-        `https://dailydishbangalore.com/api/user/getSelectedAddressByUserIDAddressID/${user?._id}/${id}`
+        `https://daily-dish.onrender.com/api/user/getSelectedAddressByUserIDAddressID/${user?._id}/${id}`
       );
       if (res.status === 200) {
         let am = res.data.getdata;
@@ -385,16 +397,19 @@ useEffect(() => {
   const saveSelectedAddress = async (data) => {
     try {
       if (!user) return;
-      let res = await axios.post(`https://dailydishbangalore.com/api/user/addressadd`, {
-        Name: name,
-        Number: mobilenumber,
-        userId: user?._id,
-        ApartmentName: data?.apartmentname,
-        addresstype: addresstype,
-        addressid: data?._id,
-        fletNumber: flat,
-        towerName: towerName,
-      });
+      let res = await axios.post(
+        `https://daily-dish.onrender.com/api/user/addressadd`,
+        {
+          Name: name,
+          Number: mobilenumber,
+          userId: user?._id,
+          ApartmentName: data?.apartmentname,
+          addresstype: addresstype,
+          addressid: data?._id,
+          fletNumber: flat,
+          towerName: towerName,
+        }
+      );
 
       // console.log("Savedshs",data);
     } catch (error) {
@@ -403,8 +418,6 @@ useEffect(() => {
   };
 
   const [discountWallet, setDiscountWallet] = useState(0);
-
-
 
   const Handeledata = () => {
     if (!apartmentname) {
@@ -435,7 +448,8 @@ useEffect(() => {
         approximatetime: (addresstype == "apartment"
           ? apartmentdata
           : corporatedata
-        )?.find((data) => data?.Apartmentname === apartmentname)?.approximatetime,
+        )?.find((data) => data?.Apartmentname === apartmentname)
+          ?.approximatetime,
 
         Delivarycharge: (addresstype == "apartment"
           ? apartmentdata
@@ -461,9 +475,9 @@ useEffect(() => {
       addresstype == "apartment"
         ? localStorage.setItem("address", JSON.stringify(Savedaddress))
         : sessionStorage.setItem(
-          "coporateaddress",
-          JSON.stringify(Savedaddress)
-        );
+            "coporateaddress",
+            JSON.stringify(Savedaddress)
+          );
 
       setAddress(Savedaddress);
 
@@ -495,22 +509,24 @@ useEffect(() => {
   const [selectedSlot, setSelectedSlot] = useState("");
 
   const updateCartDataWithStock = (cartData, foodItemData) => {
-    const updatedCart = cartData.map((cartItem) => {
-      // Find the matching food item from the foodItemData
-      const matchingFood = foodItemData.find(
-        (food) => food._id === cartItem.foodItemId
-      );
+    const updatedCart = cartData
+      .map((cartItem) => {
+        // Find the matching food item from the foodItemData
+        const matchingFood = foodItemData.find(
+          (food) => food._id === cartItem.foodItemId
+        );
 
-      if (matchingFood && matchingFood.Remainingstock > 0) {
-        // If Remainingstock is greater than 0, update the cart item
-        return {
-          ...cartItem,
-          remainingstock: matchingFood.Remainingstock, // Add Remainingstock to the cart item
-        };
-      }
+        if (matchingFood && matchingFood.Remainingstock > 0) {
+          // If Remainingstock is greater than 0, update the cart item
+          return {
+            ...cartItem,
+            remainingstock: matchingFood.Remainingstock, // Add Remainingstock to the cart item
+          };
+        }
 
-      return null; // Mark items with Remainingstock <= 0 or not found as null
-    }).filter(Boolean); // Remove null items from the cart
+        return null; // Mark items with Remainingstock <= 0 or not found as null
+      })
+      .filter(Boolean); // Remove null items from the cart
 
     // Save updated cart to localStorage
     localStorage.setItem("cart", JSON.stringify(updatedCart));
@@ -531,7 +547,7 @@ useEffect(() => {
   const getfooditems = async () => {
     try {
       let res = await axios.get(
-        "https://dailydishbangalore.com/api/admin/getFoodItemsUnBlocks"
+        "https://daily-dish.onrender.com/api/admin/getFoodItemsUnBlocks"
       );
       if (res.status === 200) {
         filterOutLowStockItems(res.data.data);
@@ -544,7 +560,6 @@ useEffect(() => {
   useEffect(() => {
     getfooditems();
   }, []);
-
 
   const slots = {
     lunch: {
@@ -583,8 +598,9 @@ useEffect(() => {
       const hours = current.getHours();
 
       const minutes = current.getMinutes();
-      const time = `${hours > 9 ? hours : "0" + hours}:${minutes < 10 ? "0" : ""
-        }${minutes}`;
+      const time = `${hours > 9 ? hours : "0" + hours}:${
+        minutes < 10 ? "0" : ""
+      }${minutes}`;
       // const time = "13:30";
       let slotsToShow = [];
 
@@ -626,10 +642,11 @@ useEffect(() => {
   const [gstlist, setGstList] = useState([]);
   const getGst = async () => {
     try {
-      let res = await axios.get("https://dailydishbangalore.com/api/admin/getgst");
+      let res = await axios.get(
+        "https://daily-dish.onrender.com/api/admin/getgst"
+      );
       if (res.status === 200) {
         setGstList(res.data.gst);
-
       }
     } catch (error) {
       console.log(error);
@@ -655,7 +672,6 @@ useEffect(() => {
         !apartmentdata?.length;
 
       if (!isHandleShowCalled && isDataIncomplete) {
-
         // Ensure safety when accessing data
         getSelectedAddress(address?.apartmentname);
         setIsHandleShowCalled(true); // Prevent multiple calls
@@ -782,8 +798,9 @@ useEffect(() => {
                 <>
                   <div
                     variant={selectedOption === "Door" ? "white" : ""}
-                    className={`leftcard ${selectedOption === "Door" ? "active" : ""
-                      }`}
+                    className={`leftcard ${
+                      selectedOption === "Door" ? "active" : ""
+                    }`}
                     onClick={() =>
                       handleSelection(address?.doordelivarycharge, "Door")
                     }
@@ -824,8 +841,9 @@ useEffect(() => {
                   </div>
                   <div
                     variant={selectedOption === "Gate/Tower" ? "white" : ""}
-                    className={`rightcard ${selectedOption === "Gate/Tower" ? "active" : ""
-                      }`}
+                    className={`rightcard ${
+                      selectedOption === "Gate/Tower" ? "active" : ""
+                    }`}
                     onClick={() =>
                       handleSelection(address?.Delivarycharge, "Gate/Tower")
                     }
@@ -868,8 +886,9 @@ useEffect(() => {
               ) : (
                 <div
                   variant={selectedOption === "Gate/Tower" ? "white" : ""}
-                  className={`rightcard ${selectedOption === "Gate/Tower" ? "active" : ""
-                    }`}
+                  className={`rightcard ${
+                    selectedOption === "Gate/Tower" ? "active" : ""
+                  }`}
                   onClick={() =>
                     handleSelection(address?.Delivarycharge, "Gate/Tower")
                   }
@@ -982,7 +1001,10 @@ useEffect(() => {
                     )}
                     {selectedOption ? <div>₹ {delivarychargetype} </div> : ""}
                     {discountWallet != 0 && (
-                      <div style={{ color: "green" }}> - ₹ {discountWallet} </div>
+                      <div style={{ color: "green" }}>
+                        {" "}
+                        - ₹ {discountWallet}{" "}
+                      </div>
                     )}
                     <div>
                       {Cutlery ? (
@@ -992,7 +1014,8 @@ useEffect(() => {
                             calculateTaxPrice +
                             subtotal +
                             Cutlery +
-                            (delivarychargetype || 0) - discountWallet -
+                            (delivarychargetype || 0) -
+                            discountWallet -
                             coupon
                           ).toFixed(2)}{" "}
                         </b>
@@ -1002,7 +1025,8 @@ useEffect(() => {
                           {(
                             calculateTaxPrice +
                             subtotal +
-                            (delivarychargetype || 0) - discountWallet -
+                            (delivarychargetype || 0) -
+                            discountWallet -
                             coupon
                           ).toFixed(2)}
                         </b>
@@ -1024,9 +1048,10 @@ useEffect(() => {
                   id="customCheckbox1"
                   name="Send Cutlery"
                   checked={discountWallet ? true : false}
-                  disabled={(calculateTaxPrice +
-                    subtotal +
-                    Cutlery) <= walletSeting.minCartValueForWallet}
+                  disabled={
+                    calculateTaxPrice + subtotal + Cutlery <=
+                    walletSeting.minCartValueForWallet
+                  }
                   value="Send Cutlery"
                   // onChange={(e) => setDiscountWallet(e.target.checked ? (wallet?.balance > (calculateTaxPrice +
                   //   subtotal +
@@ -1035,17 +1060,22 @@ useEffect(() => {
                   //     Cutlery) : wallet?.balance : 0)}
                   onChange={(e) => {
                     if (e.target.checked) {
-                      let maxUsableAmount = calculateTaxPrice + subtotal + Cutlery; 
+                      let maxUsableAmount =
+                        calculateTaxPrice + subtotal + Cutlery;
                       let walletBalance = wallet?.balance || 0;
-                      let maxWalletUsage = walletSeting?.maxWalletUsagePerOrder || Infinity; // Ensure a valid limit
-                  
-                      let finalAmount = Math.min(walletBalance, maxUsableAmount, maxWalletUsage); 
+                      let maxWalletUsage =
+                        walletSeting?.maxWalletUsagePerOrder || Infinity; // Ensure a valid limit
+
+                      let finalAmount = Math.min(
+                        walletBalance,
+                        maxUsableAmount,
+                        maxWalletUsage
+                      );
                       setDiscountWallet(finalAmount);
                     } else {
                       setDiscountWallet(0);
                     }
                   }}
-                  
                   style={{ border: "1px solid orangered" }}
                 />
                 <label
@@ -1055,17 +1085,16 @@ useEffect(() => {
                 <span style={{ fontWeight: 700, marginLeft: "5px" }}>
                   Apply Wallet
                 </span>
-
               </div>
-              <p style={{ fontSize: "smaller", marginTop: "5px" }}>Note: Minimum cart value for wallet use is ₹ {walletSeting?.minCartValueForWallet}.</p>
+              <p style={{ fontSize: "smaller", marginTop: "5px" }}>
+                Note: Minimum cart value for wallet use is ₹{" "}
+                {walletSeting?.minCartValueForWallet}.
+              </p>
             </div>
             <div>
-              <span> ₹ {(wallet?.balance-discountWallet)?.toFixed(2)}</span>
+              <span> ₹ {(wallet?.balance - discountWallet)?.toFixed(2)}</span>
             </div>
-
           </div>
-
-
 
           <div className="select-container mt-2 mb-2">
             {availableSlots.length > 0 ? (
@@ -1163,7 +1192,8 @@ useEffect(() => {
                         calculateTaxPrice +
                         subtotal +
                         Cutlery +
-                        (delivarychargetype || 0) - discountWallet -
+                        (delivarychargetype || 0) -
+                        discountWallet -
                         coupon
                       ).toFixed(2)}
                     </b>
@@ -1173,7 +1203,8 @@ useEffect(() => {
                       {(
                         calculateTaxPrice +
                         subtotal +
-                        delivarychargetype - discountWallet -
+                        delivarychargetype -
+                        discountWallet -
                         coupon
                       ).toFixed(2)}
                     </b>
@@ -1200,7 +1231,8 @@ useEffect(() => {
                         calculateTaxPrice +
                         subtotal +
                         Cutlery +
-                        (delivarychargetype || 0) - discountWallet -
+                        (delivarychargetype || 0) -
+                        discountWallet -
                         coupon
                       ).toFixed(2)}
                     </b>
@@ -1210,7 +1242,8 @@ useEffect(() => {
                       {(
                         calculateTaxPrice +
                         subtotal +
-                        (delivarychargetype || 0) - discountWallet -
+                        (delivarychargetype || 0) -
+                        discountWallet -
                         coupon
                       ).toFixed(2)}
                     </b>
@@ -1248,7 +1281,7 @@ useEffect(() => {
                     value={data?.Apartmentname}
                     style={{ color: "black" }}
                     className="option"
-                  // onClick={()=>setpincode(data?.pincode)}
+                    // onClick={()=>setpincode(data?.pincode)}
                   >
                     {data?.Apartmentname}
                   </option>

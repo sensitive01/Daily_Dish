@@ -7,8 +7,8 @@ import { GiPartyPopper } from "react-icons/gi";
 import { WalletContext } from "../../WalletContext";
 
 const AdminWalletManagement = () => {
-   const { AllWallet,AdminWallet} = useContext(WalletContext);
-  
+  const { AllWallet, AdminWallet } = useContext(WalletContext);
+
   // const [wallets, setWallets] = useState([]);
   const [selectedWallet, setSelectedWallet] = useState(null);
   const [showModal, setShowModal] = useState(false);
@@ -25,11 +25,10 @@ const AdminWalletManagement = () => {
   const walletsPerPage = 5;
   const transactionsPerPage = 5;
 
-  
   // const fetchTransactions = async (wallet) => {
   //   try {
   //     const response = await axios.get(
-  //       `https://dailydishbangalore.com/api/wallet/transactions/${wallet.userId?._id}`
+  //       `https://daily-dish.onrender.com/api/wallet/transactions/${wallet.userId?._id}`
   //     );
   //     setTransactions(response.data.data);
   //     setSelectedWallet(wallet);
@@ -52,8 +51,8 @@ const AdminWalletManagement = () => {
     try {
       await axios.post(
         actionType === "add"
-          ? "https://dailydishbangalore.com/api/wallet/add-free-cash"
-          : "https://dailydishbangalore.com/api/wallet/deduct-cash",
+          ? "https://daily-dish.onrender.com/api/wallet/add-free-cash"
+          : "https://daily-dish.onrender.com/api/wallet/deduct-cash",
         {
           userId: selectedWallet?.userId?._id,
           amount: amount,
@@ -121,7 +120,7 @@ const AdminWalletManagement = () => {
                   variant="info"
                   size="sm"
                   onClick={() => {
-                    setTxnPage(1)
+                    setTxnPage(1);
                     setTransactions(wallet?.transactions?.reverse());
                     setSelectedWallet(wallet);
                     setShowTransactionModal(true);
@@ -142,11 +141,17 @@ const AdminWalletManagement = () => {
       {/* Pagination for Transactions */}
       {/* Pagination for Wallets */}
       <Pagination className="justify-content-center">
-        {[...Array(Math.ceil(AllWallet.length / walletsPerPage)).keys()].map((num) => (
-          <Pagination.Item key={num + 1} active={num + 1 === currentPage} onClick={() => setCurrentPage(num + 1)}>
-            {num + 1}
-          </Pagination.Item>
-        ))}
+        {[...Array(Math.ceil(AllWallet.length / walletsPerPage)).keys()].map(
+          (num) => (
+            <Pagination.Item
+              key={num + 1}
+              active={num + 1 === currentPage}
+              onClick={() => setCurrentPage(num + 1)}
+            >
+              {num + 1}
+            </Pagination.Item>
+          )
+        )}
       </Pagination>
       {/* Wallet Management Modal */}
       <Modal show={showModal} onHide={() => setShowModal(false)} centered>
@@ -274,10 +279,18 @@ const AdminWalletManagement = () => {
             <p className="text-center">No transactions found.</p>
           )}
         </Modal.Body>
-         {/* Pagination for Transactions */}
-         <Pagination className="justify-content-center">
-          {[...Array(Math.ceil(transactions.length / transactionsPerPage)).keys()].map((num) => (
-            <Pagination.Item key={num + 1} active={num + 1 === txnPage} onClick={() => setTxnPage(num + 1)}>
+        {/* Pagination for Transactions */}
+        <Pagination className="justify-content-center">
+          {[
+            ...Array(
+              Math.ceil(transactions.length / transactionsPerPage)
+            ).keys(),
+          ].map((num) => (
+            <Pagination.Item
+              key={num + 1}
+              active={num + 1 === txnPage}
+              onClick={() => setTxnPage(num + 1)}
+            >
               {num + 1}
             </Pagination.Item>
           ))}

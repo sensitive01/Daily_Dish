@@ -27,16 +27,15 @@ function Gst() {
 
   const AddGst = async (user) => {
     try {
-      
       const config = {
         url: "admin/addgst",
         method: "post",
-        baseURL: "https://dailydishbangalore.com/api",
+        baseURL: "https://daily-dish.onrender.com/api",
         headers: { "Content-Type": "application/Json" },
         data: {
-          "Cgst":cgst,
-          "Sgst":sgst,
-          "TotalGst":totalgst
+          Cgst: cgst,
+          Sgst: sgst,
+          TotalGst: totalgst,
         },
       };
       let res = await axios(config);
@@ -58,7 +57,7 @@ function Gst() {
   const getGst = async () => {
     try {
       let res = await axios.get(
-        "https://dailydishbangalore.com/api/admin/getgst"
+        "https://daily-dish.onrender.com/api/admin/getgst"
       );
       if (res.status === 200) {
         setGstList(res.data.gst.reverse());
@@ -74,9 +73,9 @@ function Gst() {
   let deleteGst = async (id) => {
     try {
       let res = await axios.delete(
-        `https://dailydishbangalore.com/api/admin/deletegst/${delData?._id}`
+        `https://daily-dish.onrender.com/api/admin/deletegst/${delData?._id}`
       );
-      if (res.status===200) {
+      if (res.status === 200) {
         alert(`GST Deleted Successfully`);
         handleClose5();
         getGst();
@@ -85,7 +84,6 @@ function Gst() {
       alert(error.message);
     }
   };
-
 
   useEffect(() => {
     getGst();
@@ -302,11 +300,7 @@ function Gst() {
             >
               Close
             </Button>
-            <Button
-              variant=""
-              className="modal-add-btn"
-              onClick={deleteGst}
-            >
+            <Button variant="" className="modal-add-btn" onClick={deleteGst}>
               Delete
             </Button>
           </Modal.Footer>
