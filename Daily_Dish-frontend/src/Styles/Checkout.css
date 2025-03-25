@@ -1,0 +1,915 @@
+/* .user-view-ceckout {
+  padding: 20px;
+  margin-top: 12px;
+}
+.edit-btn {
+  margin-left: 180px;
+  border: none;
+  outline: none;
+  background: transparent;
+}
+.order-image {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  max-height: 90px;
+}
+.foodcontainer{
+  width: 250px;
+}
+
+
+.qty-btn {
+  border: 1px solid rgb(243, 205, 135);
+  border-radius: 90px;
+}
+.qty-btn:hover,
+.qty-btn:focus {
+  background-color: orange;
+}
+
+.mobile-checkout {
+  display: none;
+}
+
+.visually-hidden {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.custom-checkbox-label {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid orangered;
+  border-radius: 4px;
+  position: relative;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.custom-checkbox-label::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  background-color: orangered;
+  transform: translate(-50%, -50%) scale(0);
+  border-radius: 2px;
+  transition: transform 0.2s ease;
+}
+
+input:checked + .custom-checkbox-label::after {
+  transform: translate(-50%, -50%) scale(1);
+}
+.increment{
+  display: none;
+} */
+/* .mobile-checkout{
+  display: block;
+} */
+
+.user-view-ceckout {
+  display: none !important;
+}
+
+.foodcontainer {
+  width: auto;
+}
+
+.mobile-checkout {
+  display: block !important;
+  padding: 20px 10px;
+}
+
+.verticle {
+  height: 130px;
+  width: 2px;
+  margin: 0 20px;
+  border: 1px dashed orangered;
+}
+
+.symbol {
+  background-color: orangered;
+  color: white;
+  font-size: 16px;
+  border-radius: 5px;
+  width: 20px;
+  height: 20px;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+.modal-add-btn2 {
+  background-color: #F81D0F !important;
+  color: #F5FBF8;
+}
+.modal-add-btn2:hover{
+  opacity: 0.8;
+  color: #F5FBF8;
+}
+.prices div {
+  display: inline-block;
+  text-align: right;
+  font-family: monospace; /* Ensures uniform spacing for digits */
+  min-width: 100px; /* Adjust this value to ensure enough space for alignment */
+}
+
+.chekout-p-name {
+  font-size: 16px;
+  font-weight: 600;
+  width: 85%;
+  overflow: hidden;
+  white-space: nowrap; 
+  text-overflow: ellipsis; 
+ 
+}
+.top-right-icon{
+  position: absolute;
+  top: 5%;
+  right: 5%;
+}
+
+.non-veg {
+  width: 10px;
+  height: 8px;
+  border-radius: 50%;
+  background: red;
+  align-items: center;
+  text-align: center;
+  padding: 5px;
+  margin: 8px 0;
+}
+
+veg {
+  width: 10px;
+  height: 8px;
+  border-radius: 50%;
+  background: green;
+  align-items: center;
+  text-align: center;
+  padding: 5px;
+  margin: 8px 0;
+}
+
+.add-address-text {
+  color: orangered;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.add-icon {
+  border: 1px solid orangered;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  text-align: center;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding: 8px;
+  color: orangered;
+}
+
+.tower-img {
+  width: auto;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  /* margin: auto; */
+  height: 70px;
+  margin: 6px auto;
+}
+
+.tower-charge {
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.delivery-type {
+  font-size: 14px;
+  font-weight: 600;
+  color: orangered;
+  text-align: center;
+}
+
+.select-container {
+  position: relative;
+  width: 100%;
+}
+
+#slot-select {
+  width: 100%;
+  padding: 8px 40px;
+  font-size: 16px;
+  background-image: url('../../public/Assets/time.png');
+  background-repeat: no-repeat;
+  background-position: left 10px center;
+  background-size: 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: orangered;
+  color: white;
+  border: 1px solid white;
+}
+
+#slot-select option {
+  padding-left: 30px;
+  /* To add space between text and icon */
+}
+
+
+.slot {
+  background-color: #F81D0F;
+  color: white;
+  width: 100% !important;
+}
+
+.deliveryDiv {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.btn {
+  text-align: left;
+  /* border: 1px solid black; */
+}
+
+.uprdiv {
+  width: 40% !important;
+}
+
+.slot>option {
+  color: white;
+}
+
+.delivr-location {
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  align-items: center;
+  margin: auto;
+}
+
+.selection-tab {
+
+  height: 135px;
+  /* border: 1px solid orange; */
+  border-radius: 9px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.3s, background-color 0.3s;
+  position: relative;
+  padding: 0px;
+  cursor: pointer;
+}
+
+.selection-tab.active {
+  border-color: orangered;
+  background-color: #fff5f5;
+  padding: 0px;
+  /* border: 1px solid orange; */
+}
+
+.increment {
+  display: block;
+  width: 15px;
+  height: 15px;
+  border-radius: 5px;
+  /* background-color: orangered; */
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+
+.btnDiv {
+  width: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #F81D0F;
+  color: white;
+  padding: 4px;
+  border-radius: 4px;
+  height: 20px;
+
+}
+
+.addressh5>h5{
+  padding: 0%;
+  margin: 0%;
+}
+.radioh5{
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+
+}
+.mobile-checkout {
+  width: 30%;
+}
+
+.checkoutcontainer {
+  display: flex !important;
+  justify-content: center !important;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mycart{
+  width: 30%;
+  height: 50px;
+  display: flex;
+  background-color: white;
+  justify-content: space-around;
+  align-items: center;
+}
+.mycart>h5{
+  margin-right: 120px;
+
+}
+.mycart>span{
+  margin-left: 50px;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.cartproducts{
+  width: 100% !important;
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+}
+.cartproducts>.cartHead{
+  font-size: 14px;
+  font-weight: 700;
+  padding-bottom: 5px;
+}
+.productname{
+  overflow: hidden;
+  white-space: nowrap; 
+  text-overflow: ellipsis;
+}
+
+
+ .deliverycard{
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+
+  background-color: white;
+  border-radius: 10px;
+  padding-top: 5px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  padding-bottom: 5px;
+ }
+ .leftcard{
+  width: 35%;
+  height: 100px;
+  background-color: white;
+  border-radius: 20px;
+  border:2px solid gray;
+  padding: 10px;
+  position: relative;
+  cursor: pointer;
+ }
+ .leftcard.active{
+  border: 2px solid #F81D0F;
+ }
+.rightcard{
+  width: 35%;
+  height: 100px;
+  background-color: white;
+  border-radius: 20px;
+  border:2px solid gray;
+  padding: 10px;
+  position: relative;
+  cursor: pointer;
+ }
+ .rightcard.active{
+  border: 2px solid #F81D0F;
+ }
+ .top,.bottom{
+  width: 100%;
+  height: 33.3%;
+  display: flex;
+  justify-content: space-between;
+ }
+ .icon{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+ }
+ .icon>h6{
+  font-size: 12px;
+ }
+ .radio{
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+ }
+ .form-check-input{
+  border: 1px solid black;
+ }
+ .bottom{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ }
+.center{
+width: 100%;
+height: 33.3%;
+display: flex;
+justify-content: center;
+align-items: end;
+}
+.deliveryHead{
+margin-bottom: 10px;
+margin-top: 10px;
+padding-bottom: 5px;
+}
+
+.maincard{
+width: 100%;
+height: 100px;
+background-color: white;
+border-radius: 10px;
+display:flex;
+justify-content: space-around;
+
+}
+.maincard2{
+width: 100%;
+height: auto;
+background-color: white;
+border-radius: 10px;
+display:flex;
+justify-content: space-around;
+padding-left: 10px;
+padding-right: 10px;
+
+}
+.billdetail{
+height: auto !important;
+}
+.addressCard{
+width: 100%;
+height: auto;
+background-color: white;
+padding: 10px;
+border-radius: 10px;
+box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.placeorder{
+  margin-top: 10px;
+}
+.cutleryDiv{
+  width: 100%;
+height: auto;
+background-color: white;
+padding: 10px;
+border-radius: 10px;
+box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+display: flex;
+justify-content: space-between;
+margin-top: 10px;
+}
+.addresselipse{
+  width: 75%;
+  overflow: hidden;
+  white-space: nowrap; 
+  text-overflow: ellipsis;
+}
+
+@media screen and (max-width: 799px) {
+  .user-view-ceckout {
+    display: none !important;
+  }
+
+  .foodcontainer {
+    width: auto;
+  }
+
+  .mobile-checkout {
+    display: block !important;
+    padding: 20px 0px;
+    width: 100%;
+    /* border: 1px solid black; */
+  }
+  .radioh5{
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  
+  }
+
+  .verticle {
+    height: 130px;
+    width: 2px;
+    margin: 0 20px;
+    border: 1px dashed orangered;
+  }
+
+  .symbol {
+    background-color: orangered;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    width: 20px;
+    height: 20px;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  .chekout-p-name {
+    font-size: 12px;
+    /* font-weight: 600; */
+  }
+
+  .non-veg {
+    width: 10px;
+    height: 8px;
+    border-radius: 50%;
+    background: red;
+    align-items: center;
+    text-align: center;
+    padding: 5px;
+    margin: 8px 0;
+  }
+
+  veg {
+    width: 10px;
+    height: 8px;
+    border-radius: 50%;
+    background: green;
+    align-items: center;
+    text-align: center;
+    padding: 5px;
+    margin: 8px 0;
+  }
+
+  .add-address-text {
+    color: orangered;
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .add-icon {
+    border: 1px solid orangered;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    text-align: center;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    padding: 8px;
+    color: orangered;
+  }
+
+  .tower-img {
+    width: auto;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    /* margin: auto; */
+    height: 70px;
+    margin: 6px auto;
+  }
+
+  .tower-charge {
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+  }
+
+  .delivery-type {
+    font-size: 14px;
+    font-weight: 600;
+    color: orangered;
+    text-align: center;
+  }
+
+  .select-container {
+    position: relative;
+    width: 100%;
+  }
+
+  #slot-select {
+    width: 100%;
+    padding: 8px 40px;
+    font-size: 16px;
+    background-image: url('../../public/Assets/time.png');
+    background-repeat: no-repeat;
+    background-position: left 10px center;
+    background-size: 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: orangered;
+    color: white;
+    border: 1px solid white;
+  }
+  .checkoutcontainer {
+    display: flex !important;
+    justify-content: center !important;
+    width: 100%;
+    /* border: 1px solid black; */
+  }
+
+  #slot-select option {
+    padding-left: 30px;
+    /* To add space between text and icon */
+  }
+
+  .slot {
+    background-color: #F81D0F;
+    color: white;
+    width: 100% !important;
+  }
+
+  .deliveryDiv {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+
+  .btn {
+    text-align: left;
+  }
+
+  .uprdiv {
+    width: 40% !important;
+  }
+
+  .slot>option {
+    color: white;
+  }
+
+  .delivr-location {
+    font-size: 14px;
+    /* font-weight: 600; */
+    text-align: center;
+    align-items: center;
+    margin: auto;
+  }
+
+  .selection-tab {
+
+    height: 135px;
+    /* border: 1px solid orange; */
+    border-radius: 9px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.3s, background-color 0.3s;
+    position: relative;
+    padding: 0px;
+    cursor: pointer;
+  }
+
+  .selection-tab.active {
+    border-color: orangered;
+    background-color: #fff5f5;
+    padding: 0px;
+    /* border: 1px solid orange; */
+  }
+
+  .increment {
+    display: block;
+    width: 15px;
+    height: 15px;
+    border-radius: 5px;
+    /* background-color: orangered; */
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .btnDiv {
+    width: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #F81D0F;
+    color: white;
+    padding: 4px;
+    border-radius: 4px;
+    height: 20px;
+
+  }
+  .plusbtn{
+    color: white !important;
+  }
+  .placeorder{
+    margin-top: 10px;
+  }
+  .prices div {
+    display: inline-block;
+    text-align: right;
+    font-family: monospace; /* Ensures uniform spacing for digits */
+    min-width: 100px; /* Adjust this value to ensure enough space for alignment */
+  }
+  .mainbg{
+    background-color:#F5FBF8;
+
+  }
+  .mycart{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    background-color: white;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .mycart>h5{
+    margin-right: 120px;
+
+  }
+  .mycart>span{
+    margin-left: 50px;
+    font-weight: 700;
+    font-size: 15px;
+  }
+  .cartproducts{
+    width: 100% !important;
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+  }
+  .cartproducts>.cartHead{
+    font-size: 14px;
+    font-weight: 700;
+    padding-bottom: 5px;
+
+  }
+ 
+   .deliverycard{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+    /* border: 1px solid black; */
+    background-color: white;
+    border-radius: 10px;
+    padding-top: 5px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    padding-bottom: 5px;
+   }
+   .leftcard{
+    width: 35%;
+    height: 100px;
+    background-color: white;
+    border-radius: 20px;
+    border:2px solid gray;
+    padding: 10px;
+    position: relative;
+   }
+  .rightcard{
+    width: 35%;
+    height: 100px;
+    background-color: white;
+    border-radius: 20px;
+    border:2px solid gray;
+    padding: 10px;
+    position: relative;
+   }
+   .top,.bottom{
+    width: 100%;
+    height: 33.3%;
+    display: flex;
+    justify-content: space-between;
+    /* border: 1px solid black; */
+   }
+   .icon{
+    width: 100%;
+    height: 100%;
+    /* border: 1px solid black; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* font-size: 16px; */
+    /* margin-top: 10px; */
+   }
+   .icon>h6{
+    font-size: 12px;
+   }
+   .radio{
+    width: 50%;
+    height: 100%;
+    /* border: 1px solid black; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+   }
+   .form-check-input{
+    border: 1px solid black;
+   }
+   .bottom{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   }
+.center{
+  width: 100%;
+  height: 33.3%;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+}
+.deliveryHead{
+  margin-bottom: 10px;
+  margin-top: 10px;
+  padding-bottom: 5px;
+}
+.maincard{
+  width: 100%;
+  height: 100px;
+  background-color: white;
+  border-radius: 10px;
+  display:flex;
+  justify-content: space-around;
+
+}
+.maincard2{
+  width: 100%;
+  height: auto;
+  background-color: white;
+  border-radius: 10px;
+  display:flex;
+  justify-content: space-around;
+  padding-left: 10px;
+  padding-right: 10px;
+
+}
+.billdetail{
+  height: auto !important;
+}
+.addressCard{
+  width: 100%;
+  height: auto;
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.chekout-p-name {
+  font-size: 15px;
+  font-weight: 600;
+  overflow: hidden;
+  white-space: nowrap; 
+  text-overflow: ellipsis;
+ 
+}
+
+.productname{
+  overflow: hidden;
+  white-space: nowrap; 
+  text-overflow: ellipsis;
+}
+.top-right-icon{
+  position: absolute;
+  top: 5%;
+  right: 5%;
+}
+
+
+}
