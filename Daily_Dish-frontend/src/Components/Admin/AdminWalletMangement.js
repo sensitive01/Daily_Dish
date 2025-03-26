@@ -28,7 +28,7 @@ const AdminWalletManagement = () => {
   // const fetchTransactions = async (wallet) => {
   //   try {
   //     const response = await axios.get(
-  //       `https://dailydishbangalore.com/api/wallet/transactions/${wallet.userId?._id}`
+  //       `https://daily-dish.onrender.com/api/wallet/transactions/${wallet.userId?._id}`
   //     );
   //     setTransactions(response.data.data);
   //     setSelectedWallet(wallet);
@@ -51,8 +51,8 @@ const AdminWalletManagement = () => {
     try {
       await axios.post(
         actionType === "add"
-          ? "https://dailydishbangalore.com/api/wallet/add-free-cash"
-          : "https://dailydishbangalore.com/api/wallet/deduct-cash",
+          ? "https://daily-dish.onrender.com/api/wallet/add-free-cash"
+          : "https://daily-dish.onrender.com/api/wallet/deduct-cash",
         {
           userId: selectedWallet?.userId?._id,
           amount: amount,

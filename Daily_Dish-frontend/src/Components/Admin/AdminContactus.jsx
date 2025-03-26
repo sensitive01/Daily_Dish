@@ -51,7 +51,7 @@ const AdminContactus = () => {
       const config = {
         url: "admin/contactus",
         method: "post",
-        baseURL: "https://dailydishbangalore.com/api/",
+        baseURL: "https://daily-dish.onrender.com/api/",
         header: { "content-type": "application/Json" },
         data: {
           CAddress: CAddress,
@@ -78,7 +78,7 @@ const AdminContactus = () => {
   const getAddcontactus = async () => {
     try {
       let res = await axios.get(
-        "https://dailydishbangalore.com/api/admin/getcontactus"
+        "https://daily-dish.onrender.com/api/admin/getcontactus"
       );
       if (res.status === 200) {
         setAddcontactus(res.data.getcontactus);
@@ -95,7 +95,7 @@ const AdminContactus = () => {
       const config = {
         url: "admin/Deletecontactus/" + Data,
         method: "delete",
-        baseURL: "https://dailydishbangalore.com/api/",
+        baseURL: "https://daily-dish.onrender.com/api/",
         header: { "content-type": "application/json" },
       };
       await axios(config).then((res) => {
@@ -132,7 +132,7 @@ const AdminContactus = () => {
       const config = {
         url: "admin/editcontactus",
         method: "put",
-        baseURL: "https://dailydishbangalore.com/api/",
+        baseURL: "https://daily-dish.onrender.com/api/",
         header: { "content-type": "multipart/form-data" },
         data: formdata,
       };
@@ -173,7 +173,7 @@ const AdminContactus = () => {
       const config = {
         url: "admin/social",
         method: "post",
-        baseURL: "https://dailydishbangalore.com/api/",
+        baseURL: "https://daily-dish.onrender.com/api/",
         header: { "content-type": "multipart/form-data" },
         data: formdata,
       };
@@ -195,7 +195,7 @@ const AdminContactus = () => {
   const getAddsocial = async () => {
     try {
       let res = await axios.get(
-        "https://dailydishbangalore.com/api/admin/getsocial"
+        "https://daily-dish.onrender.com/api/admin/getsocial"
       );
       if (res.status === 200) {
         setAddsocial(res.data.getsocial);
@@ -212,7 +212,7 @@ const AdminContactus = () => {
       const config = {
         url: "admin/Deletesocial/" + Datas,
         method: "delete",
-        baseURL: "https://dailydishbangalore.com/api/",
+        baseURL: "https://daily-dish.onrender.com/api/",
         header: { "content-type": "application/json" },
       };
       await axios(config).then((res) => {
@@ -246,7 +246,7 @@ const AdminContactus = () => {
       const config = {
         url: "admin/editsocial",
         method: "put",
-        baseURL: "https://dailydishbangalore.com/api/",
+        baseURL: "https://daily-dish.onrender.com/api/",
         header: { "content-type": "multipart/form-data" },
         data: formdata,
       };
@@ -333,7 +333,7 @@ const AdminContactus = () => {
                         <td style={{ paddingTop: "20px" }}>{i + 1}</td>
                         <td>
                           <Image
-                            src={`https://dailydishbangalore.com/Contactus/${item?.CBanner}`}
+                            src={`https://daily-dish.onrender.com/Contactus/${item?.CBanner}`}
                             alt="pic"
                             style={{ width: "65px", height: "65px" }}
                           />

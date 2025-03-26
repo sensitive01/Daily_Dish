@@ -41,7 +41,7 @@ const BookingList = () => {
   const getApartmentOrder = async () => {
     try {
       let res = await axios.get(
-        "https://dailydishbangalore.com/api/admin/getallorders"
+        "https://daily-dish.onrender.com/api/admin/getallorders"
       );
       if (res.status === 200) {
         setApartmentOrder(res.data.order.reverse());
@@ -67,7 +67,7 @@ const BookingList = () => {
   const getAddproducts = async () => {
     try {
       let res = await axios.get(
-        "https://dailydishbangalore.com/api/admin/getFoodItems"
+        "https://daily-dish.onrender.com/api/admin/getFoodItems"
       );
       if (res.status === 200) {
         setAddproducts(res.data.data);
@@ -82,7 +82,7 @@ const BookingList = () => {
   let deleteBooking = async (data) => {
     try {
       let res = await axios.delete(
-        `https://dailydishbangalore.com/api/admin/deletefoodorder/${data}`
+        `https://daily-dish.onrender.com/api/admin/deletefoodorder/${data}`
       );
       if (res) {
         alert(`Bookings Data Deleted Successfully`);
@@ -228,7 +228,7 @@ const BookingList = () => {
       const config = {
         url: "/admin/updateOrderStatus/" + item._id,
         method: "put",
-        baseURL: "https://dailydishbangalore.com/api",
+        baseURL: "https://daily-dish.onrender.com/api",
         headers: { "Content-Type": "application/json" },
         data: {
           newStatus: statusdata,
@@ -542,7 +542,7 @@ const BookingList = () => {
                       <div className="row  border mt-1 mx-1">
                         <div className="col-md-4">
                           <img
-                            src={`https://dailydishbangalore.com/Products/${Item?.foodItemId?.Foodgallery[0]?.image2}`}
+                            src={`https://daily-dish.onrender.com/Products/${Item?.foodItemId?.Foodgallery[0]?.image2}`}
                             alt=""
                             style={{ width: "90px", height: "80px" }}
                           />

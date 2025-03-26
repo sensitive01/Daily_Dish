@@ -80,7 +80,7 @@ const Banner = ({ selectArea, setSelectArea, Carts }) => {
       const config = {
         url: "/User/Sendotp",
         method: "post",
-        baseURL: "https://dailydishbangalore.com/api",
+        baseURL: "https://daily-dish.onrender.com/api",
 
         headers: { "content-type": "application/json" },
         data: {
@@ -142,7 +142,7 @@ const Banner = ({ selectArea, setSelectArea, Carts }) => {
   const getAddBanner = async () => {
     try {
       let res = await axios.get(
-        "https://dailydishbangalore.com/api/admin/getbanner"
+        "https://daily-dish.onrender.com/api/admin/getbanner"
       );
       if (res.status === 200) {
         setAddBanner(res.data.getbanner);
@@ -156,7 +156,7 @@ const Banner = ({ selectArea, setSelectArea, Carts }) => {
   const getapartmentd = async () => {
     try {
       let res = await axios.get(
-        "https://dailydishbangalore.com/api/admin/getapartment"
+        "https://daily-dish.onrender.com/api/admin/getapartment"
       );
       if (res.status === 200) {
         setapartmentdata(res.data.corporatedata);
@@ -173,7 +173,7 @@ const Banner = ({ selectArea, setSelectArea, Carts }) => {
   const getcorporate = async () => {
     try {
       let res = await axios.get(
-        "https://dailydishbangalore.com/api/admin/getcorporate"
+        "https://daily-dish.onrender.com/api/admin/getcorporate"
       );
       if (res.status === 200) {
         setcorporatedata(res.data.corporatedata);
@@ -193,7 +193,7 @@ const Banner = ({ selectArea, setSelectArea, Carts }) => {
     const getAddWebstory = async () => {
       try {
         let res = await axios.get(
-          "https://dailydishbangalore.com/api/admin/getstories"
+          "https://daily-dish.onrender.com/api/admin/getstories"
         );
         if (res.status === 200) {
           setStoryLength(res.data.getbanner.length);
@@ -281,7 +281,7 @@ const Banner = ({ selectArea, setSelectArea, Carts }) => {
       const config = {
         url: "User/EnquiryEnquiry",
         method: "post",
-        baseURL: "https://dailydishbangalore.com/api/",
+        baseURL: "https://daily-dish.onrender.com/api/",
         header: { "content-type": "application/json" },
         data: {
           Name: Name,
@@ -358,7 +358,7 @@ const Banner = ({ selectArea, setSelectArea, Carts }) => {
       const config = {
         url: "User/mobileotpverification",
         method: "post",
-        baseURL: "https://dailydishbangalore.com/api/",
+        baseURL: "https://daily-dish.onrender.com/api/",
         header: { "content-type": "application/json" },
         data: {
           Mobile: Mobile,
@@ -384,7 +384,7 @@ const Banner = ({ selectArea, setSelectArea, Carts }) => {
   const getSelectedAddress = async () => {
     try {
       let res = await axios.get(
-        `https://dailydishbangalore.com/api/user/getSelectedAddressByUserIDAddType/${user?._id}/${addresstype}`
+        `https://daily-dish.onrender.com/api/user/getSelectedAddressByUserIDAddType/${user?._id}/${addresstype}`
       );
       if (res.status === 200) {
         setSelectedAddress(res.data.getdata);
@@ -425,7 +425,7 @@ const Banner = ({ selectArea, setSelectArea, Carts }) => {
     try {
       if (!user) return;
       let res = await axios.post(
-        `https://dailydishbangalore.com/api/user/addressadd`,
+        `https://daily-dish.onrender.com/api/user/addressadd`,
         {
           Name: user?.Fname,
           Number: user?.Mobile,

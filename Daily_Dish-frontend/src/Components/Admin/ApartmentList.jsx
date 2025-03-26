@@ -65,7 +65,7 @@ const ApartmentList = () => {
       const config = {
         url: "/admin/addapartment",
         method: "post",
-        baseURL: "https://dailydishbangalore.com/api",
+        baseURL: "https://daily-dish.onrender.com/api",
         header: { "content-type": "application/json" },
         data: {
           Apartmentname: Apartmentname,
@@ -101,7 +101,7 @@ const ApartmentList = () => {
   const getAddApartment = async () => {
     try {
       let res = await axios.get(
-        "https://dailydishbangalore.com/api/admin/getapartment"
+        "https://daily-dish.onrender.com/api/admin/getapartment"
       );
       if (res.status === 200) {
         setAddApartment(res.data.corporatedata.reverse());
@@ -121,7 +121,7 @@ const ApartmentList = () => {
       const config = {
         url: "admin/deleteapartment/" + Data,
         method: "delete",
-        baseURL: "https://dailydishbangalore.com/api/",
+        baseURL: "https://daily-dish.onrender.com/api/",
         header: { "content-type": "application/json" },
       };
       await axios(config).then((res) => {
@@ -157,7 +157,7 @@ const ApartmentList = () => {
       const config = {
         url: "admin/updateapartment",
         method: "put",
-        baseURL: "https://dailydishbangalore.com/api/",
+        baseURL: "https://daily-dish.onrender.com/api/",
         headers: { "Content-Type": "application/json" },
         data: {
           Apartmentname,

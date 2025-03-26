@@ -27,7 +27,7 @@ const SalesReport = () => {
   const getAddproducts = async () => {
     try {
       let res = await axios.get(
-        "https://dailydishbangalore.com/api/admin/getFoodItems"
+        "https://daily-dish.onrender.com/api/admin/getFoodItems"
       );
       if (res.status === 200) {
         setAddproducts(res.data.data);
@@ -88,7 +88,7 @@ const SalesReport = () => {
   const getApartmentOrder = async () => {
     try {
       let res = await axios.get(
-        "https://dailydishbangalore.com/api/admin/getallorders"
+        "https://daily-dish.onrender.com/api/admin/getallorders"
       );
       if (res.status === 200) {
         setApartmentOrder(res.data.order);

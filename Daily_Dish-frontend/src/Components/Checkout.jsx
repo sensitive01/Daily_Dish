@@ -49,7 +49,7 @@ const Checkout = () => {
   const getapartmentd = async () => {
     try {
       let res = await axios.get(
-        "https://dailydishbangalore.com/api/admin/getapartment"
+        "https://daily-dish.onrender.com/api/admin/getapartment"
       );
       if (res.status === 200) {
         setapartmentdata(res.data.corporatedata);
@@ -63,7 +63,7 @@ const Checkout = () => {
   const getCorporatedata = async () => {
     try {
       let res = await axios.get(
-        "https://dailydishbangalore.com/api/admin/getcorporate"
+        "https://daily-dish.onrender.com/api/admin/getcorporate"
       );
       if (res.status === 200) {
         setcorporatedata(res.data.corporatedata);
@@ -179,7 +179,7 @@ const Checkout = () => {
       const config = {
         url: "/admin/applyCoupon",
         method: "post",
-        baseURL: "https://dailydishbangalore.com/api/",
+        baseURL: "https://daily-dish.onrender.com/api/",
         header: { "content-type": "application/json" },
         data: {
           mobileNumber: user?.Mobile,
@@ -218,7 +218,7 @@ const Checkout = () => {
       try {
         console.log("calling");
         let res = await axios.post(
-          "https://dailydishbangalore.com/api/cart/addCart",
+          "https://daily-dish.onrender.com/api/cart/addCart",
           {
             userId: user?._id,
             items: Carts,
@@ -279,7 +279,7 @@ const Checkout = () => {
       const config = {
         url: "/admin/addfoodorder",
         method: "post",
-        baseURL: "https://dailydishbangalore.com/api/",
+        baseURL: "https://daily-dish.onrender.com/api/",
         header: { "content-type": "application/json" },
         data: {
           customerId: user?._id,
@@ -331,7 +331,7 @@ const Checkout = () => {
       const config1 = {
         url: "/user/addpaymentphonepay",
         method: "post",
-        baseURL: "https://dailydishbangalore.com/api/",
+        baseURL: "https://daily-dish.onrender.com/api/",
         header: { "content-type": "application/json" },
         data: {
           userId: user?._id,
@@ -377,7 +377,7 @@ const Checkout = () => {
     setApartmentname(id);
     try {
       let res = await axios.get(
-        `https://dailydishbangalore.com/api/user/getSelectedAddressByUserIDAddressID/${user?._id}/${id}`
+        `https://daily-dish.onrender.com/api/user/getSelectedAddressByUserIDAddressID/${user?._id}/${id}`
       );
       if (res.status === 200) {
         let am = res.data.getdata;
@@ -398,7 +398,7 @@ const Checkout = () => {
     try {
       if (!user) return;
       let res = await axios.post(
-        `https://dailydishbangalore.com/api/user/addressadd`,
+        `https://daily-dish.onrender.com/api/user/addressadd`,
         {
           Name: name,
           Number: mobilenumber,
@@ -547,7 +547,7 @@ const Checkout = () => {
   const getfooditems = async () => {
     try {
       let res = await axios.get(
-        "https://dailydishbangalore.com/api/admin/getFoodItemsUnBlocks"
+        "https://daily-dish.onrender.com/api/admin/getFoodItemsUnBlocks"
       );
       if (res.status === 200) {
         filterOutLowStockItems(res.data.data);
@@ -643,7 +643,7 @@ const Checkout = () => {
   const getGst = async () => {
     try {
       let res = await axios.get(
-        "https://dailydishbangalore.com/api/admin/getgst"
+        "https://daily-dish.onrender.com/api/admin/getgst"
       );
       if (res.status === 200) {
         setGstList(res.data.gst);

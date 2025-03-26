@@ -161,7 +161,7 @@ const Add_Products = () => {
       const config = {
         url: "admin/addFoodItem",
         method: "post",
-        baseURL: "https://dailydishbangalore.com/api",
+        baseURL: "https://daily-dish.onrender.com/api",
         headers: { "Content-Type": "multipart/form-data" },
         data: formdata,
       };
@@ -195,7 +195,7 @@ const Add_Products = () => {
   const getAddproducts = async () => {
     try {
       let res = await axios.get(
-        "https://dailydishbangalore.com/api/admin/getFoodItems"
+        "https://daily-dish.onrender.com/api/admin/getFoodItems"
       );
       if (res.status === 200) {
         setAddproducts(res.data.data);
@@ -212,7 +212,7 @@ const Add_Products = () => {
   let deleteProduct = async () => {
     try {
       let res = await axios.delete(
-        `https://dailydishbangalore.com/api/admin/deleteFoodItem/${delData._id}`
+        `https://daily-dish.onrender.com/api/admin/deleteFoodItem/${delData._id}`
       );
       if (res) {
         alert(`Products Details Deleted Successfully`);
@@ -228,7 +228,7 @@ const Add_Products = () => {
   const getGst = async () => {
     try {
       let res = await axios.get(
-        "https://dailydishbangalore.com/api/admin/getgst"
+        "https://daily-dish.onrender.com/api/admin/getgst"
       );
       if (res.status === 200) {
         setGstList(res.data.gst.reverse());
@@ -298,7 +298,7 @@ const Add_Products = () => {
       const config = {
         url: `admin/updateFoodItem`,
         method: "put",
-        baseURL: "https://dailydishbangalore.com/api/",
+        baseURL: "https://daily-dish.onrender.com/api/",
         headers: { "content-type": "multipart/form-data" },
         data: {
           foodcategory: Category,
@@ -363,7 +363,7 @@ const Add_Products = () => {
       const config = {
         url: `/admin/toggleFoodItemStatus/${items?._id}`,
         method: "put",
-        baseURL: "https://dailydishbangalore.com/api",
+        baseURL: "https://daily-dish.onrender.com/api",
         headers: { "Content-Type": "application/json" },
       };
 
@@ -528,7 +528,7 @@ const Add_Products = () => {
                     <td style={{ paddingTop: "20px" }}>
                       <div>
                         <img
-                          src={`https://dailydishbangalore.com/Products/${items?.Foodgallery[0]?.image2}`}
+                          src={`https://daily-dish.onrender.com/Products/${items?.Foodgallery[0]?.image2}`}
                           alt="img"
                           style={{ width: "60px", height: "60px" }}
                         />
