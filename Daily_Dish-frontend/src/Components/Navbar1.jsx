@@ -91,7 +91,7 @@ const Navbar1 = ({ selectArea, Carts, setCarts }) => {
       const config = {
         url: "/User/registercustomer",
         method: "post",
-        baseURL: "https://daily-dish.onrender.com/api",
+        baseURL: "https://dailydishbangalore.com/api",
 
         headers: { "content-type": "application/json" },
         data: {
@@ -143,7 +143,7 @@ const Navbar1 = ({ selectArea, Carts, setCarts }) => {
       const config = {
         url: "/User/Sendotp",
         method: "post",
-        baseURL: "https://daily-dish.onrender.com/api",
+        baseURL: "https://dailydishbangalore.com/api",
         headers: { "content-type": "application/json" },
         data: {
           Mobile: Mobile,
@@ -168,7 +168,7 @@ const Navbar1 = ({ selectArea, Carts, setCarts }) => {
       const config = {
         url: "User/mobileotpverification",
         method: "post",
-        baseURL: "https://daily-dish.onrender.com/api/",
+        baseURL: "https://dailydishbangalore.com/api/",
         header: { "content-type": "application/json" },
         data: {
           Mobile: Mobile,
@@ -478,7 +478,7 @@ const Navbar1 = ({ selectArea, Carts, setCarts }) => {
                       <>
                         {user?.profileImage ? (
                           <img
-                            src={`https://daily-dish.onrender.com/Customer/${user?.profileImage}`}
+                            src={`https://dailydishbangalore.com/Customer/${user?.profileImage}`}
                             alt=""
                             style={{ width: "50px", borderRadius: "50%" }}
                           />
@@ -657,7 +657,7 @@ const Navbar1 = ({ selectArea, Carts, setCarts }) => {
                           <div className="d-flex gap-3">
                             <div>
                               <img
-                                src={`https://daily-dish.onrender.com/Products/${item?.image}`}
+                                src={`https://dailydishbangalore.com/Products/${item?.image}`}
                                 alt="ProductImage"
                                 className="checkout-block-img"
                               />

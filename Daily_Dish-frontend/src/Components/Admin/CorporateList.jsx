@@ -61,7 +61,7 @@ const CorporateList = () => {
       const config = {
         url: "/admin/addcorporate",
         method: "post",
-        baseURL: "https://daily-dish.onrender.com/api",
+        baseURL: "https://dailydishbangalore.com/api",
         header: { "content-type": "application/json" },
         data: {
           Apartmentname: Corparatename,
@@ -95,7 +95,7 @@ const CorporateList = () => {
   const getAddCorporate = async () => {
     try {
       let res = await axios.get(
-        "https://daily-dish.onrender.com/api/admin/getcorporate"
+        "https://dailydishbangalore.com/api/admin/getcorporate"
       );
       if (res.status === 200) {
         setAddCorporate(res.data.corporatedata.reverse());
@@ -113,7 +113,7 @@ const CorporateList = () => {
       const config = {
         url: "admin/deletecorporate/" + Data,
         method: "delete",
-        baseURL: "https://daily-dish.onrender.com/api/",
+        baseURL: "https://dailydishbangalore.com/api/",
         header: { "content-type": "application/json" },
       };
       await axios(config).then((res) => {
@@ -148,7 +148,7 @@ const CorporateList = () => {
       const config = {
         url: "admin/updatecorporatelist",
         method: "put",
-        baseURL: "https://daily-dish.onrender.com/api/",
+        baseURL: "https://dailydishbangalore.com/api/",
         headers: { "Content-Type": "application/json" },
         data: {
           Apartmentname: Corparatename,

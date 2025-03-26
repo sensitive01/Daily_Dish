@@ -16,7 +16,7 @@ const Footer = () => {
   const getAddsocial = async () => {
     try {
       let res = await axios.get(
-        "https://daily-dish.onrender.com/api/admin/getsocial"
+        "https://dailydishbangalore.com/api/admin/getsocial"
       );
       if (res.status === 200) {
         setAddsocial(res.data.getsocial);
@@ -105,7 +105,7 @@ const Footer = () => {
                         <div className="row" key={i}>
                           <a href={items.CLink}>
                             <img
-                              src={`https://daily-dish.onrender.com/Socialmedia/${items?.CIcon}`}
+                              src={`https://dailydishbangalore.com/Socialmedia/${items?.CIcon}`}
                               alt="social-icon"
                               style={{ width: "55px", height: "55px" }}
                             />

@@ -55,8 +55,8 @@ const UserList = () => {
     try {
       await axios.post(
         actionType === "add"
-          ? "https://daily-dish.onrender.com/api/wallet/add-free-cash"
-          : "https://daily-dish.onrender.com/api/wallet/deduct-cash",
+          ? "https://dailydishbangalore.com/api/wallet/add-free-cash"
+          : "https://dailydishbangalore.com/api/wallet/deduct-cash",
         {
           userId: selectedWallet?.userId?._id,
           amount: amount,
@@ -75,7 +75,7 @@ const UserList = () => {
   const getAdduser = async () => {
     try {
       let res = await axios.get(
-        "https://daily-dish.onrender.com/api/User/registeruser"
+        "https://dailydishbangalore.com/api/User/registeruser"
       );
       if (res.status === 200) {
         setAdduser(res.data.success.reverse());
@@ -97,7 +97,7 @@ const UserList = () => {
       const config = {
         url: `/User/blockuser/${userId?._id}`,
         method: "put",
-        baseURL: "https://daily-dish.onrender.com/api",
+        baseURL: "https://dailydishbangalore.com/api",
         headers: { "Content-Type": "application/json" },
       };
 
@@ -225,7 +225,7 @@ const UserList = () => {
   const getApartmentOrder = async () => {
     try {
       let res = await axios.get(
-        "https://daily-dish.onrender.com/api/admin/getallorders"
+        "https://dailydishbangalore.com/api/admin/getallorders"
       );
       if (res.status === 200) {
         setApartmentOrder(res.data.order.reverse());
@@ -373,7 +373,7 @@ const UserList = () => {
                       <td style={{ paddingTop: "20px" }}>{item?._id}</td>
                       <td style={{ paddingTop: "20px" }}>
                         <img
-                          src={`https://daily-dish.onrender.com/Customer/${item?.profileImage}`}
+                          src={`https://dailydishbangalore.com/Customer/${item?.profileImage}`}
                           alt="pic"
                           style={{
                             width: "50px",

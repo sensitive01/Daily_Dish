@@ -24,7 +24,7 @@ const PaymentSuccess = () => {
   const checkPaymentStatus = async () => {
     try {
       // Construct API endpoint
-      const url = `https://daily-dish.onrender.com/api/User/checkPayment/${transactionId}/${userId}`;
+      const url = `https://dailydishbangalore.com/api/User/checkPayment/${transactionId}/${userId}`;
 
       // Make the GET request
       const response = await axios.get(url);

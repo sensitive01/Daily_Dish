@@ -74,7 +74,7 @@ app.use("/api/User", Userlist);
 app.use("/api/User", BookingList);
 app.use("/api/User", Addrequestaddress);
 app.use("/api/User", SelectedAddress);
-app.use("/api/cart",Addcart);
+app.use("/api/cart", Addcart);
 app.use("/api/wallet",Wallet);
 
 const PORT = process.env.PORT || 7013;
