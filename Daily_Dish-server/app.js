@@ -10,7 +10,7 @@ const path = require("path");
 app.use(express.json());
 app.use(cors());
 app.use(morgan("dev"));
-app.use(express.static("Public"));
+app.use(express.static(path.join(__dirname, "dist")));
 
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
@@ -81,6 +81,11 @@ const PORT = process.env.PORT || 7013;
 app.use('/', (req, res) => {
   res.send("server is ready");
 });
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "dist", "index.html"));
+});
+
 
 app.listen(PORT, () => {
   console.log(`Running on port ${PORT}`);

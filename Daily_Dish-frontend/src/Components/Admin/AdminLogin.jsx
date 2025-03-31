@@ -25,7 +25,7 @@ function AdminLogin() {
       const config = {
         url: "/admin/adminLogin",
         method: "post",
-        baseURL: "https://daily-dish.onrender.com/api",
+        baseURL: "http://3.110.45.67:7013/api",
         headers: { "content-type": "application/json" },
         data: { REmail: REmail, RPassword: RPassword },
       };

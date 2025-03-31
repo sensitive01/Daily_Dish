@@ -34,7 +34,7 @@ const Slot = () => {
       const config = {
         url: "/admin/addslots",
         method: "post",
-        baseURL: "https://daily-dish.onrender.com/api",
+        baseURL: "http://3.110.45.67:7013/api",
         header: { "content-type": "application/json" },
         data: {
           mainslots: mainslots,
@@ -56,9 +56,7 @@ const Slot = () => {
   const [AddSlots, setAddSlots] = useState([]);
   const getAddSlots = async () => {
     try {
-      let res = await axios.get(
-        "https://daily-dish.onrender.com/api/admin/getslots"
-      );
+      let res = await axios.get("http://3.110.45.67:7013/api/admin/getslots");
       if (res.status === 200) {
         setAddSlots(res.data.Newaddress);
         setNoChangeData1(res.data.Newaddress);
@@ -75,7 +73,7 @@ const Slot = () => {
       const config = {
         url: "admin/deleteslots/" + Data,
         method: "delete",
-        baseURL: "https://daily-dish.onrender.com/api/",
+        baseURL: "http://3.110.45.67:7013/api/",
         header: { "content-type": "application/json" },
       };
       await axios(config).then((res) => {
@@ -105,7 +103,7 @@ const Slot = () => {
       const config = {
         url: "admin/updateslots",
         method: "put",
-        baseURL: "https://daily-dish.onrender.com/api/",
+        baseURL: "http://3.110.45.67:7013/api/",
         header: { "content-type": "application/json" },
         data: {
           mainslots: mainslots,
@@ -179,7 +177,7 @@ const Slot = () => {
       const config = {
         url: "/admin/addavailableslots",
         method: "post",
-        baseURL: "https://daily-dish.onrender.com/api",
+        baseURL: "http://3.110.45.67:7013/api",
         header: { "content-type": "application/json" },
         data: {
           Mainslots: Mainslots,
@@ -204,7 +202,7 @@ const Slot = () => {
   const getAddAvailableslot = async () => {
     try {
       let res = await axios.get(
-        "https://daily-dish.onrender.com/api/admin/getavailableslots"
+        "http://3.110.45.67:7013/api/admin/getavailableslots"
       );
       if (res.status === 200) {
         setAddAvailableslot(res.data.Newaddress);
@@ -222,7 +220,7 @@ const Slot = () => {
       const config = {
         url: "admin/deleteavailableslots/" + Datass,
         method: "delete",
-        baseURL: "https://daily-dish.onrender.com/api/",
+        baseURL: "http://3.110.45.67:7013/api/",
         header: { "content-type": "application/json" },
       };
       await axios(config).then((res) => {
@@ -253,7 +251,7 @@ const Slot = () => {
       const config = {
         url: "admin/updateavailableslots",
         method: "put",
-        baseURL: "https://daily-dish.onrender.com/api/",
+        baseURL: "http://3.110.45.67:7013/api/",
         header: { "content-type": "application/json" },
         data: {
           Mainslot: Mainslot,

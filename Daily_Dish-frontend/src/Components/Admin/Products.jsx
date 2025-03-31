@@ -173,7 +173,7 @@
 //       const config = {
 //         url: "admin/admin/addproduct",
 //         method: "post",
-//         baseURL: "https://daily-dish.onrender.com/api",
+//         baseURL: "http://3.110.45.67:7013/api",
 //         headers: { "Content-Type": "multipart/form-data" },
 //         data: {
 //           productcategory: productcategory,
@@ -242,7 +242,7 @@
 //   const getAddproducts = async () => {
 //     try {
 //       let res = await axios.get(
-//         "https://daily-dish.onrender.com/api/admin/admin/product"
+//         "http://3.110.45.67:7013/api/admin/admin/product"
 //       );
 //       if (res.status === 200) {
 //         setAddproducts(res.data.products);
@@ -258,7 +258,7 @@
 //   let deleteProduct = async () => {
 //     try {
 //       let res = await axios.delete(
-//         `https://daily-dish.onrender.com/api/admin/admin/deleteproduct/${delData._id}`
+//         `http://3.110.45.67:7013/api/admin/admin/deleteproduct/${delData._id}`
 //       );
 //       if (res) {
 //         alert(`Products Details Deleted Successfully`);
@@ -309,7 +309,7 @@
 //       const config = {
 //         url: `admin/admin/editProduct`,
 //         method: "put",
-//         baseURL: "https://daily-dish.onrender.com/api/",
+//         baseURL: "http://3.110.45.67:7013/api/",
 //         headers: { "Content-Type": "multipart/form-data" },
 //         data: {
 //           productcategory: productcategory,
@@ -404,7 +404,7 @@
 //   const [AddCategory, setAddCategory] = useState([]);
 //   const getAddCategory = async () => {
 //     try {
-//       let res = await axios.get("https://daily-dish.onrender.com/api/admin/getcategory");
+//       let res = await axios.get("http://3.110.45.67:7013/api/admin/getcategory");
 //       if (res.status === 200) {
 //         setAddCategory(res.data.getcategory);
 //         setNoChangeData(res.data.getcategory);
@@ -436,7 +436,7 @@
 
 //     try {
 //       const response = await axios.put(
-//         "https://daily-dish.onrender.com/api/admin/admin/updateGalleryImages",
+//         "http://3.110.45.67:7013/api/admin/admin/updateGalleryImages",
 //         formData,
 //         {
 //           headers: { "Content-Type": "multipart/form-data" },
@@ -459,9 +459,9 @@
 //   const deleteImage = async () => {
 //     try {
 //       const config = {
-//         url: `https://daily-dish.onrender.com/api/admin/admin/DeleteGalleryimage/${Data?._id}`,
+//         url: `http://3.110.45.67:7013/api/admin/admin/DeleteGalleryimage/${Data?._id}`,
 //         method: "delete",
-//         baseURL: "https://daily-dish.onrender.com/api/",
+//         baseURL: "http://3.110.45.67:7013/api/",
 //         header: { "content-type": "application/json" },
 //         data: { productId: View?._id },
 //       };
@@ -488,7 +488,7 @@
 //     const config = {
 //       url: "/admin/admin/addgallery",
 //       method: "put",
-//       baseURL: "https://daily-dish.onrender.com/api",
+//       baseURL: "http://3.110.45.67:7013/api",
 //       headers: { "Content-Type": "multipart/form-data" },
 //       data: formdata1,
 //     };
@@ -511,7 +511,7 @@
 //       const config = {
 //         url: `/admin/admin/Acceptorrejectproduct/${items?._id}`,
 //         method: "put",
-//         baseURL: "https://daily-dish.onrender.com/api",
+//         baseURL: "http://3.110.45.67:7013/api",
 //         headers: { "Content-Type": "application/json" },
 //       };
 
@@ -600,7 +600,7 @@
 //                     <td style={{ paddingTop: "20px" }}>
 //                       <div>
 //                         <img
-//                           src={`https://daily-dish.onrender.com/Products/${items.productimage[0]?.image}`}
+//                           src={`http://3.110.45.67:7013/Products/${items.productimage[0]?.image}`}
 //                           alt="img"
 //                           style={{ width: "100px", height: "60px" }}
 //                         />

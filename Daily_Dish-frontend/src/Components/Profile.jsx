@@ -54,7 +54,7 @@ const Profile = () => {
       const config = {
         url: "/User/updateuser", // Relative URL if using proxy
         method: "put",
-        baseURL: "https://daily-dish.onrender.com/api", // Remove this if proxy is used
+        baseURL: "http://3.110.45.67:7013/api", // Remove this if proxy is used
         headers: {
           "content-type": "application/json",
           Authorization: `Bearer ${user?.token || ""}`, // Example token
@@ -93,7 +93,7 @@ const Profile = () => {
       const config = {
         url: "/User/profileimg",
         method: "put",
-        baseURL: "https://daily-dish.onrender.com/api",
+        baseURL: "http://3.110.45.67:7013/api",
         headers: { "content-type": "multipart/form-data" },
         data: {
           profileImage: img,
@@ -130,7 +130,7 @@ const Profile = () => {
             <div style={{ position: "relative" }}>
               {user?.profileImage ? (
                 <img
-                  src={`https://daily-dish.onrender.com/Customer/${user?.profileImage}`}
+                  src={`http://3.110.45.67:7013/Customer/${user?.profileImage}`}
                   alt="User Profile"
                   className="user-picture"
                 />

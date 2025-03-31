@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "https://daily-dish.onrender.com/api/admin"; // Replace with your backend URL
+const API_URL = "http://3.110.45.67:7013/api/admin"; // Replace with your backend URL
 
 // Admin API Calls
 export const createCoupon = (couponData, image) => {

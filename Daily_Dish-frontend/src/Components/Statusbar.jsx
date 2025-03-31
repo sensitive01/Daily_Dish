@@ -18,7 +18,7 @@ const Statusbar = () => {
     const getAddWebstory = async () => {
       try {
         let res = await axios.get(
-          "https://daily-dish.onrender.com/api/admin/getstories"
+          "http://3.110.45.67:7013/api/admin/getstories"
         );
         if (res.status === 200) {
           const stories = res.data.getbanner.reverse(); // Adjust order if needed
@@ -119,7 +119,7 @@ const Statusbar = () => {
                   &#8592;
                 </div>
                 <img
-                  src={`https://daily-dish.onrender.com/Webstories/${story?.StoriesImage}`}
+                  src={`http://3.110.45.67:7013/Webstories/${story?.StoriesImage}`}
                   alt="StoryImage"
                   className="status-image"
                 />
