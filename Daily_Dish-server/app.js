@@ -78,9 +78,9 @@ app.use("/api/cart", Addcart);
 app.use("/api/wallet",Wallet);
 
 const PORT = process.env.PORT || 7013;
-app.use('/', (req, res) => {
-  res.send("server is ready");
-});
+// app.use('/', (req, res) => {
+//   res.send("server is ready");
+// });
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "dist", "index.html"));
