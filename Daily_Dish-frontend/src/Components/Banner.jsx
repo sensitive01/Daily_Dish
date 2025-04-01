@@ -80,7 +80,7 @@ const Banner = ({ selectArea, setSelectArea, Carts }) => {
       const config = {
         url: "/User/Sendotp",
         method: "post",
-        baseURL: "http://3.110.45.67:7013/api",
+        baseURL: "http://100.25.233.42:7013/api",
 
         headers: { "content-type": "application/json" },
         data: {
@@ -141,7 +141,9 @@ const Banner = ({ selectArea, setSelectArea, Carts }) => {
   const [AddBanner, setAddBanner] = useState([]);
   const getAddBanner = async () => {
     try {
-      let res = await axios.get("http://3.110.45.67:7013/api/admin/getbanner");
+      let res = await axios.get(
+        "http://100.25.233.42:7013/api/admin/getbanner"
+      );
       if (res.status === 200) {
         setAddBanner(res.data.getbanner);
       }
@@ -154,7 +156,7 @@ const Banner = ({ selectArea, setSelectArea, Carts }) => {
   const getapartmentd = async () => {
     try {
       let res = await axios.get(
-        "http://3.110.45.67:7013/api/admin/getapartment"
+        "http://100.25.233.42:7013/api/admin/getapartment"
       );
       if (res.status === 200) {
         setapartmentdata(res.data.corporatedata);
@@ -171,7 +173,7 @@ const Banner = ({ selectArea, setSelectArea, Carts }) => {
   const getcorporate = async () => {
     try {
       let res = await axios.get(
-        "http://3.110.45.67:7013/api/admin/getcorporate"
+        "http://100.25.233.42:7013/api/admin/getcorporate"
       );
       if (res.status === 200) {
         setcorporatedata(res.data.corporatedata);
@@ -191,7 +193,7 @@ const Banner = ({ selectArea, setSelectArea, Carts }) => {
     const getAddWebstory = async () => {
       try {
         let res = await axios.get(
-          "http://3.110.45.67:7013/api/admin/getstories"
+          "http://100.25.233.42:7013/api/admin/getstories"
         );
         if (res.status === 200) {
           setStoryLength(res.data.getbanner.length);
@@ -279,7 +281,7 @@ const Banner = ({ selectArea, setSelectArea, Carts }) => {
       const config = {
         url: "User/EnquiryEnquiry",
         method: "post",
-        baseURL: "http://3.110.45.67:7013/api/",
+        baseURL: "http://100.25.233.42:7013/api/",
         header: { "content-type": "application/json" },
         data: {
           Name: Name,
@@ -356,7 +358,7 @@ const Banner = ({ selectArea, setSelectArea, Carts }) => {
       const config = {
         url: "User/mobileotpverification",
         method: "post",
-        baseURL: "http://3.110.45.67:7013/api/",
+        baseURL: "http://100.25.233.42:7013/api/",
         header: { "content-type": "application/json" },
         data: {
           Mobile: Mobile,
@@ -382,7 +384,7 @@ const Banner = ({ selectArea, setSelectArea, Carts }) => {
   const getSelectedAddress = async () => {
     try {
       let res = await axios.get(
-        `http://3.110.45.67:7013/api/user/getSelectedAddressByUserIDAddType/${user?._id}/${addresstype}`
+        `http://100.25.233.42:7013/api/user/getSelectedAddressByUserIDAddType/${user?._id}/${addresstype}`
       );
       if (res.status === 200) {
         setSelectedAddress(res.data.getdata);
@@ -423,7 +425,7 @@ const Banner = ({ selectArea, setSelectArea, Carts }) => {
     try {
       if (!user) return;
       let res = await axios.post(
-        `http://3.110.45.67:7013/api/user/addressadd`,
+        `http://100.25.233.42:7013/api/user/addressadd`,
         {
           Name: user?.Fname,
           Number: user?.Mobile,

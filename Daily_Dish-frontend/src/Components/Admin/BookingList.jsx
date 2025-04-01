@@ -41,7 +41,7 @@ const BookingList = () => {
   const getApartmentOrder = async () => {
     try {
       let res = await axios.get(
-        "http://3.110.45.67:7013/api/admin/getallorders"
+        "http://100.25.233.42:7013/api/admin/getallorders"
       );
       if (res.status === 200) {
         setApartmentOrder(res.data.order.reverse());
@@ -67,7 +67,7 @@ const BookingList = () => {
   const getAddproducts = async () => {
     try {
       let res = await axios.get(
-        "http://3.110.45.67:7013/api/admin/getFoodItems"
+        "http://100.25.233.42:7013/api/admin/getFoodItems"
       );
       if (res.status === 200) {
         setAddproducts(res.data.data);
@@ -82,7 +82,7 @@ const BookingList = () => {
   let deleteBooking = async (data) => {
     try {
       let res = await axios.delete(
-        `http://3.110.45.67:7013/api/admin/deletefoodorder/${data}`
+        `http://100.25.233.42:7013/api/admin/deletefoodorder/${data}`
       );
       if (res) {
         alert(`Bookings Data Deleted Successfully`);
@@ -228,7 +228,7 @@ const BookingList = () => {
       const config = {
         url: "/admin/updateOrderStatus/" + item._id,
         method: "put",
-        baseURL: "http://3.110.45.67:7013/api",
+        baseURL: "http://100.25.233.42:7013/api",
         headers: { "Content-Type": "application/json" },
         data: {
           newStatus: statusdata,
@@ -542,7 +542,7 @@ const BookingList = () => {
                       <div className="row  border mt-1 mx-1">
                         <div className="col-md-4">
                           <img
-                            src={`http://3.110.45.67:7013/Products/${Item?.foodItemId?.Foodgallery[0]?.image2}`}
+                            src={`http://100.25.233.42:7013/Products/${Item?.foodItemId?.Foodgallery[0]?.image2}`}
                             alt=""
                             style={{ width: "90px", height: "80px" }}
                           />

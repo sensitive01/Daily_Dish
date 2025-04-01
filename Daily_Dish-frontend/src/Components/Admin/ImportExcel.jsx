@@ -28,7 +28,7 @@ const ImportExcel = () => {
       const config = {
         url: `/admin/updatefoodstocks`,
         method: "put",
-        baseURL: "http://3.110.45.67:7013/api",
+        baseURL: "http://100.25.233.42:7013/api",
         headers: { "Content-Type": "application/json" },
         data: { data },
       };

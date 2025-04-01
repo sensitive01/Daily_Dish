@@ -30,7 +30,7 @@ function Gst() {
       const config = {
         url: "admin/addgst",
         method: "post",
-        baseURL: "http://3.110.45.67:7013/api",
+        baseURL: "http://100.25.233.42:7013/api",
         headers: { "Content-Type": "application/Json" },
         data: {
           Cgst: cgst,
@@ -56,7 +56,7 @@ function Gst() {
   const [nochangedata, setNoChangeData] = useState([]);
   const getGst = async () => {
     try {
-      let res = await axios.get("http://3.110.45.67:7013/api/admin/getgst");
+      let res = await axios.get("http://100.25.233.42:7013/api/admin/getgst");
       if (res.status === 200) {
         setGstList(res.data.gst.reverse());
         setNoChangeData(res.data.gst.reverse());
@@ -71,7 +71,7 @@ function Gst() {
   let deleteGst = async (id) => {
     try {
       let res = await axios.delete(
-        `http://3.110.45.67:7013/api/admin/deletegst/${delData?._id}`
+        `http://100.25.233.42:7013/api/admin/deletegst/${delData?._id}`
       );
       if (res.status === 200) {
         alert(`GST Deleted Successfully`);

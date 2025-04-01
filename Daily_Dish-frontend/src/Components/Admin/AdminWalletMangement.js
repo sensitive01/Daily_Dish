@@ -28,7 +28,7 @@ const AdminWalletManagement = () => {
   // const fetchTransactions = async (wallet) => {
   //   try {
   //     const response = await axios.get(
-  //       `http://3.110.45.67:7013/api/wallet/transactions/${wallet.userId?._id}`
+  //       `http://100.25.233.42:7013/api/wallet/transactions/${wallet.userId?._id}`
   //     );
   //     setTransactions(response.data.data);
   //     setSelectedWallet(wallet);
@@ -51,8 +51,8 @@ const AdminWalletManagement = () => {
     try {
       await axios.post(
         actionType === "add"
-          ? "http://3.110.45.67:7013/api/wallet/add-free-cash"
-          : "http://3.110.45.67:7013/api/wallet/deduct-cash",
+          ? "http://100.25.233.42:7013/api/wallet/add-free-cash"
+          : "http://100.25.233.42:7013/api/wallet/deduct-cash",
         {
           userId: selectedWallet?.userId?._id,
           amount: amount,

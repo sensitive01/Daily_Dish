@@ -19,7 +19,7 @@ const LocationAddRequest = () => {
   const getEnquiry = async () => {
     try {
       let res = await axios.get(
-        "http://3.110.45.67:7013/api/User/getEnquiryenquiry"
+        "http://100.25.233.42:7013/api/User/getEnquiryenquiry"
       );
       if (res.status === 200) {
         setEnquiry(res.data.getdata.reverse());
@@ -35,7 +35,7 @@ const LocationAddRequest = () => {
   let DeleteEnquiry = async () => {
     try {
       let res = await axios.delete(
-        `http://3.110.45.67:7013/api/User/DeleteEnquiryList/${contactListId}`
+        `http://100.25.233.42:7013/api/User/DeleteEnquiryList/${contactListId}`
       );
       if (res.status === 200) {
         alert(` Successfully Deleted..!`);

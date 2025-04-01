@@ -28,7 +28,7 @@ const AdminWalletSettings = () => {
       try {
         setLoading(true);
         const response = await axios.get(
-          "http://3.110.45.67:7013/api/wallet/getsettings"
+          "http://100.25.233.42:7013/api/wallet/getsettings"
         );
 
         if (response.data.success) {
@@ -59,7 +59,7 @@ const AdminWalletSettings = () => {
     try {
       setLoading(true);
       const response = await axios.put(
-        "http://3.110.45.67:7013/api/wallet/settings",
+        "http://100.25.233.42:7013/api/wallet/settings",
         settings
       );
 

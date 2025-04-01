@@ -31,7 +31,7 @@ const DeliveryCharge = () => {
       const config = {
         url: "/admin/delivarycharge",
         method: "post",
-        baseURL: "http://3.110.45.67:7013/api",
+        baseURL: "http://100.25.233.42:7013/api",
         header: { "content-type": "multipart/form-data" },
         data: {
           MinimumAmount: MinimumAmount,
@@ -54,7 +54,7 @@ const DeliveryCharge = () => {
   const getAddDelivarychrg = async () => {
     try {
       let res = await axios.get(
-        "http://3.110.45.67:7013/api/admin/getdelivarycharge"
+        "http://100.25.233.42:7013/api/admin/getdelivarycharge"
       );
       if (res.status === 200) {
         setAddDelivarychrg(res.data.getdelivarycharge);
@@ -71,7 +71,7 @@ const DeliveryCharge = () => {
       const config = {
         url: "admin/Deletedelivarycharge/" + Data,
         method: "delete",
-        baseURL: "http://3.110.45.67:7013/api/",
+        baseURL: "http://100.25.233.42:7013/api/",
         header: { "content-type": "application/json" },
       };
       await axios(config).then((res) => {
@@ -104,7 +104,7 @@ const DeliveryCharge = () => {
       const config = {
         url: "admin/editdelivarycharge",
         method: "put",
-        baseURL: "http://3.110.45.67:7013/api/",
+        baseURL: "http://100.25.233.42:7013/api/",
         header: { "content-type": "multipart/form-data" },
         data: {
           MinimumAmount: MinimumAmount,

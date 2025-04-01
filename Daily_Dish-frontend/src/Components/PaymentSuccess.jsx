@@ -24,7 +24,7 @@ const PaymentSuccess = () => {
   const checkPaymentStatus = async () => {
     try {
       // Construct API endpoint
-      const url = `http://3.110.45.67:7013/api/User/checkPayment/${transactionId}/${userId}`;
+      const url = `http://100.25.233.42:7013/api/User/checkPayment/${transactionId}/${userId}`;
 
       // Make the GET request
       const response = await axios.get(url);

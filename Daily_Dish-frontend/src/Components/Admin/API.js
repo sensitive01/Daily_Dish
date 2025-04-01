@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://3.110.45.67:7013/api/admin"; // Replace with your backend URL
+const API_URL = "http://100.25.233.42:7013/api/admin"; // Replace with your backend URL
 
 // Admin API Calls
 export const createCoupon = (couponData, image) => {
