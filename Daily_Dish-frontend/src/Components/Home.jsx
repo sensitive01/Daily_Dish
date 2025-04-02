@@ -36,7 +36,7 @@ const Home = ({ selectArea, setSelectArea, Carts, setCarts }) => {
   const getcorporate = async () => {
     try {
       let res = await axios.get(
-        "http://100.25.233.42:7013/api/admin/getcorporate"
+        "https://dailydish.in/api/admin/getcorporate"
       );
       if (res.status === 200) {
         setcorporatedata(res.data.corporatedata);
@@ -92,7 +92,7 @@ const Home = ({ selectArea, setSelectArea, Carts, setCarts }) => {
     setloader(true);
     try {
       let res = await axios.get(
-        "http://100.25.233.42:7013/api/admin/getFoodItemsUnBlocks"
+        "https://dailydish.in/api/admin/getFoodItemsUnBlocks"
       );
       if (res.status === 200) {
         setfooditemdata(res.data.data);
@@ -158,7 +158,7 @@ const Home = ({ selectArea, setSelectArea, Carts, setCarts }) => {
   const getapartmentd = async () => {
     try {
       let res = await axios.get(
-        "http://100.25.233.42:7013/api/admin/getapartment"
+        "https://dailydish.in/api/admin/getapartment"
       );
       if (res.status === 200) {
         setapartmentdata(res.data.corporatedata);
@@ -183,7 +183,7 @@ const Home = ({ selectArea, setSelectArea, Carts, setCarts }) => {
     const addonedCarts = async () => {
       try {
         let res = await axios.post(
-          "http://100.25.233.42:7013/api/cart/addCart",
+          "https://dailydish.in/api/cart/addCart",
           {
             userId: user?._id,
             items: storedCart,
@@ -497,7 +497,7 @@ const Home = ({ selectArea, setSelectArea, Carts, setCarts }) => {
       const config = {
         url: "/User/Sendotp",
         method: "post",
-        baseURL: "http://100.25.233.42:7013/api",
+        baseURL: "https://dailydish.in/api",
 
         headers: { "content-type": "application/json" },
         data: {
@@ -551,7 +551,7 @@ const Home = ({ selectArea, setSelectArea, Carts, setCarts }) => {
   //     const config = {
   //       url: "/User/registercustomer",
   //       method: "post",
-  //       baseURL: "http://100.25.233.42:7013/api",
+  //       baseURL: "https://dailydish.in/api",
 
   //       headers: { "content-type": "application/json" },
   //       data: {
@@ -602,7 +602,7 @@ const Home = ({ selectArea, setSelectArea, Carts, setCarts }) => {
       const config = {
         url: "User/mobileotpverification",
         method: "post",
-        baseURL: "http://100.25.233.42:7013/api/",
+        baseURL: "https://dailydish.in/api/",
         header: { "content-type": "application/json" },
         data: {
           Mobile: Mobile,
@@ -748,7 +748,7 @@ const Home = ({ selectArea, setSelectArea, Carts, setCarts }) => {
                             >
                               <div className="graybg"></div>
                               <img
-                                src={`http://100.25.233.42:7013/Products/${item?.Foodgallery[0]?.image2}`}
+                                src={`https://dailydish.in/Products/${item?.Foodgallery[0]?.image2}`}
                                 alt=""
                                 className="mbl-product-img"
                               />
@@ -1156,7 +1156,7 @@ const Home = ({ selectArea, setSelectArea, Carts, setCarts }) => {
         <div className="foodItem">
           {foodData?.Foodgallery?.length > 0 && (
             <img
-              src={`http://100.25.233.42:7013/Products/${foodData.Foodgallery[0].image2}`}
+              src={`https://dailydish.in/Products/${foodData.Foodgallery[0].image2}`}
               alt=""
               className="img"
             />

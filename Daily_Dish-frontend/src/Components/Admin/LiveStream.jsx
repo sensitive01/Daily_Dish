@@ -49,7 +49,7 @@ const Livestreams = () => {
       const config = {
         url: "admin/Livestream",
         method: "post",
-        baseURL: "https://dailydish.in//api/",
+        baseURL: "https://dailydish.in/api/",
         header: { "content-type": "multipart/form-data" },
         data: formdata,
       };
@@ -73,7 +73,7 @@ const Livestreams = () => {
   const getAddLivestream = async () => {
     try {
       let res = await axios.get(
-        "https://dailydish.in//api/admin/getLivestream"
+        "https://dailydish.in/api/admin/getLivestream"
       );
       if (res.status === 200) {
         // Sort by date (updatedAt or other date field) or ObjectId (_id)
@@ -94,7 +94,7 @@ const Livestreams = () => {
       const config = {
         url: "admin/DeleteLivestream/" + Datav,
         method: "delete",
-        baseURL: "https://dailydish.in//api/",
+        baseURL: "https://dailydish.in/api/",
         header: { "content-type": "application/json" },
       };
       await axios(config).then((res) => {
@@ -130,7 +130,7 @@ const Livestreams = () => {
       const config = {
         url: "admin/editLivestream",
         method: "put",
-        baseURL: "https://dailydish.in//api/",
+        baseURL: "https://dailydish.in/api/",
         header: { "content-type": "multipart/form-data" },
         data: formdata,
       };
@@ -226,7 +226,7 @@ const Livestreams = () => {
                     <td style={{ paddingTop: "20px" }}>
                       <video width="auto" height="150" controls>
                         <source
-                          src={`https://dailydish.in//Livestream/${item?.Livestream}`}
+                          src={`https://dailydish.in/Livestream/${item?.Livestream}`}
                           type="video/mp4"
                           style={{ width: "100px", height: "80px" }}
                         />

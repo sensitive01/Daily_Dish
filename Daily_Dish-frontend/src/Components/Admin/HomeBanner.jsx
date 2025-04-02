@@ -43,7 +43,7 @@ const HomeBanner = () => {
       const config = {
         url: "/admin/banner",
         method: "post",
-        baseURL: "https://dailydish.in//api",
+        baseURL: "https://dailydish.in/api",
         header: { "content-type": "multipart/form-data" },
         data: formdata,
       };
@@ -62,7 +62,9 @@ const HomeBanner = () => {
   const [AddBanner, setAddBanner] = useState([]);
   const getAddBanner = async () => {
     try {
-      let res = await axios.get("https://dailydish.in//api/admin/getbanner");
+      let res = await axios.get(
+        "https://dailydish.in/api/admin/getbanner"
+      );
       if (res.status === 200) {
         setAddBanner(res.data.getbanner);
       }
@@ -78,7 +80,7 @@ const HomeBanner = () => {
       const config = {
         url: "admin/Deletebanner/" + Data,
         method: "delete",
-        baseURL: "https://dailydish.in//api/",
+        baseURL: "https://dailydish.in/api/",
         header: { "content-type": "application/json" },
       };
       await axios(config).then((res) => {
@@ -117,7 +119,7 @@ const HomeBanner = () => {
       const config = {
         url: "admin/editbanner",
         method: "put",
-        baseURL: "https://dailydish.in//api/",
+        baseURL: "https://dailydish.in/api/",
         header: { "content-type": "multipart/form-data" },
         data: formdata,
       };
@@ -179,7 +181,7 @@ const HomeBanner = () => {
                     <td style={{ paddingTop: "20px" }}>{i + 1}</td>
                     <td style={{ paddingTop: "20px" }}>
                       <Image
-                        src={`https://dailydish.in//HomeBanner/${item?.BannerImage}`}
+                        src={`https://dailydish.in/HomeBanner/${item?.BannerImage}`}
                         alt="pic"
                         style={{ width: "75px", height: "75px" }}
                       />

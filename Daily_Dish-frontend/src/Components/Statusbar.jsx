@@ -17,7 +17,7 @@ const Statusbar = () => {
   useEffect(() => {
     const getAddWebstory = async () => {
       try {
-        let res = await axios.get("https://dailydish.in//api/admin/getstories");
+        let res = await axios.get("https://dailydish.in/api/admin/getstories");
         if (res.status === 200) {
           const stories = res.data.getbanner.reverse(); // Adjust order if needed
           setAddWebstory(stories);
@@ -117,7 +117,7 @@ const Statusbar = () => {
                   &#8592;
                 </div>
                 <img
-                  src={`https://dailydish.in//Webstories/${story?.StoriesImage}`}
+                  src={`https://dailydish.in/Webstories/${story?.StoriesImage}`}
                   alt="StoryImage"
                   className="status-image"
                 />

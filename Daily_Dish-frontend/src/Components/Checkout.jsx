@@ -49,7 +49,7 @@ const Checkout = () => {
   const getapartmentd = async () => {
     try {
       let res = await axios.get(
-        "http://100.25.233.42:7013/api/admin/getapartment"
+        "https://dailydish.in/api/admin/getapartment"
       );
       if (res.status === 200) {
         setapartmentdata(res.data.corporatedata);
@@ -63,7 +63,7 @@ const Checkout = () => {
   const getCorporatedata = async () => {
     try {
       let res = await axios.get(
-        "http://100.25.233.42:7013/api/admin/getcorporate"
+        "https://dailydish.in/api/admin/getcorporate"
       );
       if (res.status === 200) {
         setcorporatedata(res.data.corporatedata);
@@ -179,7 +179,7 @@ const Checkout = () => {
       const config = {
         url: "/admin/applyCoupon",
         method: "post",
-        baseURL: "http://100.25.233.42:7013/api/",
+        baseURL: "https://dailydish.in/api/",
         header: { "content-type": "application/json" },
         data: {
           mobileNumber: user?.Mobile,
@@ -218,7 +218,7 @@ const Checkout = () => {
       try {
         console.log("calling");
         let res = await axios.post(
-          "http://100.25.233.42:7013/api/cart/addCart",
+          "https://dailydish.in/api/cart/addCart",
           {
             userId: user?._id,
             items: Carts,
@@ -279,7 +279,7 @@ const Checkout = () => {
       const config = {
         url: "/admin/addfoodorder",
         method: "post",
-        baseURL: "http://100.25.233.42:7013/api/",
+        baseURL: "https://dailydish.in/api/",
         header: { "content-type": "application/json" },
         data: {
           customerId: user?._id,
@@ -331,7 +331,7 @@ const Checkout = () => {
       const config1 = {
         url: "/user/addpaymentphonepay",
         method: "post",
-        baseURL: "http://100.25.233.42:7013/api/",
+        baseURL: "https://dailydish.in/api/",
         header: { "content-type": "application/json" },
         data: {
           userId: user?._id,
@@ -377,7 +377,7 @@ const Checkout = () => {
     setApartmentname(id);
     try {
       let res = await axios.get(
-        `http://100.25.233.42:7013/api/user/getSelectedAddressByUserIDAddressID/${user?._id}/${id}`
+        `https://dailydish.in/api/user/getSelectedAddressByUserIDAddressID/${user?._id}/${id}`
       );
       if (res.status === 200) {
         let am = res.data.getdata;
@@ -398,7 +398,7 @@ const Checkout = () => {
     try {
       if (!user) return;
       let res = await axios.post(
-        `http://100.25.233.42:7013/api/user/addressadd`,
+        `https://dailydish.in/api/user/addressadd`,
         {
           Name: name,
           Number: mobilenumber,
@@ -547,7 +547,7 @@ const Checkout = () => {
   const getfooditems = async () => {
     try {
       let res = await axios.get(
-        "http://100.25.233.42:7013/api/admin/getFoodItemsUnBlocks"
+        "https://dailydish.in/api/admin/getFoodItemsUnBlocks"
       );
       if (res.status === 200) {
         filterOutLowStockItems(res.data.data);
@@ -642,7 +642,7 @@ const Checkout = () => {
   const [gstlist, setGstList] = useState([]);
   const getGst = async () => {
     try {
-      let res = await axios.get("http://100.25.233.42:7013/api/admin/getgst");
+      let res = await axios.get("https://dailydish.in/api/admin/getgst");
       if (res.status === 200) {
         setGstList(res.data.gst);
       }

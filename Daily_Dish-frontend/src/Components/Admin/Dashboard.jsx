@@ -13,7 +13,7 @@ const Dashboard = () => {
   const getApartmentOrder = async () => {
     try {
       let res = await axios.get(
-        "http://100.25.233.42:7013/api/admin/getallorders"
+        "https://dailydish.in//api/admin/getallorders"
       );
       if (res.status === 200) {
         setApartmentOrder(res.data.order.reverse());
@@ -42,7 +42,7 @@ const Dashboard = () => {
   const getAdduser = async () => {
     try {
       let res = await axios.get(
-        "http://100.25.233.42:7013/api/User/registeruser"
+        "https://dailydish.in/api/User/registeruser"
       );
       if (res.status === 200) {
         setAdduser(res.data.success.reverse());

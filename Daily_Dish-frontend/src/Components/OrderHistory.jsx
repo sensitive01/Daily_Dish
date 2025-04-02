@@ -45,7 +45,7 @@ const OrderHistory = () => {
   const getorders = async (id) => {
     try {
       let res = await axios.get(
-        "https://dailydish.in//api/admin/getallordersbyUserId/" + id
+        "https://dailydish.in/api/admin/getallordersbyUserId/" + id
       );
       if (res.status === 200) {
         setorders(res.data.order);
@@ -82,7 +82,7 @@ const OrderHistory = () => {
       const config = {
         url: "/admin/addfoodorder",
         method: "post",
-        baseURL: "https://dailydish.in//api/",
+        baseURL: "https://dailydish.in/api/",
         header: { "content-type": "application/json" },
         data: {
           customerId: user?._id,
@@ -528,7 +528,7 @@ const OrderHistory = () => {
                                     >
                                       <div>
                                         <img
-                                          src={`https://dailydish.in//Products/${Item?.foodItemId?.Foodgallery[0]?.image2}`}
+                                          src={`https://dailydish.in/Products/${Item?.foodItemId?.Foodgallery[0]?.image2}`}
                                           rounded
                                           className="orderspage-img"
                                           alt=""
@@ -610,7 +610,7 @@ const OrderHistory = () => {
                                       >
                                         <div>
                                           <img
-                                            src={`https://dailydish.in//Products/${Item?.foodItemId?.Foodgallery[0]?.image2}`}
+                                            src={`https://dailydish.in/Products/${Item?.foodItemId?.Foodgallery[0]?.image2}`}
                                             rounded
                                             className="orderspage-img"
                                             alt=""

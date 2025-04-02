@@ -27,7 +27,9 @@ const Side = () => {
   const [AddApartment, setAddApartment] = useState([]);
   const getAddApartment = async () => {
     try {
-      let res = await axios.get("https://dailydish.in//api/admin/getapartment");
+      let res = await axios.get(
+        "https://dailydish.in/api/admin/getapartment"
+      );
       if (res.status === 200) {
         setAddApartment(res.data.corporatedata.reverse());
       }
@@ -43,7 +45,9 @@ const Side = () => {
   const [ApartmentOrder, setApartmentOrder] = useState([]);
   const getApartmentOrder = async () => {
     try {
-      let res = await axios.get("https://dailydish.in//api/admin/getallorders");
+      let res = await axios.get(
+        "https://dailydish.in/api/admin/getallorders"
+      );
       if (res.status === 200) {
         setApartmentOrder(res.data.order.reverse());
       }
@@ -59,7 +63,9 @@ const Side = () => {
   const [AddCorporate, setAddCorporate] = useState([]);
   const getAddCorporate = async () => {
     try {
-      let res = await axios.get("https://dailydish.in//api/admin/getcorporate");
+      let res = await axios.get(
+        "https://dailydish.in/api/admin/getcorporate"
+      );
       if (res.status === 200) {
         setAddCorporate(res.data.corporatedata.reverse());
       }
@@ -77,7 +83,7 @@ const Side = () => {
   const getEnquiry = async () => {
     try {
       let res = await axios.get(
-        "https://dailydish.in//api/User/getEnquiryenquiry"
+        "https://dailydish.in/api/User/getEnquiryenquiry"
       );
       if (res.status === 200) {
         setEnquiry(res.data.getdata.reverse());
@@ -95,7 +101,9 @@ const Side = () => {
   const [Adduser, setAdduser] = useState([]);
   const getAdduser = async () => {
     try {
-      let res = await axios.get("https://dailydish.in//api/User/registeruser");
+      let res = await axios.get(
+        "https://dailydish.in/api/User/registeruser"
+      );
       if (res.status === 200) {
         setAdduser(res.data.success.reverse());
       }

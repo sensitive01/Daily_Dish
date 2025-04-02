@@ -91,7 +91,7 @@ const Navbar1 = ({ selectArea, Carts, setCarts }) => {
       const config = {
         url: "/User/registercustomer",
         method: "post",
-        baseURL: "http://100.25.233.42:7013/api",
+        baseURL: "https://dailydish.in/api",
 
         headers: { "content-type": "application/json" },
         data: {
@@ -143,7 +143,7 @@ const Navbar1 = ({ selectArea, Carts, setCarts }) => {
       const config = {
         url: "/User/Sendotp",
         method: "post",
-        baseURL: "http://100.25.233.42:7013/api",
+        baseURL: "https://dailydish.in/api",
         headers: { "content-type": "application/json" },
         data: {
           Mobile: Mobile,
@@ -168,7 +168,7 @@ const Navbar1 = ({ selectArea, Carts, setCarts }) => {
       const config = {
         url: "User/mobileotpverification",
         method: "post",
-        baseURL: "http://100.25.233.42:7013/api/",
+        baseURL: "https://dailydish.in/api/",
         header: { "content-type": "application/json" },
         data: {
           Mobile: Mobile,
@@ -478,7 +478,7 @@ const Navbar1 = ({ selectArea, Carts, setCarts }) => {
                       <>
                         {user?.profileImage ? (
                           <img
-                            src={`http://100.25.233.42:7013/Customer/${user?.profileImage}`}
+                            src={`https://dailydish.in/Customer/${user?.profileImage}`}
                             alt=""
                             style={{ width: "50px", borderRadius: "50%" }}
                           />
@@ -657,7 +657,7 @@ const Navbar1 = ({ selectArea, Carts, setCarts }) => {
                           <div className="d-flex gap-3">
                             <div>
                               <img
-                                src={`http://100.25.233.42:7013/Products/${item?.image}`}
+                                src={`https://dailydish.in/Products/${item?.image}`}
                                 alt="ProductImage"
                                 className="checkout-block-img"
                               />

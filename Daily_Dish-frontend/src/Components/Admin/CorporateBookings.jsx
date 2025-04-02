@@ -39,7 +39,9 @@ const CorporateBookings = () => {
   const [ApartmentOrder, setApartmentOrder] = useState([]);
   const getApartmentOrder = async () => {
     try {
-      let res = await axios.get("https://dailydish.in//api/admin/getallorders");
+      let res = await axios.get(
+        "https://dailydish.in/api/admin/getallorders"
+      );
       if (res.status === 200) {
         setApartmentOrder(res.data.order.reverse());
         setNoChangeData(res.data.order);
@@ -61,7 +63,9 @@ const CorporateBookings = () => {
   const [Addproducts, setAddproducts] = useState([]);
   const getAddproducts = async () => {
     try {
-      let res = await axios.get("https://dailydish.in//api/admin/getFoodItems");
+      let res = await axios.get(
+        "https://dailydish.in/api/admin/getFoodItems"
+      );
       if (res.status === 200) {
         setAddproducts(res.data.data);
         setNoChangeData(res.data.data);
@@ -75,7 +79,7 @@ const CorporateBookings = () => {
   let deleteBooking = async (data) => {
     try {
       let res = await axios.delete(
-        `https://dailydish.in//api/admin/deletefoodorder/${data}`
+        `https://dailydish.in/api/admin/deletefoodorder/${data}`
       );
       if (res) {
         alert(`Bookings Data Deleted Successfully`);
@@ -203,7 +207,7 @@ const CorporateBookings = () => {
       const config = {
         url: "/admin/updateOrderStatus/" + item._id,
         method: "put",
-        baseURL: "https://dailydish.in//api",
+        baseURL: "https://dailydish.in/api",
         headers: { "Content-Type": "application/json" },
         data: {
           newStatus: statusdata,
@@ -554,7 +558,7 @@ const CorporateBookings = () => {
                       <div className="row  border mt-1 mx-1">
                         <div className="col-md-4">
                           <img
-                            src={`https://dailydish.in//Products/${Item?.foodItemId?.Foodgallery[0]?.image2}`}
+                            src={`https://dailydish.in/Products/${Item?.foodItemId?.Foodgallery[0]?.image2}`}
                             alt=""
                             style={{ width: "90px", height: "80px" }}
                           />

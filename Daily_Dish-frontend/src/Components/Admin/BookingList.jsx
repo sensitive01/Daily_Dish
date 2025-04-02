@@ -40,7 +40,9 @@ const BookingList = () => {
   const [ApartmentOrder, setApartmentOrder] = useState([]);
   const getApartmentOrder = async () => {
     try {
-      let res = await axios.get("https://dailydish.in/api/admin/getallorders");
+      let res = await axios.get(
+        "https://dailydish.in/api/admin/getallorders"
+      );
       if (res.status === 200) {
         setApartmentOrder(res.data.order.reverse());
         setNoChangeData(res.data.order.reverse());
@@ -64,7 +66,9 @@ const BookingList = () => {
   const [Addproducts, setAddproducts] = useState([]);
   const getAddproducts = async () => {
     try {
-      let res = await axios.get("https://dailydish.in/api/admin/getFoodItems");
+      let res = await axios.get(
+        "https://dailydish.in/api/admin/getFoodItems"
+      );
       if (res.status === 200) {
         setAddproducts(res.data.data);
         setNoChangeData(res.data.data);

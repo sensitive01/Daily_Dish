@@ -25,7 +25,7 @@ function AdminLogin() {
       const config = {
         url: "/admin/adminLogin",
         method: "post",
-        baseURL: "http://100.25.233.42:7013/api",
+        baseURL: "https://dailydish.in/api",
         headers: { "content-type": "application/json" },
         data: { REmail: REmail, RPassword: RPassword },
       };
