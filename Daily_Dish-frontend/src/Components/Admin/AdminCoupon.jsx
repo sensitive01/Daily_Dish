@@ -24,7 +24,7 @@ const AdminCoupon = () => {
   const getfooditems = async () => {
     try {
       let res = await axios.get(
-        "https://dailydish.in//api/admin/getFoodItemsUnBlocks"
+        "https://dailydish.in/api/admin/getFoodItemsUnBlocks"
       );
       if (res.status === 200) {
         setfooditemdata(res.data.data);
@@ -43,7 +43,7 @@ const AdminCoupon = () => {
   const getCoupon = async () => {
     try {
       axios
-        .get("https://dailydish.in//api/admin/coupons")
+        .get("https://dailydish.in/api/admin/coupons")
         .then((response) => {
           setCoupons(response.data);
         })
@@ -165,7 +165,7 @@ const AdminCoupon = () => {
               <td>
                 {coupon?.productId?.Foodgallery && (
                   <img
-                    src={`https://dailydish.in//Products/${coupon?.productId?.Foodgallery[0]?.image2}`}
+                    src={`https://dailydish.in/Products/${coupon?.productId?.Foodgallery[0]?.image2}`}
                     alt={coupon?.productId?.foodname}
                     style={{ width: 50, marginRight: 10 }}
                   />
@@ -279,7 +279,7 @@ const AdminCoupon = () => {
                 {fooditemdata?.map((product) => (
                   <option key={product._id} value={product._id}>
                     <img
-                      src={`https://dailydish.in//Products/${product?.Foodgallery[0]?.image2}`}
+                      src={`https://dailydish.in/Products/${product?.Foodgallery[0]?.image2}`}
                       alt={product?.foodname}
                       style={{ width: 30, marginRight: 10 }}
                     />
