@@ -161,7 +161,7 @@ const Add_Products = () => {
       const config = {
         url: "admin/addFoodItem",
         method: "post",
-        baseURL: "http://100.25.233.42:7013/api",
+        baseURL: "https://dailydish.in//api",
         headers: { "Content-Type": "multipart/form-data" },
         data: formdata,
       };
@@ -194,9 +194,7 @@ const Add_Products = () => {
   const [Addproducts, setAddproducts] = useState([]);
   const getAddproducts = async () => {
     try {
-      let res = await axios.get(
-        "http://100.25.233.42:7013/api/admin/getFoodItems"
-      );
+      let res = await axios.get("https://dailydish.in//api/admin/getFoodItems");
       if (res.status === 200) {
         setAddproducts(res.data.data);
         setNoChangeData(res.data.data);
@@ -212,7 +210,7 @@ const Add_Products = () => {
   let deleteProduct = async () => {
     try {
       let res = await axios.delete(
-        `http://100.25.233.42:7013/api/admin/deleteFoodItem/${delData._id}`
+        `https://dailydish.in//api/admin/deleteFoodItem/${delData._id}`
       );
       if (res) {
         alert(`Products Details Deleted Successfully`);
@@ -227,7 +225,7 @@ const Add_Products = () => {
   const [gstlist, setGstList] = useState([]);
   const getGst = async () => {
     try {
-      let res = await axios.get("http://100.25.233.42:7013/api/admin/getgst");
+      let res = await axios.get("https://dailydish.in//api/admin/getgst");
       if (res.status === 200) {
         setGstList(res.data.gst.reverse());
         setNoChangeData(res.data.gst.reverse());
@@ -296,7 +294,7 @@ const Add_Products = () => {
       const config = {
         url: `admin/updateFoodItem`,
         method: "put",
-        baseURL: "http://100.25.233.42:7013/api/",
+        baseURL: "https://dailydish.in//api/",
         headers: { "content-type": "multipart/form-data" },
         data: {
           foodcategory: Category,
@@ -361,7 +359,7 @@ const Add_Products = () => {
       const config = {
         url: `/admin/toggleFoodItemStatus/${items?._id}`,
         method: "put",
-        baseURL: "http://100.25.233.42:7013/api",
+        baseURL: "https://dailydish.in//api",
         headers: { "Content-Type": "application/json" },
       };
 
@@ -526,7 +524,7 @@ const Add_Products = () => {
                     <td style={{ paddingTop: "20px" }}>
                       <div>
                         <img
-                          src={`http://100.25.233.42:7013/Products/${items?.Foodgallery[0]?.image2}`}
+                          src={`https://dailydish.in//Products/${items?.Foodgallery[0]?.image2}`}
                           alt="img"
                           style={{ width: "60px", height: "60px" }}
                         />

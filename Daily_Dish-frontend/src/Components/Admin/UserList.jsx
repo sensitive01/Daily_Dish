@@ -55,8 +55,8 @@ const UserList = () => {
     try {
       await axios.post(
         actionType === "add"
-          ? "http://100.25.233.42:7013/api/wallet/add-free-cash"
-          : "http://100.25.233.42:7013/api/wallet/deduct-cash",
+          ? "https://dailydish.in//api/wallet/add-free-cash"
+          : "https://dailydish.in//api/wallet/deduct-cash",
         {
           userId: selectedWallet?.userId?._id,
           amount: amount,
@@ -74,9 +74,7 @@ const UserList = () => {
   const [Adduser, setAdduser] = useState([]);
   const getAdduser = async () => {
     try {
-      let res = await axios.get(
-        "http://100.25.233.42:7013/api/User/registeruser"
-      );
+      let res = await axios.get("https://dailydish.in//api/User/registeruser");
       if (res.status === 200) {
         setAdduser(res.data.success.reverse());
         setNoChangeData(res.data.success);
@@ -97,7 +95,7 @@ const UserList = () => {
       const config = {
         url: `/User/blockuser/${userId?._id}`,
         method: "put",
-        baseURL: "http://100.25.233.42:7013/api",
+        baseURL: "https://dailydish.in//api",
         headers: { "Content-Type": "application/json" },
       };
 
@@ -224,9 +222,7 @@ const UserList = () => {
   const [ApartmentOrder, setApartmentOrder] = useState([]);
   const getApartmentOrder = async () => {
     try {
-      let res = await axios.get(
-        "http://100.25.233.42:7013/api/admin/getallorders"
-      );
+      let res = await axios.get("https://dailydish.in//api/admin/getallorders");
       if (res.status === 200) {
         setApartmentOrder(res.data.order.reverse());
         // setNoChangeData(res.data.order);
@@ -373,7 +369,7 @@ const UserList = () => {
                       <td style={{ paddingTop: "20px" }}>{item?._id}</td>
                       <td style={{ paddingTop: "20px" }}>
                         <img
-                          src={`http://100.25.233.42:7013/Customer/${item?.profileImage}`}
+                          src={`https://dailydish.in//Customer/${item?.profileImage}`}
                           alt="pic"
                           style={{
                             width: "50px",

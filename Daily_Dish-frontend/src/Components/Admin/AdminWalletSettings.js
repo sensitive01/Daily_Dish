@@ -28,7 +28,7 @@ const AdminWalletSettings = () => {
       try {
         setLoading(true);
         const response = await axios.get(
-          "http://100.25.233.42:7013/api/wallet/getsettings"
+          "https://dailydish.in//api/wallet/getsettings"
         );
 
         if (response.data.success) {
@@ -59,7 +59,7 @@ const AdminWalletSettings = () => {
     try {
       setLoading(true);
       const response = await axios.put(
-        "http://100.25.233.42:7013/api/wallet/settings",
+        "https://dailydish.in//api/wallet/settings",
         settings
       );
 

@@ -20,17 +20,17 @@ export const WalletProvider = ({ children }) => {
       if (!userId) return;
 
       const walletRes = await axios.get(
-        `http://100.25.233.42:7013/api/wallet/user/${userId?._id}`
+        `https://dailydish.in//api/wallet/user/${userId?._id}`
       );
       setWallet(walletRes.data.data?.wallet);
 
       const transactionsRes = await axios.get(
-        `http://100.25.233.42:7013/api/wallet/transactions/${userId?._id}`
+        `https://dailydish.in//api/wallet/transactions/${userId?._id}`
       );
       setTransactions(transactionsRes.data.data);
 
       const walseting = await axios.get(
-        "http://100.25.233.42:7013/api/wallet/getsettings"
+        "https://dailydish.in//api/wallet/getsettings"
       );
       setWalletSeting(walseting.data.success);
       setLoading(false);
@@ -44,7 +44,7 @@ export const WalletProvider = ({ children }) => {
   const AdminWallet = async () => {
     try {
       const response = await axios.get(
-        "http://100.25.233.42:7013/api/wallet/all"
+        "https://dailydish.in//api/wallet/all"
       );
       setAllWallet(response.data.success);
     } catch (error) {

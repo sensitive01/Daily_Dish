@@ -61,7 +61,7 @@ const CorporateList = () => {
       const config = {
         url: "/admin/addcorporate",
         method: "post",
-        baseURL: "http://100.25.233.42:7013/api",
+        baseURL: "https://dailydish.in//api",
         header: { "content-type": "application/json" },
         data: {
           Apartmentname: Corparatename,
@@ -94,9 +94,7 @@ const CorporateList = () => {
   const [AddCorporate, setAddCorporate] = useState([]);
   const getAddCorporate = async () => {
     try {
-      let res = await axios.get(
-        "http://100.25.233.42:7013/api/admin/getcorporate"
-      );
+      let res = await axios.get("https://dailydish.in//api/admin/getcorporate");
       if (res.status === 200) {
         setAddCorporate(res.data.corporatedata.reverse());
         setNoChangeData(res.data.corporatedata);
@@ -113,7 +111,7 @@ const CorporateList = () => {
       const config = {
         url: "admin/deletecorporate/" + Data,
         method: "delete",
-        baseURL: "http://100.25.233.42:7013/api/",
+        baseURL: "https://dailydish.in//api/",
         header: { "content-type": "application/json" },
       };
       await axios(config).then((res) => {
@@ -148,7 +146,7 @@ const CorporateList = () => {
       const config = {
         url: "admin/updatecorporatelist",
         method: "put",
-        baseURL: "http://100.25.233.42:7013/api/",
+        baseURL: "https://dailydish.in//api/",
         headers: { "Content-Type": "application/json" },
         data: {
           Apartmentname: Corparatename,

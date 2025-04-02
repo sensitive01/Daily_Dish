@@ -14,7 +14,7 @@ const AbandonedCart = () => {
   const fetchCarts = async () => {
     try {
       const response = await axios.get(
-        "http://100.25.233.42:7013/api/cart/getAllcartaddon"
+        "https://dailydish.in//api/cart/getAllcartaddon"
       );
       setCarts(response.data.success);
     } catch (error) {
@@ -171,7 +171,7 @@ const AbandonedCart = () => {
                         <td>
                           <img
                             src={
-                              `http://100.25.233.42:7013/Products/${item.image}` ||
+                              `https://dailydish.in//Products/${item.image}` ||
                               "https://via.placeholder.com/50"
                             }
                             alt={item.foodname}
